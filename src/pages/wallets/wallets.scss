@@ -1,0 +1,55 @@
+page-wallets {
+
+    .background{
+        
+        width: 100%;
+        height: 100%;
+    }
+
+
+
+    ion-col{
+        
+        margin-left: 11px;
+        background-size: cover;
+        border: #fff solid1px;
+        color: #fff;
+    }
+
+    .btclist{
+        border: #ff8c00 solid 1px;
+        padding: 10px;
+        margin: 10px;
+        border-radius: 10px;
+    }
+
+    .img{
+
+        width: 60px;
+        height: 60px;
+
+    }
+
+    .eth_logo{
+        float: left;
+        margin-right: 20px;
+    }
+
+    .eth_buy{
+        float: left;
+        
+    }
+
+
+    .eth_sell{
+        float: left;
+        margin-left: 20px;
+    }
+
+    .eth_wallet{
+        float: left;
+        margin-left: 20px;
+    }
+
+  
+}
