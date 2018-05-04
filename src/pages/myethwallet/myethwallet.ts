@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { EthdepositPage } from '../ethdeposit/ethdeposit';
+import { EthwithdrawPage } from '../ethwithdraw/ethwithdraw';
 
 /**
  * Generated class for the MyethwalletPage page.
@@ -20,6 +22,14 @@ export class MyethwalletPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MyethwalletPage');
+  }
+
+  depositeth() {
+    this.navCtrl.push(EthdepositPage);
+  }
+
+  withdraweth() {
+    this.navCtrl.push(EthwithdrawPage);
   }
 
 }

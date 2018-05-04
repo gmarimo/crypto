@@ -5,14 +5,49 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>withdraw</ion-title>
-  </ion-navbar>
-
+  <ion-navbar hideBackButton>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Withdraw</ion-title>
+    </ion-navbar>
 </ion-header>
 
+<ion-content>
 
-<ion-content padding>
+  <ion-item no-lines>
+      <ion-label class="pymntlbl">Withdraw</ion-label>
+  </ion-item>
+
+    <ion-item class="amnt" no-lines>
+      <ion-label floating>Enter Amount ($)</ion-label>
+      <ion-input class="comm" type="number"></ion-input>
+    </ion-item>
+
+    <ion-item class="amnt" no-lines>
+      <ion-label floating>Ecocash number</ion-label>
+      <ion-input class="comm" type="number"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="pymntlbl">Select withdrawal method</ion-label>
+    </ion-item>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col class="pymnt">
+          <ion-label>Ecocash</ion-label>
+          <img src="assets/imgs/ecocash.png">
+          <button ion-button class="btn" color="primary">Withdraw $300</button>
+        </ion-col>
+        <ion-col class="pymnt">
+            <ion-label>Zipit</ion-label>
+            <img class="img" src="assets/imgs/zipit.png">
+            <button ion-button class="btn" color="primary">Withdraw $300</button>
+        </ion-col>
+      </ion-row>  
+    </ion-grid>
 
 </ion-content>
+
+

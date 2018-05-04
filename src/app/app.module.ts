@@ -18,13 +18,28 @@ import { MyusdwalletPage } from '../pages/myusdwallet/myusdwallet';
 import { MyethwalletPage } from '../pages/myethwallet/myethwallet';
 import { BtcdepositPage } from '../pages/btcdeposit/btcdeposit';
 import { BtcwithdrawPage } from '../pages/btcwithdraw/btcwithdraw';
+import { EthdepositPage } from '../pages/ethdeposit/ethdeposit';
+import { EthwithdrawPage } from '../pages/ethwithdraw/ethwithdraw';
+import { ExchangePage } from '../pages/exchange/exchange';
+import { PrepaidPage } from '../pages/prepaid/prepaid';
+import { SettingsPage } from '../pages/settings/settings';
+import { AlertsPage } from '../pages/alerts/alerts';
+import { SharePage } from '../pages/share/share';
+import { InvitePage } from '../pages/invite/invite';
+import { CryptomarketPage } from '../pages/cryptomarket/cryptomarket';
+import { TradePage } from '../pages/trade/trade';
+import { TermsPage } from '../pages/terms/terms';
+import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { HttpModule } from '@angular/http';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { HttpClientModule } from '@angular/common/http';
+import { RemoteServiceProvider } from '../providers/remote-service/remote-service';
 
 
 
@@ -54,14 +69,30 @@ const firebase = {
     MyethwalletPage,
     MyusdwalletPage,
     BtcdepositPage,
-    BtcwithdrawPage
+    BtcwithdrawPage,
+    EthdepositPage,
+    EthwithdrawPage,
+    ExchangePage,
+    PrepaidPage,
+    SettingsPage,
+    AlertsPage,
+    SharePage,
+    InvitePage,
+    CryptomarketPage,
+    TradePage,
+    TermsPage,
+    TabsPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, {
+      preloadModiles: true
+    }),
     AngularFireModule.initializeApp(firebase, 'crypto'),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    HttpClientModule,
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -80,12 +111,25 @@ const firebase = {
     MyethwalletPage,
     MyusdwalletPage,
     BtcdepositPage,
-    BtcwithdrawPage
+    BtcwithdrawPage,
+    EthdepositPage,
+    EthwithdrawPage,
+    ExchangePage,
+    PrepaidPage,
+    SettingsPage,
+    AlertsPage,
+    SharePage,
+    InvitePage,
+    CryptomarketPage,
+    TradePage,
+    TermsPage,
+    TabsPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    RemoteServiceProvider
   ]
 })
 export class AppModule {}

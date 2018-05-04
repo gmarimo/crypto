@@ -12,6 +12,8 @@ import { MybtcwalletPage } from '../mybtcwallet/mybtcwallet';
 import { MyusdwalletPage } from '../myusdwallet/myusdwallet';
 import { MyethwalletPage } from '../myethwallet/myethwallet';
 
+import { RemoteServiceProvider } from '../../providers/remote-service/remote-service';
+
 /**
  * Generated class for the WalletsPage page.
  *
@@ -26,11 +28,19 @@ import { MyethwalletPage } from '../myethwallet/myethwallet';
 })
 export class WalletsPage {
 
+  
+
+  RemoteserviceProvider: any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad WalletsPage');
+  }
+
+  refresherPrices(refresher): void {
+    this.RemoteserviceProvider.fetchPrices(refresher);
   }
 
   buyingbtc(){

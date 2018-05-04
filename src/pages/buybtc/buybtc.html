@@ -5,14 +5,55 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>buybtc</ion-title>
-  </ion-navbar>
-
+  <ion-navbar hideBackButton>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Buy BTC</ion-title>
+    </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
+    <ion-grid>
+      <ion-row>
 
+        <ion-col>
+          <ion-item no-lines>
+            <ion-label floating>USD</ion-label>
+            <ion-input class="ioninput" type="number"></ion-input>
+          </ion-item>
+        </ion-col>
+
+        <ion-col>
+          <ion-item no-lines>
+            <ion-label floating>BTC</ion-label>
+            <ion-input class="ioninput" type="number"></ion-input>
+          </ion-item>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+
+    <ion-item>
+      <ion-label>Commission</ion-label>
+      <ion-input class="comm" placeholder="0.00" type="number"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label>Get</ion-label>
+        <ion-input class="comm1" placeholder="BTC" type="number"></ion-input>BTC
+    </ion-item>
+
+    <ion-item>
+        <ion-label>Pay</ion-label>
+        <ion-input class="comm1" placeholder="$" type="number"></ion-input>$
+    </ion-item>
+    
 </ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+        <button ion-button full color="primary" full>Complete Payment of $300</button>
+    </ion-toolbar>
+  </ion-footer>

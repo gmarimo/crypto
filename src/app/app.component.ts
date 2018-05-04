@@ -5,6 +5,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
+import { DepositPage } from '../pages/deposit/deposit';
+import { WithdrawPage } from '../pages/withdraw/withdraw';
+import { ExchangePage } from '../pages/exchange/exchange';
+import { PrepaidPage } from '../pages/prepaid/prepaid';
+import { SettingsPage } from '../pages/settings/settings';
+import { AlertsPage } from '../pages/alerts/alerts';
+import { SharePage } from '../pages/share/share';
+import { InvitePage } from '../pages/invite/invite';
+import { WalletsPage } from '../pages/wallets/wallets';
 
 @Component({
   templateUrl: 'app.html'
@@ -18,11 +27,21 @@ export class MyApp {
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
+    platform.ready().then(() => {});
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
+      //{ title: 'Home', component: HomePage },
+      //{ title: 'List', component: ListPage }
+      { title: 'Exchange', component: ExchangePage },
+      { title: 'Deposit', component: DepositPage },
+      { title: 'Withdraw', component: WithdrawPage },
+      { title: 'Wallets', component: WalletsPage },
+      { title: 'Prepaid card', component: PrepaidPage },
+      { title: 'Settings', component: SettingsPage },
+      { title: 'Alerts', component: AlertsPage },
+      { title: 'Share', component: SharePage },
+      { title: 'Invite friends', component: InvitePage }
     ];
 
   }

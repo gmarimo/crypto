@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 //import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireAuth } from 'angularfire2/auth';
 
+import { HomePage } from '../home/home';
+
 
 
 /**
@@ -38,6 +40,10 @@ export class CreateaccountPage {
       console.log("Registration failed, please try again", error)
     })
     console.log(this.email.value);
+  }
+
+  loginpage (){
+    this.navCtrl.push(HomePage);
   }
 
 }
