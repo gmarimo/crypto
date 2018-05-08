@@ -21,14 +21,14 @@
         <ion-col>
           <ion-item no-lines>
             <ion-label floating>USD</ion-label>
-            <ion-input class="ioninput" type="number"></ion-input>
+            <ion-input [(ngModel)]="buydetails.usdamount" class="ioninput" type="number"></ion-input>
           </ion-item>
         </ion-col>
 
         <ion-col>
           <ion-item no-lines>
             <ion-label floating>BTC</ion-label>
-            <ion-input class="ioninput" type="number"></ion-input>
+            <ion-input [(ngModel)]="buydetails.btcamount" class="ioninput" type="number"></ion-input>
           </ion-item>
         </ion-col>
 
@@ -37,23 +37,23 @@
 
     <ion-item>
       <ion-label>Commission</ion-label>
-      <ion-input class="comm" placeholder="0.00" type="number"></ion-input>
+      <ion-input [(ngModel)]="buydetails.commission" class="comm" placeholder="0.00" type="number"></ion-input>
     </ion-item>
 
     <ion-item>
         <ion-label>Get</ion-label>
-        <ion-input class="comm1" placeholder="BTC" type="number"></ion-input>BTC
+        <ion-input [(ngModel)]="buydetails.btcaftercommission" class="comm1" placeholder="BTC" type="number"></ion-input>BTC
     </ion-item>
 
     <ion-item>
         <ion-label>Pay</ion-label>
-        <ion-input class="comm1" placeholder="$" type="number"></ion-input>$
+        <ion-input [(ngModel)]="buydetails.totalpayment" class="comm1" placeholder="$" type="number"></ion-input>$
     </ion-item>
     
 </ion-content>
 
 <ion-footer>
     <ion-toolbar>
-        <button ion-button full color="primary" full>Complete Payment of $300</button>
+        <button ion-button full color="primary" full (click)="buybtcf()">Complete Payment of $300</button>
     </ion-toolbar>
   </ion-footer>

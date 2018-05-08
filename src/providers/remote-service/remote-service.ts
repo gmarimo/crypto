@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { forkJoin } from 'rxjs/observable/forkJoin';
+
 
 
 /*
@@ -10,14 +9,17 @@ import { forkJoin } from 'rxjs/observable/forkJoin';
   See https://angular.io/guide/dependency-injection for more info on providers
   and Angular DI.
 */
-
+const API: string = "https://api.coinmarketcap.com/v2/ticker/1/";
 @Injectable()
 export class RemoteServiceProvider {
 
-  
-
   constructor(private http: HttpClient) {
+    console.log("Hello Bitcoin");
     
+  }
+
+  getData() {
+    return this.http.get(API);
   }
 
 }

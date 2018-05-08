@@ -23,7 +23,7 @@ export class MyApp {
 
   rootPage: any = HomePage;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, component: any, icon: String}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
@@ -33,15 +33,15 @@ export class MyApp {
     this.pages = [
       //{ title: 'Home', component: HomePage },
       //{ title: 'List', component: ListPage }
-      { title: 'Exchange', component: ExchangePage },
-      { title: 'Deposit', component: DepositPage },
-      { title: 'Withdraw', component: WithdrawPage },
-      { title: 'Wallets', component: WalletsPage },
-      { title: 'Prepaid card', component: PrepaidPage },
-      { title: 'Settings', component: SettingsPage },
-      { title: 'Alerts', component: AlertsPage },
-      { title: 'Share', component: SharePage },
-      { title: 'Invite friends', component: InvitePage }
+      { title: 'Exchange', component: ExchangePage, icon: "swap" },
+      { title: 'Deposit', component: DepositPage, icon: "arrow-down" },
+      { title: 'Withdraw', component: WithdrawPage, icon: "arrow-up" },
+      { title: 'Wallets', component: WalletsPage, icon: "cash" },
+      { title: 'Prepaid card', component: PrepaidPage, icon: "card" },
+      { title: 'Settings', component: SettingsPage, icon: "cog" },
+      { title: 'Alerts', component: AlertsPage, icon: "alert" },
+      { title: 'Share', component: SharePage, icon: "share" },
+      { title: 'Invite friends', component: InvitePage, icon: "person-add" }
     ];
 
   }

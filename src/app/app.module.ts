@@ -30,13 +30,14 @@ import { CryptomarketPage } from '../pages/cryptomarket/cryptomarket';
 import { TradePage } from '../pages/trade/trade';
 import { TermsPage } from '../pages/terms/terms';
 import { TabsPage } from '../pages/tabs/tabs';
+import { BtcbuysuccessPage } from '../pages/btcbuysuccess/btcbuysuccess';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
 
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { HttpClientModule } from '@angular/common/http';
 import { RemoteServiceProvider } from '../providers/remote-service/remote-service';
@@ -81,7 +82,8 @@ const firebase = {
     CryptomarketPage,
     TradePage,
     TermsPage,
-    TabsPage
+    TabsPage,
+    BtcbuysuccessPage
   ],
   imports: [
     BrowserModule,
@@ -123,7 +125,8 @@ const firebase = {
     CryptomarketPage,
     TradePage,
     TermsPage,
-    TabsPage
+    TabsPage,
+    BtcbuysuccessPage
   ],
   providers: [
     StatusBar,
