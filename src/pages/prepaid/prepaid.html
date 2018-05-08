@@ -8,11 +8,76 @@
 
   <ion-navbar>
     <ion-title>prepaid</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="card"></ion-icon>
+    </button>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+    <ion-grid>
+        <ion-row>
+            <ion-label class="label">Crypto</ion-label>
+            <ion-label class="label">Cash</ion-label>
+        </ion-row>
 
+        <ion-row>
+ `                   
+              <ion-select>
+                  <ion-option value="btc" selected>BTC</ion-option>
+                  <ion-option value="eth">ETH</ion-option>
+                </ion-select>
+                
+
+              
+                  <ion-icon class="arrow" name="arrow-forward"></ion-icon>
+              
+
+              
+                <ion-select>
+                  <ion-option value="bit" selected=true>USD</ion-option>
+                  <ion-option value="eth">GBP</ion-option>
+                  <ion-option value="eth">ZAR</ion-option>
+                </ion-select>
+              
+        </ion-row>
+
+            <ion-row>
+      
+                <ion-col>
+                <ion-item no-lines>
+                  <ion-label floating>BTC</ion-label>
+                  <ion-input class="ioninput" type="number"></ion-input>
+                </ion-item>
+              </ion-col>
+
+              <ion-col>
+              <ion-icon class="swap" name="arrow-forward"></ion-icon>
+            </ion-col>
+
+              <ion-col>
+                <ion-item no-lines>
+                  <ion-label floating>USD</ion-label>
+                  <ion-input class="ioninput" type="number"></ion-input>
+                </ion-item>
+              </ion-col>
+
+            </ion-row>
+
+            <ion-row>
+              <ion-item>
+                <ion-label>Balance is</ion-label>
+                <ion-input class="comm" placeholder="0.00" type="number"></ion-input>
+              </ion-item>
+            </ion-row>
+
+          </ion-grid>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+      <button ion-button full color="primary" full (click)="load()">Convert</button>
+  </ion-toolbar>
+</ion-footer>

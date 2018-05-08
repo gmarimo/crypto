@@ -4,10 +4,12 @@ page-deposit {
         border: #ff8c00 solid 1px;
         border-radius: 10px;
         padding-left: 12px;
+        color: #fff;
     }
 
     ion-label{
         padding-left: 12px;
+        color: #fff;
     }
 
     .amnt{
@@ -46,6 +48,18 @@ page-deposit {
 
     .btn1{
         background: #0000ff;
+    }
+
+    p{
+        color: #fff;
+    }
+
+    ion-input{
+        color: #fff;
+    }
+
+    .paynow{
+        text-align: center;
     }
 
 }

@@ -25,35 +25,35 @@
     </ion-item>
 
     <ion-item>
-      <ion-label class="pymntlbl">Select payment method</ion-label>
+      <ion-label class="pymntlbl">Process Payment</ion-label>
     </ion-item>
-
+    <ion-item no-lines>
+        <p>1. <ion-icon name="card"></ion-icon> Point of Sale (P.O.S). <a href="#">Read more..</a></p>
+        <p>2. <ion-icon name="logo-usd"></ion-icon> Deposit with Cash. <a href="#">Read more..</a></p>
+    </ion-item>
+  
+  </ion-content>
+      
+  <ion-footer>
     <ion-grid>
       <ion-row>
-        <ion-col class="pymnt">
-          <ion-label>Ecocash</ion-label>
-          <img src="assets/imgs/ecocash.png">
-          <button ion-button class="btn" color="primary">Deposit $300</button>
+        <ion-col>
+          <img class="img" src = "assets/imgs/ecocash-logo.jpg" />
         </ion-col>
-        <ion-col class="pymnt">
-            <ion-label>Zipit</ion-label>
-            <img class="img" src="assets/imgs/zipit.png">
-            <button ion-button class="btn" color="primary">Deposit $300</button>
+        <ion-col>
+          <img class="img" src = "assets/imgs/telecash.png" />
         </ion-col>
-      </ion-row>  
-      <ion-row>
-        <ion-col class="pymnt">
-            <ion-label>P.O.S</ion-label>
-            <img class="img" src="assets/imgs/zimswitch.png">
-            <button ion-button class="btn" color="primary">Deposit $300</button>
-        </ion-col>
-        <ion-col class="pymnt">
-            <ion-label>Paynow</ion-label>
-            <img class="img" src="assets/imgs/topup.png">
-            <button ion-button full class="btn" color="primary">Deposit $300</button>
+        <ion-col>
+          <img class="img" src = "assets/imgs/vpayments-logo.jpg" />
         </ion-col>
       </ion-row>
     </ion-grid>
+    <a href='https://www.paynow.co.zw/Payment/Link/?q=c2VhcmNoPW1naWZ0OTMxOSU0MGdtYWlsLmNvbSZhbW91bnQ9MC4wMCZyZWZlcmVuY2U9Jmw9MA%3d%3d' target='_blank'><button ion-button full color="primary">Process deposit</button></a>
+  </ion-footer>
+      
+          
+       
+    
 
-</ion-content>
+
 

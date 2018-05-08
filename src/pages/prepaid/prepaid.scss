@@ -1,3 +1,38 @@
-page-prepaid {
+page-prepaid{
+    .ioninput{
+        border: #ff8c00 solid 1px;
+        border-radius: 10px;
+        color: #fff;
+    }
+    .arrow{
+        padding-top: 10px;
+        margin-left: 30px;
+    }
+    ion-select{
+        border: #ff8c00 solid 1px;
+            border-radius: 10px;
+            color: #fff;
+            margin-left: 15px;
+    }
+    .label{
+        margin-left: 30px;
+    }
+    .swap{
+        padding-top: 50px;
+        margin-left: 10px;
+    }
 
+    ion-col{
+        text-align:center;
+    }
 }
+
+
+ion-label{
+    font-size: 18px;
+    color: #fff;
+}
+ion-icon{
+    color: #fff;
+}
+
