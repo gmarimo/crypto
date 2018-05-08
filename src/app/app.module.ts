@@ -88,7 +88,8 @@ const firebase = {
     TabsPage,
     ChangepasswordPage,
     LogoutPage,
-    PersonalInfoPage
+    PersonalInfoPage,
+    BtcbuysuccessPage
   ],
   imports: [
     BrowserModule,
@@ -133,7 +134,8 @@ const firebase = {
     TabsPage,
     ChangepasswordPage,
     LogoutPage,
-    PersonalInfoPage
+    PersonalInfoPage,
+    BtcbuysuccessPage
   ],
   providers: [
     StatusBar,
