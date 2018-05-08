@@ -86,13 +86,9 @@ const firebase = {
     TradePage,
     TermsPage,
     TabsPage,
-<<<<<<< HEAD
-    BtcbuysuccessPage
-=======
     ChangepasswordPage,
     LogoutPage,
     PersonalInfoPage
->>>>>>> c7406ae8890a4ba03b5fc97a36082048d621b10f
   ],
   imports: [
     BrowserModule,
@@ -135,13 +131,9 @@ const firebase = {
     TradePage,
     TermsPage,
     TabsPage,
-<<<<<<< HEAD
-    BtcbuysuccessPage
-=======
     ChangepasswordPage,
     LogoutPage,
     PersonalInfoPage
->>>>>>> c7406ae8890a4ba03b5fc97a36082048d621b10f
   ],
   providers: [
     StatusBar,
