@@ -14,6 +14,7 @@ import { AlertsPage } from '../pages/alerts/alerts';
 import { SharePage } from '../pages/share/share';
 import { InvitePage } from '../pages/invite/invite';
 import { WalletsPage } from '../pages/wallets/wallets';
+import { LogoutPage } from '../pages/logout/logout';
 
 @Component({
   templateUrl: 'app.html'
@@ -41,7 +42,8 @@ export class MyApp {
       { title: 'Settings', component: SettingsPage, icon: "cog" },
       { title: 'Alerts', component: AlertsPage, icon: "alert" },
       { title: 'Share', component: SharePage, icon: "share" },
-      { title: 'Invite friends', component: InvitePage, icon: "person-add" }
+      { title: 'Invite friends', component: InvitePage, icon: "person-add" },
+      { title: 'Logout', component: LogoutPage, icon: "log-out" }
     ];
 
   }
