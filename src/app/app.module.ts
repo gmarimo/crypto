@@ -40,6 +40,9 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { HttpClientModule } from '@angular/common/http';
 import { RemoteServiceProvider } from '../providers/remote-service/remote-service';
+import { ChangepasswordPage } from '../pages/changepassword/changepassword';
+import { LogoutPage} from '../pages/logout/logout';
+import { PersonalInfoPage} from '../pages/personal-info/personal-info';
 
 
 
@@ -81,7 +84,10 @@ const firebase = {
     CryptomarketPage,
     TradePage,
     TermsPage,
-    TabsPage
+    TabsPage,
+    ChangepasswordPage,
+    LogoutPage,
+    PersonalInfoPage
   ],
   imports: [
     BrowserModule,
@@ -123,7 +129,10 @@ const firebase = {
     CryptomarketPage,
     TradePage,
     TermsPage,
-    TabsPage
+    TabsPage,
+    ChangepasswordPage,
+    LogoutPage,
+    PersonalInfoPage
   ],
   providers: [
     StatusBar,

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the DepositPage page.
+ * Generated class for the ChangepasswordPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,18 +10,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-deposit',
-  templateUrl: 'deposit.html',
+  selector: 'page-changepassword',
+  templateUrl: 'changepassword.html',
 })
-export class DepositPage {
+export class ChangepasswordPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad DepositPage');
+    console.log('ionViewDidLoad ChangepasswordPage');
   }
-
-  
 
 }
