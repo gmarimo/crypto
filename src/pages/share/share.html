@@ -6,13 +6,26 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>share</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>share</ion-title>
+        <button ion-button menuToggle>
+          <ion-icon name="share"></ion-icon>
+        </button>
+      </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+      <ion-list>
+        
+          <ion-textarea [(ngModel)]="message" ></ion-textarea>
+       
+      </ion-list>
+      
 </ion-content>
+<ion-footer>
+    <ion-toolbar>
+        <button ion-button full (click)="share()"><ion-icon name="share"></ion-icon>Share</button>
+    </ion-toolbar>
+  </ion-footer>

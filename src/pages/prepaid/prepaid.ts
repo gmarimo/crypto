@@ -24,7 +24,7 @@ export class PrepaidPage {
   }
   load(){
     let loading = this.loadingCtrl.create({
-      spinner: "crescent",
+      spinner: "bubbles",
       content: "Converting",
       duration: 5000
     });

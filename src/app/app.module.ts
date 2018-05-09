@@ -44,6 +44,7 @@ import { RemoteServiceProvider } from '../providers/remote-service/remote-servic
 import { ChangepasswordPage } from '../pages/changepassword/changepassword';
 import { LogoutPage} from '../pages/logout/logout';
 import { PersonalInfoPage} from '../pages/personal-info/personal-info';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 
 
@@ -141,7 +142,8 @@ const firebase = {
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    RemoteServiceProvider
+    RemoteServiceProvider,
+    SocialSharing
   ]
 })
 export class AppModule {}
