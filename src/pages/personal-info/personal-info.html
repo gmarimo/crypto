@@ -59,8 +59,8 @@
                 </ion-item>
 
                 <ion-item no-lines>
-                    <button ion-button color="dark" (click)="takePicture()">Take Photo</button>
-                    <img [src]="imageURL" *ngIf="imageURL" />
+                  <button ion-button (click)="takePic()">Take a picture!</button>
+                  <img [src]="captureDataUrl" *ngIf="captureDataUrl"/>
                 </ion-item>
 
               

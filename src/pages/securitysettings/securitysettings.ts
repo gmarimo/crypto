@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ChangepasswordPage } from '../changepassword/changepassword';
-import { PersonalInfoPage } from '../personal-info/personal-info';
-import { SecuritysettingsPage } from '../securitysettings/securitysettings';
+import { ChangepinPage } from '../changepin/changepin';
 
 /**
- * Generated class for the SettingsPage page.
+ * Generated class for the SecuritysettingsPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -13,25 +12,24 @@ import { SecuritysettingsPage } from '../securitysettings/securitysettings';
 
 @IonicPage()
 @Component({
-  selector: 'page-settings',
-  templateUrl: 'settings.html',
+  selector: 'page-securitysettings',
+  templateUrl: 'securitysettings.html',
 })
-export class SettingsPage {
+export class SecuritysettingsPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SettingsPage');
+    console.log('ionViewDidLoad SecuritysettingsPage');
   }
 
-  personalInfo() {
-    this.navCtrl.push(PersonalInfoPage);
+  change_passwrd(){
+    this.navCtrl.push(ChangepasswordPage);
   }
 
- security()
-{
-  this.navCtrl.push(SecuritysettingsPage);
-}
+  change_pin(){
+    this.navCtrl.push(ChangepinPage);
+  }
 
 }

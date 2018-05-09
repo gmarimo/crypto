@@ -29,7 +29,12 @@
     "@ionic/pro": "1.0.20",
     "@ionic/storage": "2.1.3",
     "angularfire2": "^5.0.0-rc.6.0",
+<<<<<<< HEAD
     "cordova-plugin-x-socialsharing": "^5.4.0",
+=======
+    "cordova-plugin-camera": "^4.0.3",
+    "cordova-plugin-ios-camera-permissions": "^1.2.0",
+>>>>>>> 444129f930f48caa953a20c7326b1961009a564f
     "firebase": "^4.13.1",
     "ionic-angular": "3.9.2",
     "ionicons": "3.0.0",
@@ -44,7 +49,15 @@
   "description": "An Ionic project",
   "cordova": {
     "plugins": {
+<<<<<<< HEAD
       "cordova-plugin-x-socialsharing": {}
     }
   }
 }
+=======
+      "cordova-plugin-camera": {},
+      "cordova-plugin-ios-camera-permissions": {}
+    }
+  }
+}
+>>>>>>> 444129f930f48caa953a20c7326b1961009a564f
