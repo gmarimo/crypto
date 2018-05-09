@@ -44,6 +44,10 @@ import { RemoteServiceProvider } from '../providers/remote-service/remote-servic
 import { ChangepasswordPage } from '../pages/changepassword/changepassword';
 import { LogoutPage} from '../pages/logout/logout';
 import { PersonalInfoPage} from '../pages/personal-info/personal-info';
+import { SecuritysettingsPage } from '../pages/securitysettings/securitysettings';
+import { ChangepinPage } from '../pages/changepin/changepin';
+import {Camera} from '@ionic-native/camera';
+
 
 
 
@@ -89,7 +93,10 @@ const firebase = {
     ChangepasswordPage,
     LogoutPage,
     PersonalInfoPage,
-    BtcbuysuccessPage
+    BtcbuysuccessPage,
+    SecuritysettingsPage,
+    ChangepinPage
+
   ],
   imports: [
     BrowserModule,
@@ -135,7 +142,9 @@ const firebase = {
     ChangepasswordPage,
     LogoutPage,
     PersonalInfoPage,
-    BtcbuysuccessPage
+    BtcbuysuccessPage,
+    SecuritysettingsPage,
+    ChangepinPage
   ],
   providers: [
     StatusBar,
