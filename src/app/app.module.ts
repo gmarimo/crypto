@@ -41,6 +41,14 @@ import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/dat
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { HttpClientModule } from '@angular/common/http';
 import { RemoteServiceProvider } from '../providers/remote-service/remote-service';
+import { ChangepasswordPage } from '../pages/changepassword/changepassword';
+import { LogoutPage} from '../pages/logout/logout';
+import { PersonalInfoPage} from '../pages/personal-info/personal-info';
+import { SocialSharing } from '@ionic-native/social-sharing';
+import { SecuritysettingsPage } from '../pages/securitysettings/securitysettings';
+import { ChangepinPage } from '../pages/changepin/changepin';
+import {Camera} from '@ionic-native/camera';
+
 
 
 
@@ -83,7 +91,13 @@ const firebase = {
     TradePage,
     TermsPage,
     TabsPage,
-    BtcbuysuccessPage
+    ChangepasswordPage,
+    LogoutPage,
+    PersonalInfoPage,
+    BtcbuysuccessPage,
+    SecuritysettingsPage,
+    ChangepinPage
+
   ],
   imports: [
     BrowserModule,
@@ -126,13 +140,19 @@ const firebase = {
     TradePage,
     TermsPage,
     TabsPage,
-    BtcbuysuccessPage
+    ChangepasswordPage,
+    LogoutPage,
+    PersonalInfoPage,
+    BtcbuysuccessPage,
+    SecuritysettingsPage,
+    ChangepinPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    RemoteServiceProvider
+    RemoteServiceProvider,
+    SocialSharing
   ]
 })
 export class AppModule {}

@@ -5,6 +5,7 @@ page-deposit {
         border-radius: 10px;
         padding-left: 12px;
         color: #fff;
+        
     }
 
     ion-label{
@@ -60,6 +61,15 @@ page-deposit {
 
     .paynow{
         text-align: center;
+    }
+
+     ion-footer{
+         background-color: #fff;
+     }
+
+     ion-footer .button{
+        margin: 0px;
+        padding: 30px 0;
     }
 
 }

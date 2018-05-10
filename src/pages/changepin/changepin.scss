@@ -1,0 +1,28 @@
+page-changepin {
+
+
+    ion-input{
+        border: #355664 solid 1px;
+        border-radius: 5px;
+        padding-left: 12px;
+        color: #fff;
+        font-size: 16px;
+        outline: none !important;
+    }
+    ion-label{
+        font-size: 18px;
+    }
+    .lbl{
+        padding-left: 10px;
+    }
+
+    .btn{
+        border-radius: 5px;
+        padding: 20px;
+    }
+
+    ion-grid{
+        padding-bottom: 100px!important;
+    }
+
+}

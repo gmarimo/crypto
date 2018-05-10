@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, TapClick } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -14,6 +14,8 @@ import { AlertsPage } from '../pages/alerts/alerts';
 import { SharePage } from '../pages/share/share';
 import { InvitePage } from '../pages/invite/invite';
 import { WalletsPage } from '../pages/wallets/wallets';
+import { LogoutPage } from '../pages/logout/logout';
+import {Camera} from '@ionic-native/camera';
 
 @Component({
   templateUrl: 'app.html'
@@ -41,7 +43,8 @@ export class MyApp {
       { title: 'Settings', component: SettingsPage, icon: "cog" },
       { title: 'Alerts', component: AlertsPage, icon: "alert" },
       { title: 'Share', component: SharePage, icon: "share" },
-      { title: 'Invite friends', component: InvitePage, icon: "person-add" }
+      { title: 'Invite friends', component: InvitePage, icon: "person-add" },
+      { title: 'Logout', component: LogoutPage, icon: "log-out" }
     ];
 
   }

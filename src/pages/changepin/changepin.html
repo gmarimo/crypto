@@ -1,0 +1,40 @@
+<!--
+  Generated template for the ChangepinPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Change Pin</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+    <ion-item no-lines>
+      <ion-label floating color="primary" class="lbl"><ion-icon name="lock"></ion-icon> Current pin</ion-label>
+      <ion-input type="password" #currentpin></ion-input>
+    </ion-item>
+
+    <ion-item no-lines>
+        <ion-label floating color="primary" class="lbl"><ion-icon name="lock"></ion-icon>  New pin</ion-label>
+        <ion-input type="password" #newpin></ion-input>
+      </ion-item>
+
+      <ion-item no-lines>
+          <ion-label floating color="primary" class="lbl"><ion-icon name="lock"></ion-icon>  Confirm new pin</ion-label>
+          <ion-input type="password" #confirmpin></ion-input>
+        </ion-item>
+
+  </ion-grid>
+
+
+  
+    <button ion-button full color="primary" class="btn">  Submit  <ion-icon name="arrow-round-forward"></ion-icon></button>
+  
+
+</ion-content>

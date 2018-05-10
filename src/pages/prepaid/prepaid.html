@@ -15,4 +15,67 @@
 
 <ion-content padding>
 
+  <ion-grid>
+      <ion-row align="center">
+          <ion-col><ion-label>CRYPTO</ion-label></ion-col>
+          <ion-col><ion-label>CASH</ion-label></ion-col>
+      </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+          <ion-item>
+            <ion-select>
+              <ion-option selected=true>BTC</ion-option>
+              <ion-option>ETH</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+            <ion-item>
+              <ion-select>
+              <ion-option selected=true>USD</ion-option>
+              <ion-option>GDP</ion-option>
+              <ion-option>ZAR</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+      </ion-row>
+      <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label floating>Crypto</ion-label>
+              <ion-input type="number"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+              <ion-item>
+                <ion-label floating>Cash</ion-label>
+                <ion-input type="number"></ion-input>
+              </ion-item>
+            </ion-col>
+        </ion-row>
+    
+        <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-label floating>balance ($)</ion-label>
+                <ion-input type="number"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+    
+  </ion-grid>
+
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+      <button ion-button full (click)="load()"><ion-icon name="swap"></ion-icon>Convert</button>
+  </ion-toolbar>
+</ion-footer>
+
+    
+
+       

@@ -1,0 +1,69 @@
+<!--
+  Generated template for the PersonalInfoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title icon='person'>Edit Personal Details</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+    <ion-item no-lines>
+      <ion-label floating color="primary" class="lbl"><ion-icon name="person"></ion-icon> First Name</ion-label>
+      <ion-input type="text" #name></ion-input>
+    </ion-item>
+
+    <ion-item no-lines>
+        <ion-label floating color="primary" class="lbl"><ion-icon name="people"></ion-icon>  Surname</ion-label>
+        <ion-input type="text" #surname></ion-input>
+      </ion-item>
+
+      <ion-item no-lines>
+          <ion-label floating color="primary" class="lbl"><ion-icon name="card"></ion-icon>  ID Number</ion-label>
+          <ion-input type="text" #idnum></ion-input>
+        </ion-item>
+
+        <ion-item no-lines>
+            <ion-label floating color="primary" class="lbl"><ion-icon name="phone-portrait"></ion-icon>  Phone Number</ion-label>
+            <ion-input type="number" #phone></ion-input>
+          </ion-item>
+
+          <ion-item no-lines>
+              <ion-label floating color="primary" class="lbl"><ion-icon name="mail"></ion-icon>  Email Address</ion-label>
+              <ion-input type="email" #email></ion-input>
+            </ion-item>
+
+            <ion-item no-lines>
+                <ion-label floating color="primary" class="lbl"><ion-icon name="calendar"></ion-icon>  D.O.B</ion-label>
+                <ion-datetime displayFormat="DD-MM-YYYY" [(ngModel)]="today"></ion-datetime>
+              </ion-item>
+
+              <ion-item no-lines>
+                  <ion-label floating color="primary" class="lbl"><ion-icon name="home"></ion-icon>  Home Address</ion-label>
+                  <ion-textarea ng-model="viewModel.mytext" maxLength="500" rows="3" #myInput id="myInput"></ion-textarea>
+                </ion-item>
+              
+              <ion-item no-lines>
+                  <ion-label floating color="primary" class="lbl"><ion-icon name="transgender"></ion-icon>  Gender</ion-label>
+                  <ion-input type="text" #name><ion-row>
+                      <ion-label class="checklbl">Male<ion-checkbox [(ngModel)]="Male"></ion-checkbox></ion-label>
+                      <ion-label class="checklbl1">Female<ion-checkbox></ion-checkbox></ion-label>
+                  </ion-row></ion-input>
+                </ion-item>
+
+                <ion-item no-lines>
+                  <button ion-button (click)="takePic()">Take a picture!</button>
+                  <img [src]="captureDataUrl" *ngIf="captureDataUrl"/>
+                </ion-item>
+
+              
+
+</ion-grid>
+</ion-content>

@@ -1,0 +1,41 @@
+page-personal-info {
+    ion-input{
+        border: #355664 solid 1px;
+        border-radius: 5px;
+        padding-left: 12px;
+        color: #fff;
+        font-size: 16px;
+        outline: none !important;
+    }
+    ion-label{
+        font-size: 18px;
+    }
+    ion-textarea{
+        border: #355664 solid 1px;
+        border-radius: 10px;
+        padding-left: 12px;
+        color: #fff;
+        font-size: 16px;
+     
+    }
+    .checklbl{
+        font-size: 14px;
+    }
+    .checklbl1{
+        font-size: 14px;
+        padding-left: 3px;
+    }
+    ion-datetime{
+        font-size: 16px;
+        color: #fff;
+        border: #355664 solid 1px;
+        border-radius: 10px;
+        align-content: center;
+    }
+
+    .lbl{
+        padding-left: 10px;
+    }
+
+
+}
