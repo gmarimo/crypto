@@ -4,16 +4,24 @@ page-prepaid{
         border-radius: 10px;
         color: #fff;
     }
+
+    .crypto ion-col{
+        width: 50%;
+    }
    
     ion-select{
         border: #ff8c00 solid 1px;
             border-radius: 10px;
             color: #fff;
             margin-left: 15px;
+            max-width: 100%;
+            
     }
     .label{
         margin-left: 30px;
     }
+
+    
 }
 
 ion-label{
