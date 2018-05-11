@@ -15,8 +15,6 @@ import { SharePage } from '../pages/share/share';
 import { InvitePage } from '../pages/invite/invite';
 import { WalletsPage } from '../pages/wallets/wallets';
 import { LogoutPage } from '../pages/logout/logout';
-import {Camera} from '@ionic-native/camera';
-import { share } from 'rxjs/operator/share';
 
 @Component({
   templateUrl: 'app.html'

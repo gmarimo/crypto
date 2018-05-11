@@ -1,11 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController } from 'ionic-angular';
-//import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { CreateaccountPage } from '../createaccount/createaccount';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AlertController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 import { WalletsPage } from '../wallets/wallets';
+import { ResetpasswordPage } from '../resetpassword/resetpassword';
+
 
 @Component({
   selector: 'page-home',
@@ -48,6 +50,10 @@ export class HomePage {
 
   pcreateaccount () {
     this.navCtrl.push(CreateaccountPage);
+  }
+
+  resetpass (){
+    this.navCtrl.push(ResetpasswordPage);
   }
 
 }
