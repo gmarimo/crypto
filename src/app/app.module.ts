@@ -38,7 +38,7 @@ import { HttpModule } from '@angular/http';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { HttpClientModule } from '@angular/common/http';
 import { RemoteServiceProvider } from '../providers/remote-service/remote-service';
 import { ChangepasswordPage } from '../pages/changepassword/changepassword';
@@ -47,7 +47,9 @@ import { PersonalInfoPage} from '../pages/personal-info/personal-info';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { SecuritysettingsPage } from '../pages/securitysettings/securitysettings';
 import { ChangepinPage } from '../pages/changepin/changepin';
-import {Camera} from '@ionic-native/camera';
+import { ResetpasswordPage } from '../pages/resetpassword/resetpassword'
+import { EmailverifyPage } from '../pages/emailverify/emailverify'
+import { Camera} from '@ionic-native/camera';
 
 
 
@@ -96,7 +98,9 @@ const firebase = {
     PersonalInfoPage,
     BtcbuysuccessPage,
     SecuritysettingsPage,
-    ChangepinPage
+    ChangepinPage,
+    ResetpasswordPage,
+    EmailverifyPage
 
   ],
   imports: [
@@ -145,14 +149,17 @@ const firebase = {
     PersonalInfoPage,
     BtcbuysuccessPage,
     SecuritysettingsPage,
-    ChangepinPage
+    ChangepinPage,
+    ResetpasswordPage,
+    EmailverifyPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     RemoteServiceProvider,
-    SocialSharing
+    SocialSharing,
+    AngularFireAuth
   ]
 })
 export class AppModule {}
