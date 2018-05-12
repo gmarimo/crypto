@@ -13,7 +13,8 @@ import { MyusdwalletPage } from '../myusdwallet/myusdwallet';
 import { MyethwalletPage } from '../myethwallet/myethwallet';
 import  'rxjs/add/operator/map';
 //import { RemoteServiceProvider } from '../../providers/remote-service/remote-service';
-import { Http } from '@angular/http';
+//import { Http } from '@angular/http';
+import { RemoteServiceProvider } from '../../providers/remote-service/remote-service';
 
 /**
  * Generated class for the WalletsPage page.
@@ -29,23 +30,25 @@ import { Http } from '@angular/http';
 })
 export class WalletsPage {
 
-  gettingData: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
-    
-    this.http.get('https://api.coinmarketcap.com/v2/ticker/1/')
-    .map(res => res.json())
-    .subscribe(res => {
-      this.gettingData = res.results;
+  priceList = [];
 
-    }, (err) => {
-      alert('Can not fetch price');
-    });
+  
+  constructor(private remoteserviceprovider: RemoteServiceProvider, public navCtrl: NavController, public navParams: NavParams) {
+      
+    this.getData();
  
   }
 
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad WalletsPage');
+  }
+
+  getData () {
+    this.remoteserviceprovider.getData().subscribe(data => {
+      this.priceList = data,
+      this.priceList = Array.of(this.priceList);},);
+
   }
 
   buyingbtc(){

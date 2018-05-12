@@ -5,3 +5,14 @@ export interface Buydetails {
     btcaftercommission: string;
     totalpayment: string;
 }
+
+export interface depositid{
+    paymentrefid: string;
+}
+
+export interface withdrawbtc {
+    withdraw_amnt: string;
+    commission: string;
+    withdraw_total: string;
+    wallet_address: string;
+}

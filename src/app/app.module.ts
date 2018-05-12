@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
+//import { Camera } from '@ionic-native/camera';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
@@ -47,7 +48,7 @@ import { PersonalInfoPage} from '../pages/personal-info/personal-info';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { SecuritysettingsPage } from '../pages/securitysettings/securitysettings';
 import { ChangepinPage } from '../pages/changepin/changepin';
-import {Camera} from '@ionic-native/camera';
+//import {Camera} from '@ionic-native/camera';
 
 
 

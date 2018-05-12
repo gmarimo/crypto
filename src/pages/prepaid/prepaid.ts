@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+//import { Camera } from '@ionic-native/camera';
 import { LoadingController } from 'ionic-angular';
 
 /**
