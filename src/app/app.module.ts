@@ -36,10 +36,12 @@ import { BtcbuysuccessPage } from '../pages/btcbuysuccess/btcbuysuccess';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { HttpClientModule } from '@angular/common/http';
 import { RemoteServiceProvider } from '../providers/remote-service/remote-service';
 import { ChangepasswordPage } from '../pages/changepassword/changepassword';
@@ -48,7 +50,13 @@ import { PersonalInfoPage} from '../pages/personal-info/personal-info';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { SecuritysettingsPage } from '../pages/securitysettings/securitysettings';
 import { ChangepinPage } from '../pages/changepin/changepin';
+<<<<<<< HEAD
 //import {Camera} from '@ionic-native/camera';
+=======
+import { ResetpasswordPage } from '../pages/resetpassword/resetpassword'
+import { EmailverifyPage } from '../pages/emailverify/emailverify'
+import { Camera} from '@ionic-native/camera';
+>>>>>>> 6ca8dca4ec9e6db2ed747c1534429a112fdbba50
 
 
 
@@ -97,7 +105,9 @@ const firebase = {
     PersonalInfoPage,
     BtcbuysuccessPage,
     SecuritysettingsPage,
-    ChangepinPage
+    ChangepinPage,
+    ResetpasswordPage,
+    EmailverifyPage
 
   ],
   imports: [
@@ -109,7 +119,9 @@ const firebase = {
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     HttpClientModule,
-    HttpModule
+    HttpModule,
+    BsDropdownModule.forRoot(),
+    NgxIntlTelInputModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -146,14 +158,17 @@ const firebase = {
     PersonalInfoPage,
     BtcbuysuccessPage,
     SecuritysettingsPage,
-    ChangepinPage
+    ChangepinPage,
+    ResetpasswordPage,
+    EmailverifyPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     RemoteServiceProvider,
-    SocialSharing
+    SocialSharing,
+    AngularFireAuth
   ]
 })
 export class AppModule {}

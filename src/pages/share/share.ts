@@ -15,10 +15,12 @@ import { SocialSharing } from '@ionic-native/social-sharing';
   templateUrl: 'share.html',
 })
 export class SharePage {
+
   message:string="Hello friends i started to use this crypto-ex app last week. It's exciting and legitimate.";
   file:string= null;
   link:string=null;
   subject:string=null;
+ 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private socialSharing: SocialSharing) {
   }

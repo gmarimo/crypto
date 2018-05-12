@@ -1,9 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Alert } from 'ionic-angular';
 //import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 import { HomePage } from '../home/home';
+import { FormBuilder,FormGroup,Validators,AbstractControl} from '@angular/forms';
+import { FormControl } from '@angular/forms';
+import { ToastController } from 'ionic-angular';
+import { AlertController} from 'ionic-angular';
 
 
 
@@ -19,12 +23,30 @@ import { HomePage } from '../home/home';
   selector: 'page-createaccount',
   templateUrl: 'createaccount.html',
 })
+
 export class CreateaccountPage {
 
-   @ViewChild ('email') email;
-   @ViewChild ('password') password;
+  formgroup:FormGroup;
+  email:AbstractControl;
+  password1:AbstractControl;
+  password2:AbstractControl;
 
-  constructor(private firebaseauth:AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
+
+   //@ViewChild ('email') email;
+  // @ViewChild ('password') password;
+
+  constructor(private firebaseauth:AngularFireAuth, public navCtrl: NavController,
+     public navParams: NavParams,public formbuilder:FormBuilder,public toastCtrl: ToastController,
+     private alertCtrl:AlertController) {
+
+      this.formgroup=formbuilder.group({
+        email:['',Validators.required],
+        password1:['',Validators.required],
+        password2:['',Validators.required]
+      });
+      this.email = this.formgroup.controls['email'];
+      this.password1 = this.formgroup.controls['password1'];
+      this.password2 = this.formgroup.controls['password2'];
   }
 
   ionViewDidLoad() {
@@ -32,18 +54,31 @@ export class CreateaccountPage {
   }
 
   createuser () {
-    this.firebaseauth.auth.createUserWithEmailAndPassword(this.email.value, this.password.value)
-    .then (data => {
-      console.log("Registration Successful", data)
-    })
-    .catch(error => {
-      console.log("Registration failed, please try again", error)
-    })
-    console.log(this.email.value);
-  }
+    this.firebaseauth.auth.createUserWithEmailAndPassword(this.email.value, this.password1.value)
+.then (data => {
 
-  loginpage (){
-    this.navCtrl.push(HomePage);
+  let Alert = this.alertCtrl.create({
+    subTitle: 'User was added successfully',
+    buttons: ['OK']    
+  });
+  Alert.present();
+console.log("Registration Successful", data)
+})
+.catch(error => {
+
+    let toast = this.toastCtrl.create({
+      message: ''+error,
+      duration: 10000
+    });
+    toast.present();
+  
+console.log("Registration failed, please try again", error)
+})
+console.log(this.email.value);
+} 
+    loginpage (){
+      this.navCtrl.push(HomePage);
+      
   }
 
 }
