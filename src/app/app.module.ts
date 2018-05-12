@@ -35,8 +35,8 @@ import { BtcbuysuccessPage } from '../pages/btcbuysuccess/btcbuysuccess';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+//import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+//import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
@@ -110,13 +110,13 @@ const firebase = {
     IonicModule.forRoot(MyApp, {
       preloadModiles: true
     }),
-    AngularFireModule.initializeApp(firebase, 'crypto'),
+    AngularFireModule.initializeApp(firebase, 'crfailing to pull changes from githubypto'),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     HttpClientModule,
     HttpModule,
-    BsDropdownModule.forRoot(),
-    NgxIntlTelInputModule
+    //BsDropdownModule.forRoot(),
+   // NgxIntlTelInputModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

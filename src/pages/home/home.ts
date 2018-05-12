@@ -26,8 +26,7 @@ export class HomePage {
   //@ViewChild ('password') password;
 
   constructor(private firebaseauth:AngularFireAuth, public loadingCtrl: LoadingController,
-     public alertctrl:AlertController, public navCtrl: NavController, 
-     private toastCtrl:ToastController, public formbuilder:FormBuilder,public errorservice:ErrorServices) {
+     public alertctrl:AlertController, public navCtrl: NavController, private toastCtrl:ToastController, public formbuilder:FormBuilder) {
       this.formgroup=formbuilder.group({
         email:['',Validators.required],
         password:['',Validators.required]
