@@ -29,24 +29,11 @@
     "@ionic-native/status-bar": "4.7.0",
     "@ionic/pro": "1.0.20",
     "@ionic/storage": "2.1.3",
-<<<<<<< HEAD
-    "angularfire2": "^5.0.0-rc.6.0",
-    "cordova-android": "7.0.0",
-    "cordova-plugin-device": "^2.0.2",
-    "cordova-plugin-ionic-keyboard": "^2.0.5",
-    "cordova-plugin-ionic-webview": "^1.1.19",
-    "cordova-plugin-ios-camera-permissions": "^1.2.0",
-    "cordova-plugin-splashscreen": "^5.0.2",
-    "cordova-plugin-whitelist": "^1.3.3",
-    "cordova-plugin-x-socialsharing": "^5.4.0",
-    "es6-promise-plugin": "^4.2.2",
-=======
     "angularfire2": "^5.0.0-rc.5-next",
     "cordova-plugin-camera": "^4.0.3",
     "cordova-plugin-firebase": "git+https://github.com/jestcastro/cordova-plugin-firebase.git",
     "cordova-plugin-ios-camera-permissions": "^1.2.0",
     "cordova-plugin-x-socialsharing": "^5.4.0",
->>>>>>> 6ca8dca4ec9e6db2ed747c1534429a112fdbba50
     "firebase": "^4.13.1",
     "ionic-angular": "^3.9.2",
     "ionicons": "3.0.0",
@@ -64,26 +51,9 @@
   "cordova": {
     "plugins": {
       "cordova-plugin-x-socialsharing": {},
-<<<<<<< HEAD
-      "cordova-plugin-whitelist": {},
-      "cordova-plugin-device": {},
-      "cordova-plugin-splashscreen": {},
-      "cordova-plugin-ionic-webview": {},
-      "cordova-plugin-ionic-keyboard": {},
-      "cordova-plugin-ios-camera-permissions": {}
-    },
-    "platforms": [
-      "android"
-    ]
-  },
-  "cordova-plugin-camera": {},
-  "cordova-plugin-ios-camera-permissions": {}
-}
-=======
       "cordova-plugin-firebase": {}
     }
   },
   "cordova-plugin-camera": {},
   "cordova-plugin-ios-camera-permissions": {}
 }
->>>>>>> 6ca8dca4ec9e6db2ed747c1534429a112fdbba50
