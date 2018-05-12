@@ -25,6 +25,7 @@ export class BuybtcPage {
 
   buydetails = {} as Buydetails;
   //usdamount;
+  usdvalue;
 
   constructor(private afAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams, private fdb: AngularFireDatabase, public loadingCtrl: LoadingController, public alertctrl:AlertController) {
   }
@@ -32,6 +33,24 @@ export class BuybtcPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad BuybtcPage');
   }
+
+  culculate(event){
+
+    if (isNaN(event.value)){
+      event.value = 0;
+    }
+      var price = 10000;
+      var output = event.value * price;
+      var dis = document.getElementById('usdvalue');
+      //dis.event = output.toFixed(2);
+
+    
+
+  }
+
+
+
+
 
   buybtcf() {
 

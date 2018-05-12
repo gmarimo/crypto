@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { LoadingController} from 'ionic-angular';
+//import { Camera } from '@ionic-native/camera';
+import { LoadingController } from 'ionic-angular';
 
 /**
  * Generated class for the PrepaidPage page.
@@ -16,7 +17,7 @@ import { LoadingController} from 'ionic-angular';
 })
 export class PrepaidPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController) {
   }
 
   ionViewDidLoad() {
@@ -36,4 +37,5 @@ export class PrepaidPage {
     loading.present();
   }
 }
+
 

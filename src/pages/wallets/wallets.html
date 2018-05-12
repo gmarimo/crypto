@@ -25,7 +25,9 @@
   
         <div class="eth_header">
           <h2>Bitcoin</h2>
-          <h4 *ngFor="let prc of gettingData">Price: {{ prc.price }}</h4>
+          <h4 *ngFor="let data of priceList"> 
+            {{ data.price }}
+          </h4>
         </div>
   
         <div class="eth_info">

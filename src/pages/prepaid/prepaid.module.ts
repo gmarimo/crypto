@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
+//import { Camera } from '@ionic-native/camera';
 import { PrepaidPage } from './prepaid';
 
 @NgModule({

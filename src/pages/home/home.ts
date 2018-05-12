@@ -72,7 +72,7 @@ export class HomePage {
 
         title: "Login Status",
         subTitle: "Logged in successfully!",
-        buttons: ['iribho']
+        buttons: ['ok']
 
       }
       );

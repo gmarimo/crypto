@@ -19,31 +19,30 @@
   <h1>0.00000 BTC</h1>
 
   <ion-item>
-    <ion-label floating>Withdrawal Amount</ion-label>
-    <ion-input type="number"></ion-input>
+    <ion-label floating>Withdrawal Amount (BTC):</ion-label>
+    <ion-input type="number" [(ngModel)]="withd" (keyup)="withdrawcal()" #wamnt></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label>Commission:</ion-label>
-    <ion-input type="number" placeholder="0.00" disabled="true"></ion-input>
+    <ion-label>Fees (BTC):</ion-label>
+    <ion-input [(ngModel)]="commsale" (keyup)="withdrawcal()" type="number" #comm placeholder="0.00" disabled="true">{{commsale.number}}</ion-input>
   </ion-item>
 
   <ion-item>
-      <ion-label>Total</ion-label>
-      <ion-input type="number" placeholder="0.00" disabled="true"></ion-input>
+      <ion-label>Get (BTC):</ion-label>
+      <ion-input [(ngModel)]="total" type="number" #totalbtc placeholder="0.00" disabled="true">{{total.number}}</ion-input>
   </ion-item>
 
   <ion-item>
       <ion-label floating>Wallet Address</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input [(ngModel)]="withdrawbtc.wallet_address" type="text"></ion-input>
   </ion-item>
   <button ion-button>SCAN QR CODE</button>
+</ion-content>
 
   <ion-footer>
-
-      <button ion-button full color="primary">Withdraw</button>
-      <button ion-button full color="danger">Clear</button>
-
+      <button ion-button class="button" full color="primary" (click)="btcwithdraw()">Withdraw</button>
+      <button ion-button full class="btnclear">Clear</button>
   </ion-footer>
 
-</ion-content>
+
