@@ -7,7 +7,7 @@ import { HomePage } from '../home/home';
 import { FormBuilder,FormGroup,Validators,AbstractControl} from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { ToastController } from 'ionic-angular';
-
+import { AlertController} from 'ionic-angular';
 
 
 
@@ -36,7 +36,8 @@ export class CreateaccountPage {
   // @ViewChild ('password') password;
 
   constructor(private firebaseauth:AngularFireAuth, public navCtrl: NavController,
-     public navParams: NavParams,public formbuilder:FormBuilder,public toastCtrl: ToastController) {
+     public navParams: NavParams,public formbuilder:FormBuilder,public toastCtrl: ToastController,
+     private alertCtrl:AlertController) {
 
       this.formgroup=formbuilder.group({
         email:['',Validators.required],
@@ -56,18 +57,18 @@ export class CreateaccountPage {
     this.firebaseauth.auth.createUserWithEmailAndPassword(this.email.value, this.password1.value)
 .then (data => {
 
-  let toast = this.toastCtrl.create({
-    message: 'User was added successfully',
-    duration: 3000
+  let Alert = this.alertCtrl.create({
+    subTitle: 'User was added successfully',
+    buttons: ['OK']    
   });
-  toast.present();
+  Alert.present();
 console.log("Registration Successful", data)
 })
 .catch(error => {
 
     let toast = this.toastCtrl.create({
-      message: 'Registration failed, please try again'+error,
-      duration: 3000
+      message: ''+error,
+      duration: 10000
     });
     toast.present();
   
