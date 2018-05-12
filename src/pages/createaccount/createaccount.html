@@ -44,7 +44,7 @@
           <ion-input type="password" formControlName="password2"></ion-input>
       </ion-item>
 
-      <ion-item *ngIf="password2.hasError('required') && password2.touched">
+      <ion-item *ngIf="password2.hasError('required') && password2.touched z">
           <p class="error">*Confirm Password</p> 
           </ion-item>
   
@@ -56,9 +56,9 @@
     </ion-list>
   
     
-      <button ion-button full color="primary" class="btn" (click)="createuser()">Create Account</button>
+      <button ion-button full color="primary" class="btn" (click)="createuser ()">Create Account</button>
   
-      <p>Already created account? <a (click)='loginpage ()'>Login.</a></p>
+      <p>Already created account? Login.</p>
 
 
     </form>
