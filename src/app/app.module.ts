@@ -35,6 +35,8 @@ import { BtcbuysuccessPage } from '../pages/btcbuysuccess/btcbuysuccess';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
@@ -112,7 +114,9 @@ const firebase = {
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     HttpClientModule,
-    HttpModule
+    HttpModule,
+    BsDropdownModule.forRoot(),
+    NgxIntlTelInputModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
