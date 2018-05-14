@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { DepositPage } from '../deposit/deposit';
+import { WithdrawPage } from '../withdraw/withdraw';
 
 /**
  * Generated class for the MyusdwalletPage page.
@@ -20,6 +22,14 @@ export class MyusdwalletPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MyusdwalletPage');
+  }
+
+  depositusd() {
+    this.navCtrl.push(DepositPage);
+  }
+
+  withdrawusd() {
+    this.navCtrl.push(WithdrawPage);
   }
 
 }

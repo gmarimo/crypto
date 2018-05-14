@@ -36,8 +36,8 @@ import { BtcbuysuccessPage } from '../pages/btcbuysuccess/btcbuysuccess';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+//import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+//import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
@@ -50,13 +50,9 @@ import { PersonalInfoPage} from '../pages/personal-info/personal-info';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { SecuritysettingsPage } from '../pages/securitysettings/securitysettings';
 import { ChangepinPage } from '../pages/changepin/changepin';
-<<<<<<< HEAD
-//import {Camera} from '@ionic-native/camera';
-=======
 import { ResetpasswordPage } from '../pages/resetpassword/resetpassword'
 import { EmailverifyPage } from '../pages/emailverify/emailverify'
 import { Camera} from '@ionic-native/camera';
->>>>>>> 6ca8dca4ec9e6db2ed747c1534429a112fdbba50
 
 
 
@@ -120,8 +116,8 @@ const firebase = {
     AngularFireAuthModule,
     HttpClientModule,
     HttpModule,
-    BsDropdownModule.forRoot(),
-    NgxIntlTelInputModule
+    //BsDropdownModule.forRoot(),
+    //NgxIntlTelInputModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

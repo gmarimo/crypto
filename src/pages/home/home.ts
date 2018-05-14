@@ -7,7 +7,7 @@ import { AlertController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 import { WalletsPage } from '../wallets/wallets';
 import { ResetpasswordPage } from '../resetpassword/resetpassword';
-import { Directive, forwardRef, Attribute } from '@angular/core';
+//import { Directive, forwardRef, Attribute } from '@angular/core';
 import { FormBuilder,FormGroup,Validators,AbstractControl} from '@angular/forms';
 import { FormControl } from '@angular/forms';
 
@@ -27,7 +27,7 @@ export class HomePage {
 
   constructor(private firebaseauth:AngularFireAuth, public loadingCtrl: LoadingController,
      public alertctrl:AlertController, public navCtrl: NavController, 
-     private toastCtrl:ToastController, public formbuilder:FormBuilder,public errorservice:ErrorServices) {
+     private toastCtrl:ToastController, public formbuilder:FormBuilder) {
       this.formgroup=formbuilder.group({
         email:['',Validators.required],
         password:['',Validators.required]
@@ -84,8 +84,9 @@ export class HomePage {
    .catch(error => { 
 
     let toast = this.toastCtrl.create({
-      message: '' + error ,
-      duration:3000
+      message: 'Email or password invalid, please verify your details and try again.' ,
+      duration:5000,
+      cssClass: "toastclr"
 
     });
     toast.present();          

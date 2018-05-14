@@ -1,13 +1,5 @@
 page-deposit {
 
-    .ioninput{
-        border: gray solid 1px;
-        border-radius: 10px;
-        padding-left: 12px;
-        color: #fff;
-        
-    }
-
     ion-label{
         padding-left: 5px;
         color: #35B253;
@@ -62,6 +54,8 @@ page-deposit {
     ion-input{
         color: #fff;
         border: gray solid 1px;
+        border-radius: 10px;
+        padding-left: 12px;
     }
 
     .paynow{
