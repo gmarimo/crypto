@@ -111,7 +111,7 @@ const firebase = {
     IonicModule.forRoot(MyApp, {
       preloadModiles: true
     }),
-    AngularFireModule.initializeApp(firebase, 'crypto'),
+    AngularFireModule.initializeApp(firebase, 'crfailing to pull changes from githubypto'),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     HttpClientModule,
