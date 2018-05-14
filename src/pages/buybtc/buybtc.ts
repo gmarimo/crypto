@@ -8,6 +8,7 @@ import { AlertController } from 'ionic-angular';
 import { WalletsPage } from '../wallets/wallets';
 //import { LoadingController } from 'ionic-angular';
 import { BtcbuysuccessPage } from '../btcbuysuccess/btcbuysuccess';
+import { empty } from 'rxjs/Observer';
 //import { WalletsPage } from '../wallets/wallets';
 
 /**
@@ -105,11 +106,22 @@ export class BuybtcPage {
           GET_BTC:this.getBtc,
           TOTAL:this.payamnt,
     })
+
+    this.emptyonsubmit();
   }
   crtUsr(){
     var re = "@";
     var str = this.dbAuth.auth.currentUser.email;
     var newstr = str.replace(re,"");
     return newstr;
+  }
+
+  emptyonsubmit(){
+    this.usdamnt.value=null;
+    this.btcamnt.value=null;
+    this.payamnt=0;
+    this.commission=0;
+    this.getBtc=0;
+    
   }
 }

@@ -68,7 +68,7 @@ console.log("Registration Successful", data)
 
     let toast = this.toastCtrl.create({
       message: ''+error,
-      duration: 10000
+      duration: 3000
     });
     toast.present();
   
