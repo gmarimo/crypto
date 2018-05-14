@@ -23,7 +23,7 @@
 
     <ion-item class="amnt" no-lines>
       <ion-label floating>Paste it here</ion-label>
-      <ion-input class="comm" [(ngModel)] = "depositid.paymentrefid" type="text"></ion-input>
+      <ion-input [(ngModel)]="paynowReference" type="text" #paynowReferenceid>{{paynowReference}}</ion-input>
     </ion-item>
     <button ion-button color="primary" class="btn" (click) = "complete()">Complete</button>
    </ion-list>

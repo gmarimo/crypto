@@ -15,9 +15,8 @@
 
 <ion-content>
 
-  <ion-item no-lines>
-      <ion-label class="pymntlbl">Withdraw</ion-label>
-  </ion-item>
+    <h1>0.000 USD</h1>
+
 
     <ion-item class="amnt" no-lines>
       <ion-label floating>Enter Amount ($)</ion-label>
@@ -29,25 +28,12 @@
       <ion-input class="comm" type="number"></ion-input>
     </ion-item>
 
-    <ion-item>
-      <ion-label class="pymntlbl">Select withdrawal method</ion-label>
-    </ion-item>
-
-    <ion-grid>
-      <ion-row>
-        <ion-col class="pymnt">
-          <ion-label>Ecocash</ion-label>
-          <img src="assets/imgs/ecocash.png">
-          <button ion-button class="btn" color="primary">Withdraw $300</button>
-        </ion-col>
-        <ion-col class="pymnt">
-            <ion-label>Zipit</ion-label>
-            <img class="img" src="assets/imgs/zipit.png">
-            <button ion-button class="btn" color="primary">Withdraw $300</button>
-        </ion-col>
-      </ion-row>  
-    </ion-grid>
 
 </ion-content>
+
+<ion-footer>
+    <button ion-button class="button" full color="primary">Withdraw</button>
+    <button ion-button full class="btnclear">Clear</button>
+</ion-footer>
 
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { AlertController } from 'ionic-angular';
@@ -22,10 +22,14 @@ import { AngularFireDatabase } from 'angularfire2/database';
 })
 export class DepositPage {
 
-  depositid = {} as Buydetails;
+  //@ViewChild('paynowReference') paynowReference;
+  paynowReference;
+
+  //depositid = {} as Buydetails;
   //private url: string = "https://www.paynow.co.zw/Payment/Link/?q=c2VhcmNoPW1naWZ0OTMxOSU0MGdtYWlsLmNvbSZhbW91bnQ9MC4wMCZyZWZlcmVuY2U9Jmw9MA%3d%3d' target='_blank'";
 
   constructor(private afAuth: AngularFireAuth, private fdb: AngularFireDatabase, public navCtrl: NavController, public loadingCtrl: LoadingController, public navParams: NavParams, public alertctrl:AlertController) {
+  this.paynowReference;
   }
 
   ionViewDidLoad() {
@@ -55,14 +59,28 @@ export class DepositPage {
     let loader = this.loadingCtrl.create({
       spinner: "bubbles",
       content: "Completing deposit process...",
-      duration: 5000
+      duration: 3000
     });
     loader.present();
-    
-      this.afAuth.authState.subscribe(auth => {
-      this.fdb.list(`${auth.uid}/Deposits`).push(this.depositid)
-     
+
+    const date:Date = new Date();
+   // alert(''+date);
+    var re = ".";
+    var str = this.crtUsr();
+    var newstr = str.replace(re,"");
+
+    var ref = this.fdb.database.ref('UserID').child(newstr).child('USD Deposit').child(''+date);
+    ref.set({
+          Paynow_Reference:this.paynowReference,
     })
+    
+  }
+
+  crtUsr(){
+    var re = "@";
+    var str = this.afAuth.auth.currentUser.email;
+    var newstr = str.replace(re,"");
+    return newstr;
   }
 
   
