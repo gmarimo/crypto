@@ -53,6 +53,7 @@ import { ChangepinPage } from '../pages/changepin/changepin';
 import { ResetpasswordPage } from '../pages/resetpassword/resetpassword'
 import { EmailverifyPage } from '../pages/emailverify/emailverify'
 import { Camera} from '@ionic-native/camera';
+import { EmailconfirmationPage } from '../pages/emailconfirmation/emailconfirmation';
 
 
 
@@ -103,7 +104,8 @@ const firebase = {
     SecuritysettingsPage,
     ChangepinPage,
     ResetpasswordPage,
-    EmailverifyPage
+    EmailverifyPage,
+    EmailconfirmationPage
 
   ],
   imports: [
@@ -156,7 +158,8 @@ const firebase = {
     SecuritysettingsPage,
     ChangepinPage,
     ResetpasswordPage,
-    EmailverifyPage
+    EmailverifyPage,
+    EmailconfirmationPage
   ],
   providers: [
     StatusBar,

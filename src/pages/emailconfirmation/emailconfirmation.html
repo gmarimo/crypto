@@ -14,17 +14,16 @@
 
 
 <ion-content padding>
+  <ion-list no-lines>
+    <ion-label>We sent a confirmation code to</ion-label>
+    <ion-label>gift@bash.com</ion-label>
+    <p>Check your email to get the confirmation code and enter it below</p>
+      <ion-item>
+        <ion-label floating color="primary"><ion-icon name="mail"></ion-icon> Enter Code</ion-label>
+        <ion-input type="email" required="true" #email></ion-input>
+      </ion-item>   
+    </ion-list>
 
-    <ion-list no-lines>
-      <ion-label>We sent a confirmation code to</ion-label>
-      <ion-label>gift@bash.com</ion-label>
-      <p>Check your email to get the confirmation code and enter it below</p>
-        <ion-item>
-          <ion-label floating color="primary"><ion-icon name="mail"></ion-icon> Enter Code</ion-label>
-          <ion-input type="email" required="true" formControlName="email"></ion-input>
-        </ion-item>   
-      </ion-list>
-
-      <button ion-button full color="primary" class="btn" (click)="login()"></ion-icon> Confirm</button>
+    <button ion-button full color="primary" class="btn" (click)="confirm()"> Confirm</button>
 
 </ion-content>
