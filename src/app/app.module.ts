@@ -56,6 +56,7 @@ import { Camera} from '@ionic-native/camera';
  
 import { RecaptchaModule } from 'ng-recaptcha';
 
+import { EmailconfirmationPage } from '../pages/emailconfirmation/emailconfirmation';
 
 
 
@@ -108,8 +109,8 @@ const firebase = {
     SecuritysettingsPage,
     ChangepinPage,
     ResetpasswordPage,
-    EmailverifyPage
-    
+    EmailverifyPage,
+    EmailconfirmationPage
 
   ],
   imports: [
@@ -164,8 +165,8 @@ const firebase = {
     SecuritysettingsPage,
     ChangepinPage,
     ResetpasswordPage,
-    EmailverifyPage
-    
+    EmailverifyPage,
+    EmailconfirmationPage
   ],
   providers: [
     StatusBar,

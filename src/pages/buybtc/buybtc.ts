@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Buydetails } from '../../models/buydetails';
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -8,6 +8,7 @@ import { AlertController } from 'ionic-angular';
 import { WalletsPage } from '../wallets/wallets';
 //import { LoadingController } from 'ionic-angular';
 import { BtcbuysuccessPage } from '../btcbuysuccess/btcbuysuccess';
+import { empty } from 'rxjs/Observer';
 //import { WalletsPage } from '../wallets/wallets';
 
 /**
@@ -39,7 +40,8 @@ export class BuybtcPage {
   elClass:string;
   title: string;
   
-  constructor(private dbAuth: AngularFireAuth, public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams,private fdb:AngularFireDatabase) {
+  constructor(private dbAuth: AngularFireAuth, public loadingCtrl: LoadingController,
+    private toastCtrl: ToastController, public navCtrl: NavController, public navParams: NavParams,private fdb:AngularFireDatabase) {
     this.payamnt = 0;
     this.commissionRate = 0.1;
     this.getBtc = 0;
@@ -83,33 +85,52 @@ export class BuybtcPage {
   }
   
   makeTransaction(){
+if(this.usdamnt.value==''||this.btcamnt.value==''){
+  let toast = this.toastCtrl.create({
+    message: 'Enter Amount in USD OR in BTC',
+    duration: 3000
+  });
+  toast.present(); 
+}
+else{
+  let loader = this.loadingCtrl.create({
+    spinner: "bubbles",
+    content: "Completing deposit process...",
+    duration: 3000
+  });
+  loader.present();
 
-    let loader = this.loadingCtrl.create({
-      spinner: "bubbles",
-      content: "Completing deposit process...",
-      duration: 3000
-    });
-    loader.present();
+  const date:Date = new Date();
+ // alert(''+date);
+  var re = ".";
+  var str = this.crtUsr();
+  var newstr = str.replace(re,"");
+  
+  var ref = this.fdb.database.ref('UserID').child(newstr).child('Buy BTC').child(''+date);
+  ref.set({
+        USD:this.usd,
+        BTC:this.btc,
+        COMMISSION:this.commission,
+        GET_BTC:this.getBtc,
+        TOTAL:this.payamnt,
+  })
+}
 
-    const date:Date = new Date();
-   // alert(''+date);
-    var re = ".";
-    var str = this.crtUsr();
-    var newstr = str.replace(re,"");
-    
-    var ref = this.fdb.database.ref('UserID').child(newstr).child('Buy BTC').child(''+date);
-    ref.set({
-          USD:this.usd,
-          BTC:this.btc,
-          COMMISSION:this.commission,
-          GET_BTC:this.getBtc,
-          TOTAL:this.payamnt,
-    })
+    this.emptyonsubmit();
   }
   crtUsr(){
     var re = "@";
     var str = this.dbAuth.auth.currentUser.email;
     var newstr = str.replace(re,"");
     return newstr;
+  }
+
+  emptyonsubmit(){
+    this.usdamnt.value=null;
+    this.btcamnt.value=null;
+    this.payamnt=0;
+    this.commission=0;
+    this.getBtc=0;
+    
   }
 }

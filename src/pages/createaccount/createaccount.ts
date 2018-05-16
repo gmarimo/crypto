@@ -8,6 +8,7 @@ import { FormBuilder,FormGroup,Validators,AbstractControl} from '@angular/forms'
 import { FormControl } from '@angular/forms';
 import { ToastController } from 'ionic-angular';
 import { AlertController} from 'ionic-angular';
+import { EmailconfirmationPage } from '../emailconfirmation/emailconfirmation';
 
 
 
@@ -54,31 +55,48 @@ export class CreateaccountPage {
   }
 
   createuser () {
+    
+      if(this.password1.value==this.password2.value){
+
+
     this.firebaseauth.auth.createUserWithEmailAndPassword(this.email.value, this.password1.value)
-.then (data => {
-
-  let Alert = this.alertCtrl.create({
-    subTitle: 'User was added successfully',
-    buttons: ['OK']    
-  });
-  Alert.present();
-console.log("Registration Successful", data)
-})
-.catch(error => {
-
-    let toast = this.toastCtrl.create({
-      message: ''+error,
-      duration: 10000
-    });
-    toast.present();
-  
-console.log("Registration failed, please try again", error)
-})
-console.log(this.email.value);
+    .then (data => {
+    
+      let Alert = this.alertCtrl.create({
+        subTitle: 'User was added successfully',
+        buttons: ['OK']    
+      });
+      Alert.present();
+    console.log("Registration Successful", data)
+    this.EConpage();
+      
+    })
+    .catch(error => {
+    
+        let toast = this.toastCtrl.create({
+          message: ''+error,
+          duration: 3000
+        });
+        toast.present();
+      
+    console.log("Registration failed, please try again", error)
+    })
+    console.log(this.email.value);
+    
+      }
+      else{
+        let toast = this.toastCtrl.create({
+          message:'Passwords mismatch',
+          duration:3000
+        });
+        toast.present();
+      }
 } 
-    loginpage (){
-      this.navCtrl.push(HomePage);
+    EConpage (){
+     // this.navCtrl.push(HomePage);
+     this.navCtrl.push(EmailconfirmationPage);
       
   }
+  
 
 }
