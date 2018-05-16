@@ -118,6 +118,36 @@ export class BuybtcPage {
           GET_BTC:this.getBtc,
           TOTAL:this.payamnt,
     })
+if(this.usdamnt.value==''||this.btcamnt.value==''){
+  let toast = this.toastCtrl.create({
+    message: 'Enter Amount in USD OR in BTC',
+    duration: 3000
+  });
+  toast.present(); 
+}
+else{
+  let loader = this.loadingCtrl.create({
+    spinner: "bubbles",
+    content: "Completing deposit process...",
+    duration: 3000
+  });
+  loader.present();
+
+  const date:Date = new Date();
+ // alert(''+date);
+  var re = ".";
+  var str = this.crtUsr();
+  var newstr = str.replace(re,"");
+  
+  var ref = this.fdb.database.ref('UserID').child(newstr).child('Buy BTC').child(''+date);
+  ref.set({
+        USD:this.usd,
+        BTC:this.btc,
+        COMMISSION:this.commission,
+        GET_BTC:this.getBtc,
+        TOTAL:this.payamnt,
+  })
+
 
     .catch(error => { 
 
@@ -128,7 +158,7 @@ export class BuybtcPage {
   
       });
       toast.present();          
-        });
+        });}
 
     this.emptyonsubmit();
   }

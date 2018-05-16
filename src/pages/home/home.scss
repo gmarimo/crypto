@@ -22,14 +22,26 @@ page-home {
 
     .img{
         width: 300px;
+<<<<<<< HEAD
         height: 180px;
         margin: 0px;
         padding: 0px !important;
+=======
+        height: 120px;
+>>>>>>> 7ec23ea6afbf7cd93609e05628baaf6bf3f6f9ba
         
     }
 
     .img1{
         text-align: center;
+        padding-top: 20px;
+        padding-bottom: 10px;
+        width: 100%;
+        height: 100%;
+    }
+
+    .item-block .item-inner {
+        border-bottom: none !important;
     }
 
 

@@ -16,44 +16,43 @@
 
 <ion-content padding>
     <ion-grid>
-      <ion-row>
-
-        <ion-col>
-          <ion-item no-lines>
-            <ion-label floating>USD</ion-label>
-            <ion-input class="ioninput" type="number"></ion-input>
-          </ion-item>
-        </ion-col>
-
-        <ion-col>
-          <ion-item no-lines>
-            <ion-label floating>BTC</ion-label>
-            <ion-input class="ioninput" type="number"></ion-input>
-          </ion-item>
-        </ion-col>
-
-      </ion-row>
-    </ion-grid>
-
-    <ion-item>
-      <ion-label>Commission</ion-label>
-      <ion-input class="comm" placeholder="0.00" type="number"></ion-input>
-    </ion-item>
-
-    <ion-item>
-        <ion-label>Sell</ion-label>
-        <ion-input class="comm1" placeholder="BTC" type="number"></ion-input>
-    </ion-item>
-
-    <ion-item>
-        <ion-label>Get</ion-label>
-        <ion-input class="comm1" placeholder="$" type="number"></ion-input>$
-    </ion-item>
-    
-</ion-content>
-
-<ion-footer>
-    <ion-toolbar>
-        <button ion-button full color="primary" full>Complete Sell of $300</button>
-    </ion-toolbar>
+        <ion-row>
+  
+          <ion-col>
+            <ion-item no-lines>
+              <ion-label floating>USD</ion-label>
+              <ion-input class="ioninput" type="number" (keyup)="numBtc()" [(ngModel)] ="usd" #usdamnt>{{usd}}</ion-input>
+            </ion-item>
+          </ion-col>
+  
+          <ion-col>
+            <ion-item no-lines>
+              <ion-label floating>BTC</ion-label>
+              <ion-input class="ioninput" type="number" [(ngModel)]="btc" (keyup)="amntUsd()" #btcamnt>{{btc}}</ion-input>
+            </ion-item>
+          </ion-col>
+  
+        </ion-row>
+      </ion-grid>
+  
+      <ion-item>
+        <ion-label>Fees (BTC)</ion-label>
+        <ion-input text-right class="comm" type="number" disabled="true" [(ngModel)]="commission">{{commission.number}}</ion-input>
+      </ion-item>
+  
+      <ion-item>
+          <ion-label>Sell (BTC)</ion-label>
+          <ion-input text-right class="comm1" type="number" disabled="true" [(ngModel)]="getBtc">{{getBtc.number}}</ion-input>BTC
+      </ion-item>
+      <ion-item>
+          <ion-label>Get ($)</ion-label>
+          <ion-input text-right class="comm1" type="number" disabled="true" [(ngModel)]="payamnt">{{payamnt.number}}</ion-input>$
+      </ion-item>
+      
+  </ion-content>
+  
+  <ion-footer>
+      <button ion-button class="button" (click) = "makeTransaction()" full color="primary">BUY</button>
+      <button ion-button full class="btnclear">Clear</button>
   </ion-footer>
+  

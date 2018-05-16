@@ -97,5 +97,6 @@ export class CreateaccountPage {
      this.navCtrl.push(EmailconfirmationPage);
       
   }
+  
 
 }

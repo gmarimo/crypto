@@ -2,11 +2,21 @@
   <ion-navbar hideBackButton>
     <ion-title>Login</ion-title>
   </ion-navbar>
+
+  <script src='https://www.google.com/recaptcha/api.js'></script>
 </ion-header>
 
 <ion-content padding>
+<<<<<<< HEAD
     <img class="img" src="assets/imgs/bashlogo.png">
 <form [formGroup]=formgroup> 
+=======
+    <form [formGroup]=formgroup>
+   <ion-item class=img1>
+      <img class="img" src="assets/imgs/bash.png">
+   </ion-item>
+ 
+>>>>>>> 7ec23ea6afbf7cd93609e05628baaf6bf3f6f9ba
   <ion-list no-lines>
     <ion-item>
       <ion-label floating color="primary"><ion-icon name="mail"></ion-icon> Email</ion-label>
@@ -19,12 +29,20 @@
     </ion-item>
 
     <p>Forgot password? <a (click)='resetpass()' >Reset it</a></p>
+
+<!--   <ion-item no-lines>
+      <re-captcha (resolved)="captchaResolved($event)" siteKey="6Le0E1kUAAAAAFwSd_f6nzmuc7KgPV3UDRisBmd3"></re-captcha>
+      <button [disabled]="!captchaPassed" ion-button (click)="sendForm()">Submit</button>
+    </ion-item>-->
+
   </ion-list>
 
 
     <button ion-button full color="primary" class="btn" (click)="login()"> <ion-icon name="log-in"></ion-icon> LOGIN</button>
 
     <p>Have an account? <a (click)='pcreateaccount ()'>Create Account.</a></p>
+
+    <div class="g-recaptcha" data-sitekey="6Le0E1kUAAAAAFwSd_f6nzmuc7KgPV3UDRisBmd3"></div>
 </form>
 
 <ion-menu [content]="content">
@@ -35,3 +53,4 @@
 </button>
 </ion-menu>
 </ion-content>
+

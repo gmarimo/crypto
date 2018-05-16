@@ -20,10 +20,10 @@
     <p>Check your email to get the confirmation code and enter it below</p>
       <ion-item>
         <ion-label floating color="primary"><ion-icon name="mail"></ion-icon> Enter Code</ion-label>
-        <ion-input type="email" required="true" #email></ion-input>
+        <ion-input type="email" required="true" [(ngModel)]="user" #email></ion-input>
       </ion-item>   
     </ion-list>
 
-    <button ion-button full color="primary" class="btn" (click)="confirm()"> Confirm</button>
+    <button ion-button full color="primary" class="btn" (click)="register()"> Confirm</button>
 
 </ion-content>

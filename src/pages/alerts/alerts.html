@@ -7,12 +7,26 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>alerts</ion-title>
+    <ion-title>Alerts</ion-title>
   </ion-navbar>
-
+<h5>Turn on/off price movement alerts</h5>
 </ion-header>
 
 
 <ion-content padding>
 
+  <ion-list>
+
+    <ion-item>
+      <ion-label>BTC</ion-label>
+      <ion-toggle [(ngModel)]="btc"></ion-toggle>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label>ETH</ion-label>
+      <ion-toggle [(ngModel)]="eth"></ion-toggle>
+    </ion-item>
+
+    </ion-list>
+  
 </ion-content>

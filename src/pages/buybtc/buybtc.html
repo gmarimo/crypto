@@ -21,14 +21,14 @@
           <ion-col>
             <ion-item no-lines>
               <ion-label floating>USD</ion-label>
-              <ion-input class="ioninput" type="number" (keyup)="numBtc()" [(ngModel)] ="usd" #usdamnt>{{usd}}</ion-input>
+              <ion-input class="ioninput" type="number" (keyup)="numBtc()" [(ngModel)] ="usd" #usdamnt required=true>{{usd}}</ion-input>
             </ion-item>
           </ion-col>
   
           <ion-col>
             <ion-item no-lines>
               <ion-label floating>BTC</ion-label>
-              <ion-input class="ioninput" type="number" [(ngModel)]="btc" (keyup)="amntUsd()" #btcamnt>{{btc}}</ion-input>
+              <ion-input class="ioninput" type="number" [(ngModel)]="btc" (keyup)="amntUsd()" #btcamnt required=true>{{btc}}</ion-input>
             </ion-item>
           </ion-col>
   
