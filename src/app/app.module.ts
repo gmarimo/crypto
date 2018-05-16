@@ -53,6 +53,9 @@ import { ChangepinPage } from '../pages/changepin/changepin';
 import { ResetpasswordPage } from '../pages/resetpassword/resetpassword'
 import { EmailverifyPage } from '../pages/emailverify/emailverify'
 import { Camera} from '@ionic-native/camera';
+ 
+import { RecaptchaModule } from 'ng-recaptcha';
+
 import { EmailconfirmationPage } from '../pages/emailconfirmation/emailconfirmation';
 
 
@@ -66,6 +69,8 @@ const firebase = {
   storageBucket: "crypto-ex.appspot.com",
   messagingSenderId: "730339161700"
 };
+
+
 
 @NgModule({
   declarations: [
@@ -113,11 +118,13 @@ const firebase = {
     IonicModule.forRoot(MyApp, {
       preloadModiles: true
     }),
-    AngularFireModule.initializeApp(firebase, 'crfailing to pull changes from githubypto'),
+    AngularFireModule.initializeApp(firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     HttpClientModule,
     HttpModule,
+    HttpClientModule,
+    RecaptchaModule.forRoot(),
     //BsDropdownModule.forRoot(),
     //NgxIntlTelInputModule
   ],
