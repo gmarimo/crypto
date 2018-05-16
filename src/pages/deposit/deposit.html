@@ -23,9 +23,9 @@
 
     <ion-item class="amnt" no-lines>
       <ion-label floating>Paste it here</ion-label>
-      <ion-input [(ngModel)]="paynowReference" type="text" #paynowReferenceid>{{paynowReference}}</ion-input>
+      <ion-input [(ngModel)]="amounttxt" type="number" #amount></ion-input>
     </ion-item>
-    <button ion-button color="primary" class="btn" (click) = "complete()">Complete</button>
+    <button ion-button color="primary" class="btn" (click) = "getBal()">Get Balance</button>
    </ion-list>
 
     <ion-item>
@@ -52,7 +52,7 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-    <button ion-button full color="primary" (click) = "pymntinfo()">Process deposit</button>
+    <button ion-button full color="primary" (click) = "depositBal()">Deposit Balance</button>
   </ion-footer>
       
           

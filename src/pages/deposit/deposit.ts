@@ -22,21 +22,90 @@ import { AngularFireDatabase } from 'angularfire2/database';
 })
 export class DepositPage {
 
-  //@ViewChild('paynowReference') paynowReference;
-  paynowReference;
+  ListCategory = [];
+  temparrCat= [];
 
-  //depositid = {} as Buydetails;
-  //private url: string = "https://www.paynow.co.zw/Payment/Link/?q=c2VhcmNoPW1naWZ0OTMxOSU0MGdtYWlsLmNvbSZhbW91bnQ9MC4wMCZyZWZlcmVuY2U9Jmw9MA%3d%3d' target='_blank'";
+  @ViewChild('amount') amount;
 
-  constructor(private afAuth: AngularFireAuth, private fdb: AngularFireDatabase, public navCtrl: NavController, public loadingCtrl: LoadingController, public navParams: NavParams, public alertctrl:AlertController) {
-  this.paynowReference;
+  constructor(private dbAuth: AngularFireAuth, private fdb: AngularFireDatabase, public navCtrl: NavController, public loadingCtrl: LoadingController, public navParams: NavParams, public alertctrl:AlertController) {
+  this.amount = 0;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DepositPage');
   }
+  crtUsr(){
+    var re = "@";
+    var str = this.dbAuth.auth.currentUser.email;
+    var newstr = str.replace(re,"");
+    return newstr;
+  } 
+  depositBal(){
+    const date:Date = new Date();
+    var re = ".";
+    var str = this.crtUsr();
+    var newstr = str.replace(re,"");
+    var ref = this.fdb.database.ref('UserID').child(newstr).child('USD Balance').child(''+date);
+    ref.set({
+          USD:this.amount.value
+    })
+  }  
+  getBal(){
+    var re = ".";
+    var str = this.crtUsr();
+    var newstr = str.replace(re,"");
+    this.fdb.database.ref('UserID').child(newstr).child('USD Balance').once('value', function(snapshot) {
+      if (snapshot.val() !== null) {
 
-  pymntinfo() {
+         // var tableNames = Object.keys(snapshot.val());
+          //alert(tableNames); // ["answers", "blocks", "chats", "classes"]
+          let Catdata = Object.keys(snapshot.val());
+          let temparr = [];
+          let datearr: Date[]=[];
+
+          var datt:Date;
+          for (var key:number=0;key<Catdata.length;key++) {
+              //temparr.push(Catdata[key]);
+              temparr[key]=Catdata[key]
+              datearr[key] = new Date(temparr[key]);
+          }
+          var maxDate=new Date(Math.max.apply(null,datearr));
+          alert(maxDate);
+      }
+  });
+  }
+ /* getBal(){
+    this.getAllCatList().then((res: any) => {
+      this.ListCategory = res;
+      this.temparrCat = res;
+      alert(this.temparrCat);
+  })
+  }
+  getAllCatList() {
+    var promise = new Promise((resolve, reject) => {
+      var re = ".";
+      var str = this.crtUsr();
+      var newstr = str.replace(re,"");
+        this.fdb.database.ref("UserID").orderByChild(newstr).once('value', (snapshot) => {
+            let Catdata = snapshot.val();
+            let temparr = [];
+            for (var key in Catdata) {
+                temparr.push(Catdata[key]);
+            }
+            resolve(temparr);
+        }).catch((err) => {
+            reject(err);
+        })
+    })
+    return promise;
+}
+  crtUsr(){
+    var re = "@";
+    var str = this.dbAuth.auth.currentUser.email;
+    var newstr = str.replace(re,"");
+    return newstr;
+  }  */
+  /*pymntinfo() {
 
     let alert = this.alertctrl.create({
 
@@ -81,8 +150,5 @@ export class DepositPage {
     var str = this.afAuth.auth.currentUser.email;
     var newstr = str.replace(re,"");
     return newstr;
-  }
-
-  
-
+  }*/
 }
