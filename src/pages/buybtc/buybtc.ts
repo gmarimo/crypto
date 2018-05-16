@@ -40,8 +40,7 @@ export class BuybtcPage {
   elClass:string;
   title: string;
   
-  constructor(private dbAuth: AngularFireAuth, public loadingCtrl: LoadingController,
-    private toastCtrl: ToastController, public navCtrl: NavController, public navParams: NavParams,private fdb:AngularFireDatabase) {
+  constructor(private toastCtrl:ToastController, private dbAuth: AngularFireAuth, public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams,private fdb:AngularFireDatabase) {
     this.payamnt = 0;
     this.commissionRate = 0.1;
     this.getBtc = 0;
@@ -57,6 +56,8 @@ export class BuybtcPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad BuybtcPage');
   }
+
+  
 
   numBtc(){
     var numbtc:number = this.usdamnt.value/this.btcVal;
@@ -83,8 +84,40 @@ export class BuybtcPage {
     var get = (amnt-commission)/this.btcVal;
     return get;
   }
+
+  public loader(){
+    if(this.usdamnt.value!=''&& this.btcamnt.value!=''){
+      let loader = this.loadingCtrl.create({
+ 
+        spinner:"bubbles",
+        content:"Completing your transaction ..",
+        duration:5000
+ 
+      });
+ 
+      loader.onDidDismiss(() => {
+       console.log('Dismissed loading');
+     });  
+     loader.present()
+  }
+ }
   
   makeTransaction(){
+    this.loader();
+    const date:Date = new Date();
+   // alert(''+date);
+    var re = ".";
+    var str = this.crtUsr();
+    var newstr = str.replace(re,"");
+    
+    var ref = this.fdb.database.ref('UserID').child(newstr).child('Buy BTC').child(''+date);
+    ref.set({
+          USD:this.usd,
+          BTC:this.btc,
+          COMMISSION:this.commission,
+          GET_BTC:this.getBtc,
+          TOTAL:this.payamnt,
+    })
 if(this.usdamnt.value==''||this.btcamnt.value==''){
   let toast = this.toastCtrl.create({
     message: 'Enter Amount in USD OR in BTC',
@@ -114,7 +147,18 @@ else{
         GET_BTC:this.getBtc,
         TOTAL:this.payamnt,
   })
-}
+
+
+    .catch(error => { 
+
+      let toast = this.toastCtrl.create({
+        message: 'Email or password invalid, please verify your details and try again.' ,
+        duration:5000,
+        cssClass: "toastclr"
+  
+      });
+      toast.present();          
+        });}
 
     this.emptyonsubmit();
   }

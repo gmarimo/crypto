@@ -15,6 +15,7 @@ export class TabsPage {
   tab2Root = TradePage;
   tab3Root = BuybtcPage;
   tab4Root = TermsPage;
+  myIndex: number;
 
   constructor() {
 

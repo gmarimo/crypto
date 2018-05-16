@@ -7,11 +7,16 @@
 </ion-header>
 
 <ion-content padding>
+<<<<<<< HEAD
+    <img class="img" src="assets/imgs/bashlogo.png">
+<form [formGroup]=formgroup> 
+=======
     <form [formGroup]=formgroup>
    <ion-item class=img1>
       <img class="img" src="assets/imgs/bash.png">
    </ion-item>
  
+>>>>>>> 7ec23ea6afbf7cd93609e05628baaf6bf3f6f9ba
   <ion-list no-lines>
     <ion-item>
       <ion-label floating color="primary"><ion-icon name="mail"></ion-icon> Email</ion-label>
@@ -39,5 +44,13 @@
 
     <div class="g-recaptcha" data-sitekey="6Le0E1kUAAAAAFwSd_f6nzmuc7KgPV3UDRisBmd3"></div>
 </form>
+
+<ion-menu [content]="content">
+
+<button ion-item menuClose *ngFor="let p of pages" (click)="openPage(p)">
+  <ion-icon item-start [name]="p.icon" [color]="isActive(p)"></ion-icon>
+  {{ p.title }}
+</button>
+</ion-menu>
 </ion-content>
 

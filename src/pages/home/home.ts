@@ -1,10 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, ToastController } from 'ionic-angular';
+import { NavController, ToastController, Nav } from 'ionic-angular';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { CreateaccountPage } from '../createaccount/createaccount';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AlertController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
+import { TabsPage } from '../tabs/tabs';
 import { WalletsPage } from '../wallets/wallets';
 import { ResetpasswordPage } from '../resetpassword/resetpassword';
 //import { Directive, forwardRef, Attribute } from '@angular/core';
@@ -25,12 +26,28 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 import { HttpHeaders,HttpClientModule } from '@angular/common/http';
 import { Request, RequestMethod} from '@angular/http';
 
+export interface PageInterface {
+  title: string;
+  pageName: string;
+  tabComponent?: any;
+  index?: number;
+  icon: string;
+}
+
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
+
+  rootPage = 'HomePage';
+  @ViewChild(Nav) nav: Nav;
+
+  pages: PageInterface[] = [
+    { title: 'Crypto-ex Market', pageName: 'TabsPage', tabComponent: 'CryptomarketPage', index: 0, icon: 'home' },
+    { title: 'Terms & Conditions', pageName: 'TabsPage', tabComponent: 'TermsPage', index: 0, icon: 'home' },
+  ]
 
 
   formgroup:FormGroup;
@@ -147,7 +164,7 @@ app.listen(process.env.PORT || 8080);
 
 
        spinner:"bubbles",
-       content:"Securing Login...",
+       content:"Securely Logging you in...",
        duration:3000
 
      });
@@ -173,10 +190,9 @@ app.listen(process.env.PORT || 8080);
         subTitle: "Logged in successfully!",
         buttons: ['ok']
 
-      }
-      );
+      });
       alert.present();
-      this.navCtrl.push(WalletsPage);
+      this.navCtrl.setRoot(WalletsPage);
     })
 
    .catch(error => { 
@@ -199,6 +215,14 @@ app.listen(process.env.PORT || 8080);
 
   resetpass (){
     this.navCtrl.push(ResetpasswordPage);
+  }
+
+  openPage(page: PageInterface) {
+
+  }
+
+  isActive(page: PageInterface) {
+
   }
 
 }
