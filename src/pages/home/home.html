@@ -5,11 +5,8 @@
 </ion-header>
 
 <ion-content padding>
-    <form [formGroup]=formgroup>
-   <ion-item class=img1>
-      <img class="img" src="assets/imgs/logowhite.png">
-   </ion-item>
- 
+    <img class="img" src="assets/imgs/bashlogo.png">
+<form [formGroup]=formgroup> 
   <ion-list no-lines>
     <ion-item>
       <ion-label floating color="primary"><ion-icon name="mail"></ion-icon> Email</ion-label>
@@ -29,4 +26,12 @@
 
     <p>Have an account? <a (click)='pcreateaccount ()'>Create Account.</a></p>
 </form>
+
+<ion-menu [content]="content">
+
+<button ion-item menuClose *ngFor="let p of pages" (click)="openPage(p)">
+  <ion-icon item-start [name]="p.icon" [color]="isActive(p)"></ion-icon>
+  {{ p.title }}
+</button>
+</ion-menu>
 </ion-content>
