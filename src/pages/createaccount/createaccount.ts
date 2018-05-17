@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ErrorHandler } from '@angular/core';
 import { IonicPage, NavController, NavParams, Alert } from 'ionic-angular';
 //import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -9,6 +9,7 @@ import { FormControl } from '@angular/forms';
 import { ToastController } from 'ionic-angular';
 import { AlertController} from 'ionic-angular';
 import { EmailconfirmationPage } from '../emailconfirmation/emailconfirmation';
+import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 
 
 /**
@@ -26,6 +27,10 @@ import { EmailconfirmationPage } from '../emailconfirmation/emailconfirmation';
 
 export class CreateaccountPage {
 
+  
+  format:string = '\d{1}[a-zA-Z]{2}\d{6}';
+
+ 
   formgroup:FormGroup;
   email:AbstractControl;
   password1:AbstractControl;
@@ -41,12 +46,16 @@ export class CreateaccountPage {
 
       this.formgroup=formbuilder.group({
         email:['',Validators.required],
-        password1:['',Validators.required],
+        password1: ['', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(12), Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,12}$')])],
+        //password1:['',Validators.required],
         password2:['',Validators.required]
+       // password2: ['', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(12), Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,12}$')])],
       });
       this.email = this.formgroup.controls['email'];
       this.password1 = this.formgroup.controls['password1'];
       this.password2 = this.formgroup.controls['password2'];
+    
+    
   }
 
   ionViewDidLoad() {
@@ -67,35 +76,36 @@ export class CreateaccountPage {
       });
       Alert.present();
     console.log("Registration Successful", data)
-    this.EConpage();
+    this.login();
       
     })
-    .catch(error => {
+    .catch(err => {
     
         let toast = this.toastCtrl.create({
-          message: ''+error,
-          duration: 3000
+          message: ''+err,
+          duration: 5000
         });
         toast.present();
       
-    console.log("Registration failed, please try again", error)
+    console.log("Registration failed, please try again",err)
     })
     console.log(this.email.value);
     
       }
+    
       else{
         let toast = this.toastCtrl.create({
           message:'Passwords mismatch',
-          duration:3000
+          duration:5000
         });
         toast.present();
       }
 } 
-    EConpage (){
-     // this.navCtrl.push(HomePage);
-     this.navCtrl.push(EmailconfirmationPage);
+    login (){
+      this.navCtrl.push(HomePage);
+     //this.navCtrl.push(EmailconfirmationPage);
       
   }
-  
+
 
 }
