@@ -4,6 +4,9 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
 import {AlertController} from 'ionic-angular';
+import { FormBuilder,FormGroup,Validators,AbstractControl} from '@angular/forms';
+import { ToastController } from 'ionic-angular';
+import { HomePage } from '../home/home';
 
 
 /**
@@ -20,8 +23,18 @@ import {AlertController} from 'ionic-angular';
 })
 export class EmailverifyPage {
 
+  formgroup:FormGroup;
+  email:AbstractControl;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public angularFireAuth: AngularFireAuth, 
-    private alertCtrl: AlertController, public loadingCtrl: LoadingController) {
+    private alertCtrl: AlertController,public formbuilder:FormBuilder,
+     public loadingCtrl: LoadingController,public toastCtrl: ToastController) {
+
+      this.formgroup=formbuilder.group({
+        email:['',Validators.required],
+      });
+      this.email = this.formgroup.controls['email'];
+
   }
 
   ionViewDidLoad() {
@@ -29,17 +42,38 @@ export class EmailverifyPage {
   }
 
   sendPassword(email) {
-    this.angularFireAuth.auth.sendPasswordResetEmail(email)
+    this.angularFireAuth.auth.sendPasswordResetEmail(this.email.value,) 
     .then(() => {
       console.log('email sent');
 
      //* this.load();
 
-    let alert= this.alertCtrl.create({subTitle:'Please check your email to reset password!',buttons: ['OK']});
+    let alert= this.alertCtrl.create({subTitle:'Please check your email to reset password!',
+    buttons: [{
+      text: "OK",
+      handler: () => {
+          this.navCtrl.push(HomePage, {});
+      },
+  }],});
     alert.present();
-    });
+    })
+
+    .catch(error => {
     
-}
+      let toast = this.toastCtrl.create({
+        message: ''+error,
+        duration: 5000
+      });
+      toast.present();
+    
+  console.log("Email verification failed, please try again", error)
+  })
+  console.log(this.email.value);
+  
+    }
+ 
+  }  
+
  /*load(){
   let loading = this.loadingCtrl.create({
     spinner: "bubbles",
@@ -54,4 +88,4 @@ export class EmailverifyPage {
   loading.present();
  }*/
 
-}
+
