@@ -11,7 +11,6 @@ import { AlertController} from 'ionic-angular';
 import { EmailconfirmationPage } from '../emailconfirmation/emailconfirmation';
 
 
-
 /**
  * Generated class for the CreateaccountPage page.
  *
