@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
 import { AlertController } from 'ionic-angular';
 import { WalletsPage } from '../wallets/wallets';
 import { Buydetails } from '../../models/buydetails';
@@ -8,6 +7,8 @@ import { LoadingController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { DeposithistoryPage } from '../deposithistory/deposithistory';
+import { AbstractControl } from '@angular/forms';
+import { ToastController} from 'ionic-angular';
 
 /**
  * Generated class for the DepositPage page.
@@ -24,13 +25,13 @@ import { DeposithistoryPage } from '../deposithistory/deposithistory';
 export class DepositPage {
 
   //@ViewChild('paynowReference') paynowReference;
-  depositamount;
-
+  depositamount:AbstractControl;
   //depositid = {} as Buydetails;
   //private url: string = "https://www.paynow.co.zw/Payment/Link/?q=c2VhcmNoPW1naWZ0OTMxOSU0MGdtYWlsLmNvbSZhbW91bnQ9MC4wMCZyZWZlcmVuY2U9Jmw9MA%3d%3d' target='_blank'";
 
-  constructor(private afAuth: AngularFireAuth, private fdb: AngularFireDatabase, public navCtrl: NavController, public loadingCtrl: LoadingController, public navParams: NavParams, public alertctrl:AlertController) {
-  this.depositamount;
+  constructor(private afAuth: AngularFireAuth, private fdb: AngularFireDatabase, public navCtrl: NavController, 
+    public toastCtrl: ToastController,public loadingCtrl: LoadingController, public navParams: NavParams, public alertctrl:AlertController) {
+
   }
 
   ionViewDidLoad() {
@@ -56,7 +57,6 @@ export class DepositPage {
   }
 
   complete() {
-
     let loader = this.loadingCtrl.create({
       spinner: "bubbles",
       content: "Completing deposit process...",
@@ -72,18 +72,17 @@ export class DepositPage {
 
     var ref = this.fdb.database.ref('UserID').child(newstr).child('USD Deposit').child(''+date);
     ref.set({
-          DepositAmount:this.depositamount,
+          DepositAmount:this.depositamount.value,
     })
     
+  
   }
-
   crtUsr(){
     var re = "@";
     var str = this.afAuth.auth.currentUser.email;
     var newstr = str.replace(re,"");
     return newstr;
-  }
-
   
+}  
 
 }

@@ -32,13 +32,14 @@ export class CreateaccountPage {
 
  
   formgroup:FormGroup;
-  email:AbstractControl;
+ /* email:AbstractControl;
   password1:AbstractControl;
   password2:AbstractControl;
+*/
 
-
-   //@ViewChild ('email') email;
-  // @ViewChild ('password') password;
+   @ViewChild ('email') email;
+   @ViewChild ('password1') password1;
+   @ViewChild('password2') password2;
 
   constructor(private firebaseauth:AngularFireAuth, public navCtrl: NavController,
      public navParams: NavParams,public formbuilder:FormBuilder,public toastCtrl: ToastController,
@@ -46,8 +47,8 @@ export class CreateaccountPage {
 
       this.formgroup=formbuilder.group({
         email:['',Validators.required],
-        password1: ['', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(12), Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,12}$')])],
-        //password1:['',Validators.required],
+        //password1: ['', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(12), Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,12}$')])],
+        password1:['',Validators.required],
         password2:['',Validators.required]
        // password2: ['', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(12), Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,12}$')])],
       });
@@ -75,8 +76,12 @@ export class CreateaccountPage {
         buttons: ['OK']    
       });
       Alert.present();
-    console.log("Registration Successful", data)
-    this.login();
+    console.log("Registration Successful", data);
+    
+    this.empty();
+    //this.login();
+
+
       
     })
     .catch(err => {
@@ -106,6 +111,10 @@ export class CreateaccountPage {
      //this.navCtrl.push(EmailconfirmationPage);
       
   }
-
+empty(){
+  this.email.value=null;
+  this.password1.value=null;
+  this.password2.value=null;
+}
 
 }

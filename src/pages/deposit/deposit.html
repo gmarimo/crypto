@@ -21,7 +21,7 @@
 
     <ion-item class="amnt" no-lines>
       <ion-label floating>Deposit amount ($)</ion-label>
-      <ion-input [(ngModel)]="depositamount" type="text" #amount>{{depositamount}}</ion-input>
+      <ion-input [(ngModel)]="depositamount" type="number" #amount required=true>{{depositamount}}</ion-input>
     </ion-item>
     <button ion-button color="primary" class="btn" (click) = "complete()">Complete</button>
    </ion-list>
