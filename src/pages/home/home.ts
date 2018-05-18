@@ -25,6 +25,7 @@ import { InterceptorService     } from 'ng2-interceptors';*/
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { HttpHeaders,HttpClientModule } from '@angular/common/http';
 import { Request, RequestMethod} from '@angular/http';
+import { EmailverifyPage } from '../emailverify/emailverify';
 
 export interface PageInterface {
   title: string;
@@ -214,7 +215,7 @@ app.listen(process.env.PORT || 8080);
   }
 
   resetpass (){
-    this.navCtrl.push(ResetpasswordPage);
+    this.navCtrl.push(EmailverifyPage);
   }
 
   openPage(page: PageInterface) {

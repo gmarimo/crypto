@@ -31,7 +31,7 @@ export class ResetpasswordPage {
     console.log('ionViewDidLoad ResetpasswordPage');
   }
 
-  signIn(phoneNumber: number){
+  /*signIn(phoneNumber: number){
     const appVerifier = this.recaptchaVerifier;
     const phoneNumberString = "+" + phoneNumber;
     firebase.auth().signInWithPhoneNumber(phoneNumberString, appVerifier)
@@ -66,7 +66,7 @@ export class ResetpasswordPage {
       console.error("SMS not sent", error);
     });
   
-  }
+  }*/
   emailverify(){
     this.navCtrl.push(EmailverifyPage);
   }
