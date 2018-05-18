@@ -4,7 +4,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Buydetails } from '../../models/buydetails';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { LoadingController } from 'ionic-angular';
-import { AlertController } from 'ionic-angular';
+import { AlertController,ToastController  } from 'ionic-angular';
 import { WalletsPage } from '../wallets/wallets';
 //import { LoadingController } from 'ionic-angular';
 import { BtcbuysuccessPage } from '../btcbuysuccess/btcbuysuccess';
@@ -23,7 +23,6 @@ import { BtcbuysuccessPage } from '../btcbuysuccess/btcbuysuccess';
 })
 export class BuyethPage {
 
-  
   @ViewChild('ethamnt') ethamnt;
   @ViewChild('usdamnt') usdamnt;
   total:number;
@@ -39,15 +38,15 @@ export class BuyethPage {
   elClass:string;
   title: string;
   
-  constructor(private dbAuth: AngularFireAuth, public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams,private fdb:AngularFireDatabase) {
+  constructor(private toastCtrl:ToastController, private dbAuth: AngularFireAuth, public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams,private fdb:AngularFireDatabase) {
     this.payamnt = 0;
-    this.commissionRate = 0.08;
+    this.commissionRate = 0.1;
     this.getEth = 0;
     this.commission=0;
     this.usd;
     this.eth;
     this.total=0;
-    this.ethVal = 1200;
+    this.ethVal = 10000;
 
     
   }
@@ -55,6 +54,8 @@ export class BuyethPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad BuyethPage');
   }
+
+  
 
   numEth(){
     var numeth:number = this.usdamnt.value/this.ethVal;
@@ -81,16 +82,26 @@ export class BuyethPage {
     var get = (amnt-commission)/this.ethVal;
     return get;
   }
+
+  public loader(){
+    if(this.usdamnt.value!=''&& this.ethamnt.value!=''){
+      let loader = this.loadingCtrl.create({
+ 
+        spinner:"bubbles",
+        content:"Completing your transaction ..",
+        duration:5000
+ 
+      });
+ 
+      loader.onDidDismiss(() => {
+       console.log('Dismissed loading');
+     });  
+     loader.present()
+  }
+ }
   
   makeTransaction(){
-
-    let loader = this.loadingCtrl.create({
-      spinner: "bubbles",
-      content: "Completing deposit process...",
-      duration: 3000
-    });
-    loader.present();
-
+    this.loader();
     const date:Date = new Date();
    // alert(''+date);
     var re = ".";
@@ -102,14 +113,66 @@ export class BuyethPage {
           USD:this.usd,
           ETH:this.eth,
           COMMISSION:this.commission,
-          GET_BTC:this.getEth,
+          GET_ETH:this.getEth,
           TOTAL:this.payamnt,
     })
+if(this.usdamnt.value==''||this.ethamnt.value==''){
+  let toast = this.toastCtrl.create({
+    message: 'Enter Amount in USD OR in ETH',
+    duration: 3000
+  });
+  toast.present(); 
+}
+else{
+  let loader = this.loadingCtrl.create({
+    spinner: "bubbles",
+    content: "Completing deposit process...",
+    duration: 3000
+  });
+  loader.present();
+
+  const date:Date = new Date();
+ // alert(''+date);
+  var re = ".";
+  var str = this.crtUsr();
+  var newstr = str.replace(re,"");
+  
+  var ref = this.fdb.database.ref('UserID').child(newstr).child('Buy ETH').child(''+date);
+  ref.set({
+        USD:this.usd,
+        ETH:this.eth,
+        COMMISSION:this.commission,
+        GET_ETH:this.getEth,
+        TOTAL:this.payamnt,
+  })
+
+
+    .catch(error => { 
+
+      let toast = this.toastCtrl.create({
+        message: 'Email or password invalid, please verify your details and try again.' ,
+        duration:5000,
+        cssClass: "toastclr"
+  
+      });
+      toast.present();          
+        });}
+
+    this.emptyonsubmit();
   }
   crtUsr(){
     var re = "@";
     var str = this.dbAuth.auth.currentUser.email;
     var newstr = str.replace(re,"");
     return newstr;
+  }
+
+  emptyonsubmit(){
+    this.usdamnt.value=null;
+    this.ethamnt.value=null;
+    this.payamnt=0;
+    this.commission=0;
+    this.getEth=0;
+    
   }
 }

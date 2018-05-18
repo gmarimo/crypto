@@ -4,11 +4,18 @@ page-sellbtc {
         border: #ff8c00 solid 1px;
         border-radius: 10px;
         padding-left: 12px;
+        color: #fff;
+        
     }
 
     ion-label{
         padding-left: 12px;
+       
     }
+
+    .lbl{
+        color: #fff!important;
+     }
 
     .comm{
         margin-left: 30%;
@@ -43,5 +50,9 @@ page-sellbtc {
     .btn1{
         background: #0000ff;
     }
+    .btnclear{
+        background: #35B253;
+    }
+
 
 }

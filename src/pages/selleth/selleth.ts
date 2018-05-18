@@ -111,4 +111,13 @@ export class SellethPage {
     var newstr = str.replace(re,"");
     return newstr;
   }
+
+  emptyonsubmit(){
+    this.usdamnt.value=null;
+    this.ethamnt.value=null;
+    this.payamnt=0;
+    this.commission=0;
+    this.getEth=0;
+    
+  }
 }

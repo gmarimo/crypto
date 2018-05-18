@@ -110,4 +110,13 @@ export class SellbtcPage {
     var newstr = str.replace(re,"");
     return newstr;
   }
+
+  emptyonsubmit(){
+    this.usdamnt.value=null;
+    this.btcamnt.value=null;
+    this.payamnt=0;
+    this.commission=0;
+    this.getBtc=0;
+    
+  }
 }

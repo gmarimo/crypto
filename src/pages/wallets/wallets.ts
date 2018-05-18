@@ -15,6 +15,9 @@ import  'rxjs/add/operator/map';
 //import { RemoteServiceProvider } from '../../providers/remote-service/remote-service';
 //import { Http } from '@angular/http';
 import { RemoteServiceProvider } from '../../providers/remote-service/remote-service';
+import { SellitePage } from '../sellite/sellite';
+import { MylitewalletPage } from '../mylitewallet/mylitewallet';
+import { BuylitePage } from '../buylite/buylite';
 
 /**
  * Generated class for the WalletsPage page.
@@ -86,5 +89,17 @@ export class WalletsPage {
   usdwallet(){
     this.navCtrl.push(MyusdwalletPage);
   }
+
+  buyinglite(){
+    this.navCtrl.push(BuylitePage);
+  }
+  
+  sellinglite(){
+    this.navCtrl.push(SellitePage);
+  }
+  litewallet(){
+    this.navCtrl.push(MylitewalletPage)
+  }
+
 
 }
