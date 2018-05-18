@@ -15,13 +15,13 @@ import { NgZone } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MenuController } from 'ionic-angular/index';
 
-import * as express from 'express';
+/*import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import * as logger from 'morgan';
 import * as methodOverride from 'method-override'
 import * as cors from 'cors';
 import * as axios from 'axios';
-import { InterceptorService     } from 'ng2-interceptors';
+import { InterceptorService     } from 'ng2-interceptors';*/
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { HttpHeaders,HttpClientModule } from '@angular/common/http';
 import { Request, RequestMethod} from '@angular/http';

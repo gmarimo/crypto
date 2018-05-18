@@ -16,24 +16,22 @@
 <ion-content paddind>
 
    <ion-list no-lines>
-      <ion-label>I have my PayNow Reference ID:</ion-label>   
-      <ion-icon class="ionicon" name="checkmark"></ion-icon>
-   
- 
+      <ion-label>You can deposit into your account using ecocash.</ion-label>   
+      <ion-label>Learn deposit steps here.</ion-label>
 
     <ion-item class="amnt" no-lines>
-      <ion-label floating>Paste it here</ion-label>
-      <ion-input [(ngModel)]="paynowReference" type="text" #paynowReferenceid>{{paynowReference}}</ion-input>
+      <ion-label floating>Deposit amount ($)</ion-label>
+      <ion-input [(ngModel)]="depositamount" type="text" #amount>{{depositamount}}</ion-input>
     </ion-item>
     <button ion-button color="primary" class="btn" (click) = "complete()">Complete</button>
    </ion-list>
 
     <ion-item>
-      <ion-label class="pymntlbl">or Process the deposit below</ion-label>
+      <ion-label class="pymntlbl">Other deposit methods coming soon</ion-label>
     </ion-item>
     <ion-item no-lines>
-        <p class="para">1. <ion-icon name="card"></ion-icon> Point of Sale (P.O.S). <a href="#">Read more..</a></p>
-        <p class="para">2. <ion-icon name="logo-usd"></ion-icon> Deposit with Cash. <a href="#">Read more..</a></p>
+        <p class="para">1. <ion-icon name="card"></ion-icon> Point of Sale (P.O.S).</p>
+        <p class="para">2. <ion-icon name="logo-usd"></ion-icon> Deposit with Cash.</p>
     </ion-item>
   
   </ion-content> 
@@ -52,7 +50,7 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-    <button ion-button full color="primary" (click) = "pymntinfo()">Process deposit</button>
+    <button ion-button full color="primary" (click) = "pymntinfo()">Process Ecocash Deposit</button>
   </ion-footer>
       
           

@@ -7,6 +7,7 @@ import { Buydetails } from '../../models/buydetails';
 import { LoadingController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { DeposithistoryPage } from '../deposithistory/deposithistory';
 
 /**
  * Generated class for the DepositPage page.
@@ -23,13 +24,13 @@ import { AngularFireDatabase } from 'angularfire2/database';
 export class DepositPage {
 
   //@ViewChild('paynowReference') paynowReference;
-  paynowReference;
+  depositamount;
 
   //depositid = {} as Buydetails;
   //private url: string = "https://www.paynow.co.zw/Payment/Link/?q=c2VhcmNoPW1naWZ0OTMxOSU0MGdtYWlsLmNvbSZhbW91bnQ9MC4wMCZyZWZlcmVuY2U9Jmw9MA%3d%3d' target='_blank'";
 
   constructor(private afAuth: AngularFireAuth, private fdb: AngularFireDatabase, public navCtrl: NavController, public loadingCtrl: LoadingController, public navParams: NavParams, public alertctrl:AlertController) {
-  this.paynowReference;
+  this.depositamount;
   }
 
   ionViewDidLoad() {
@@ -40,12 +41,12 @@ export class DepositPage {
 
     let alert = this.alertctrl.create({
 
-      title: "Redirecting to Paynow",
-      subTitle: "You are being redirected to Paynow to complete your deposit. Please check your email after payment, copy the payment ID and paste it in 'Payment ID' field to complete your INSTANT DEPOSIT!!",
+      title: "Sending to Ecocash",
+      subTitle: "Send the amount that you want to deposit to (0772 123123: Gift)",
       buttons: [{
-        text: "Proceed",
+        text: "Done",
         handler: () => {
-          window.open('https://www.paynow.co.zw/Payment/Link/?q=c2VhcmNoPW1naWZ0OTMxOSU0MGdtYWlsLmNvbSZhbW91bnQ9MC4wMCZyZWZlcmVuY2U9Jmw9MA%3d%3d');
+          this.navCtrl.setRoot(DeposithistoryPage);
         }
       }],
       
@@ -71,7 +72,7 @@ export class DepositPage {
 
     var ref = this.fdb.database.ref('UserID').child(newstr).child('USD Deposit').child(''+date);
     ref.set({
-          Paynow_Reference:this.paynowReference,
+          DepositAmount:this.depositamount,
     })
     
   }
