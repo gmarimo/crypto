@@ -40,7 +40,7 @@ export class BuybtcPage {
   elClass:string;
   title: string;
   
-  constructor(private toastCtrl:ToastController, private dbAuth: AngularFireAuth, public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams,private fdb:AngularFireDatabase) {
+  constructor(private toastCtrl:ToastController, public alertctrl: AlertController, private dbAuth: AngularFireAuth, public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams,private fdb:AngularFireDatabase) {
     this.payamnt = 0;
     this.commissionRate = 0.1;
     this.getBtc = 0;
@@ -91,50 +91,60 @@ export class BuybtcPage {
  
         spinner:"bubbles",
         content:"Completing your transaction ..",
-        duration:5000
- 
-      });
- 
+        duration:5000 
+      }); 
       loader.onDidDismiss(() => {
-       console.log('Dismissed loading');
+       //console.log('Dismissed loading');
+        let alert = this.alertctrl.create({  
+          title: "Transaction Status",
+          subTitle: "Completed successfully!",
+          buttons: [
+
+            {
+              text: 'ok',
+              role: 'cancel',
+              handler: () => {
+                console.log('Cancel clicked');
+              }
+            },
+            {
+              text: 'View History',
+              handler: () => {
+                //console.log('Buy clicked');
+                this.navCtrl.push(BtcbuysuccessPage);
+              }
+            }
+
+
+
+
+
+
+
+          ] 
+        });
+        alert.present();       
      });  
      loader.present()
   }
  }
   
   makeTransaction(){
-    this.loader();
     const date:Date = new Date();
-   // alert(''+date);
     var re = ".";
     var str = this.crtUsr();
     var newstr = str.replace(re,"");
-    
-    var ref = this.fdb.database.ref('UserID').child(newstr).child('Buy BTC').child(''+date);
-    ref.set({
-          USD:this.usd,
-          BTC:this.btc,
-          COMMISSION:this.commission,
-          GET_BTC:this.getBtc,
-          TOTAL:this.payamnt,
-    })
+
 if(this.usdamnt.value==''||this.btcamnt.value==''){
   let toast = this.toastCtrl.create({
-    message: 'Enter Amount in USD OR in BTC',
-    duration: 3000
+    message: 'Please enter Amount in USD OR in BTC',
+    duration: 5000
   });
   toast.present(); 
 }
 else{
-  let loader = this.loadingCtrl.create({
-    spinner: "bubbles",
-    content: "Completing deposit process...",
-    duration: 3000
-  });
-  loader.present();
-
+  this.loader();
   const date:Date = new Date();
- // alert(''+date);
   var re = ".";
   var str = this.crtUsr();
   var newstr = str.replace(re,"");
@@ -151,11 +161,10 @@ else{
 
     .catch(error => { 
 
-      let toast = this.toastCtrl.create({
-        message: 'Email or password invalid, please verify your details and try again.' ,
+        let toast = this.toastCtrl.create({
+        message: 'There is a problem completing your transaction, please try again' ,
         duration:5000,
-        cssClass: "toastclr"
-  
+        cssClass: "toastclr" 
       });
       toast.present();          
         });}

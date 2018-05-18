@@ -21,23 +21,21 @@ page-home {
     }
 
     .img{
-        width: 300px;
-<<<<<<< HEAD
-        height: 120px;
-=======
-        height: 180px;
+        width: 220px;
+        height: 90px;
         margin: 0px;
-        padding: 0px !important;
->>>>>>> 42ac3eed399ef2d737cbcff34a030c1592f1c2ec
+        padding-bottom: 0px !important;
+        margin-bottom: 0px;
+        text-align: center;
         
+    }
+
+    ion-item{
+        padding: 0px auto;
     }
 
     .img1{
         text-align: center;
-        padding-top: 20px;
-        padding-bottom: 10px;
-        width: 100%;
-        height: 100%;
     }
 
     .item-block .item-inner {
