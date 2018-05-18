@@ -53,10 +53,9 @@ import { ChangepinPage } from '../pages/changepin/changepin';
 import { ResetpasswordPage } from '../pages/resetpassword/resetpassword'
 import { EmailverifyPage } from '../pages/emailverify/emailverify'
 import { Camera} from '@ionic-native/camera';
- 
 import { RecaptchaModule } from 'ng-recaptcha';
-
 import { EmailconfirmationPage } from '../pages/emailconfirmation/emailconfirmation';
+import { DeposithistoryPage } from '../pages/deposithistory/deposithistory';
 
 
 
@@ -110,7 +109,8 @@ const firebase = {
     ChangepinPage,
     ResetpasswordPage,
     EmailverifyPage,
-    EmailconfirmationPage
+    EmailconfirmationPage,
+    DeposithistoryPage
 
   ],
   imports: [
@@ -166,7 +166,8 @@ const firebase = {
     ChangepinPage,
     ResetpasswordPage,
     EmailverifyPage,
-    EmailconfirmationPage
+    EmailconfirmationPage,
+    DeposithistoryPage
   ],
   providers: [
     StatusBar,

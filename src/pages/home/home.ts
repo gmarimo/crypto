@@ -14,7 +14,12 @@ import { FormControl } from '@angular/forms';
 import { NgZone } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MenuController } from 'ionic-angular/index';
+<<<<<<< HEAD
 import * as express from 'express';
+=======
+
+/*import * as express from 'express';
+>>>>>>> ed6c04517e109fe898fd80d2e2b717459d0120cf
 import * as bodyParser from 'body-parser';
 
 /*import * as logger from 'morgan';
@@ -25,6 +30,7 @@ import { InterceptorService     } from 'ng2-interceptors';*/
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { HttpHeaders,HttpClientModule } from '@angular/common/http';
 import { Request, RequestMethod} from '@angular/http';
+import { EmailverifyPage } from '../emailverify/emailverify';
 
 export interface PageInterface {
   title: string;
@@ -214,7 +220,7 @@ app.listen(process.env.PORT || 8080);
   }
 
   resetpass (){
-    this.navCtrl.push(ResetpasswordPage);
+    this.navCtrl.push(EmailverifyPage);
   }
 
   openPage(page: PageInterface) {
