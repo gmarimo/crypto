@@ -15,7 +15,8 @@ import  'rxjs/add/operator/map';
 //import { RemoteServiceProvider } from '../../providers/remote-service/remote-service';
 //import { Http } from '@angular/http';
 import { RemoteServiceProvider } from '../../providers/remote-service/remote-service';
-
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase, snapshotChanges } from 'angularfire2/database';
 /**
  * Generated class for the WalletsPage page.
  *
@@ -29,21 +30,22 @@ import { RemoteServiceProvider } from '../../providers/remote-service/remote-ser
   templateUrl: 'wallets.html',
 })
 export class WalletsPage {
-
+  accbal:number;
   priceList = [];
 
   
-  constructor(private remoteserviceprovider: RemoteServiceProvider, public navCtrl: NavController, public navParams: NavParams) {
-      
+  constructor(private afAuth: AngularFireAuth, private fdb: AngularFireDatabase,private remoteserviceprovider: RemoteServiceProvider, public navCtrl: NavController, public navParams: NavParams) {
+      this.accbal = 0;
     this.getData();
  
   }
 
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad WalletsPage');
+    //console.log('ionViewDidLoad WalletsPage');
+    this.getBal();
   }
-
+  
   getData () {
     this.remoteserviceprovider.getData().subscribe(data => {
       this.priceList = data,
@@ -84,7 +86,52 @@ export class WalletsPage {
   }
 
   usdwallet(){
-    this.navCtrl.push(MyusdwalletPage);
+    //this.navCtrl.push(MyusdwalletPage);
+    this.accbal = 20;
+    alert(23);
   }
+  getBal(){
+    var bal:Date;
+    var re = ".";
+    var str = this.crtUsr();
+    var newstr = str.replace(re,"");
+    this.fdb.database.ref('UserID').child(newstr).child('USD Balance').once('value', function(snapshot) {
+      if (snapshot.val() !== null) {
+      }
+  }).then((snapshot) => {
+    let Catdata = Object.keys(snapshot.val());
+    let temparr = [];
+    let datearr: Date[]=[];
 
+    var datt:Date;
+    for (var key:number=0;key<Catdata.length;key++) {
+        //temparr.push(Catdata[key]);
+        temparr[key]=Catdata[key]
+        datearr[key] = new Date(temparr[key]);
+        datt = datearr[key]; 
+    }  
+    return this.getCurrentUsdBal(datt);
+  });
+  }
+  getCurrentUsdBal(date){
+    var re = ".";
+    var str = this.crtUsr();
+    var newstr = str.replace(re,"");
+    var bal:number;
+    var url = '/UserID/'+newstr+'/USD Balance/'+date;
+    this.fdb.list(url).valueChanges().subscribe(
+      data => {
+      var strbal:string = data.toString();
+      bal = +strbal
+      this.accbal= bal;
+      }
+    )
+    return bal;
+  }
+  crtUsr(){
+    var re = "@";
+    var str = this.afAuth.auth.currentUser.email;
+    var newstr = str.replace(re,"");
+    return newstr;
+  } 
 }

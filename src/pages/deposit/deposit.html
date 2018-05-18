@@ -20,15 +20,12 @@
       <ion-label>Learn deposit steps here.</ion-label>
 
     <ion-item class="amnt" no-lines>
-<<<<<<< HEAD
       <ion-label floating>Paste it here</ion-label>
-      <ion-input [(ngModel)]="amounttxt" type="number" #amount></ion-input>
-=======
+      <ion-input [(ngModel)]="amounttxt" type="number" ></ion-input>
       <ion-label floating>Deposit amount ($)</ion-label>
-      <ion-input [(ngModel)]="depositamount" type="text" #amount>{{depositamount}}</ion-input>
->>>>>>> ed6c04517e109fe898fd80d2e2b717459d0120cf
+      <ion-input [(ngModel)]="depositamount" type="number" #amount>{{depositamount}}</ion-input>
     </ion-item>
-    <button ion-button color="primary" class="btn" (click) = "getMaxDate()">Get Balance</button>
+    <button ion-button color="primary" class="btn" (click) = "getBal()">Get Balance</button>
    </ion-list>
 
     <ion-item>
@@ -55,16 +52,6 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-<<<<<<< HEAD
     <button ion-button full color="primary" (click) = "depositBal()">Deposit Balance</button>
-=======
     <button ion-button full color="primary" (click) = "pymntinfo()">Process Ecocash Deposit</button>
->>>>>>> ed6c04517e109fe898fd80d2e2b717459d0120cf
   </ion-footer>
-      
-          
-       
-    
-
-
-
