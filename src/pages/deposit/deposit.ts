@@ -6,7 +6,7 @@ import { WalletsPage } from '../wallets/wallets';
 import { Buydetails } from '../../models/buydetails';
 import { LoadingController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase, snapshotChanges } from 'angularfire2/database';
 
 /**
  * Generated class for the DepositPage page.
@@ -26,7 +26,11 @@ export class DepositPage {
   temparrCat= [];
 
   @ViewChild('amount') amount;
-
+  rtnDate1:Date;
+  getMaxDate(date:string){
+    alert('nyasha'+date);
+  }
+  //rtnDate = new Date();
   constructor(private dbAuth: AngularFireAuth, private fdb: AngularFireDatabase, public navCtrl: NavController, public loadingCtrl: LoadingController, public navParams: NavParams, public alertctrl:AlertController) {
   this.amount = 0;
   }
@@ -52,8 +56,43 @@ export class DepositPage {
   }  
   getBal(){
     var re = ".";
+    this.getMaxDate("diego");
     var str = this.crtUsr();
     var newstr = str.replace(re,"");
+    this.rtnDate1=new Date();
+     let promise = this.fdb.database.ref('UserID').child(newstr).child('USD Balance').once('value', function(snapshot) {
+      if (snapshot.val() !== null) {
+ 
+          let Catdata = Object.keys(snapshot.val());
+          let temparr = [];
+          let datearr: Date[]=[];
+
+          var datt:Date;
+          for (var key:number=0;key<Catdata.length;key++) {
+              //temparr.push(Catdata[key]);
+              temparr[key]=Catdata[key]
+              datearr[key] = new Date(temparr[key]);
+          }
+          
+          //var maxDate=new Date(Math.max.apply(null,datearr));
+          //this.getMaxDate(new Date());
+          
+      }
+      else{
+      return this.rtnDate1 = new Date();
+      }
+  });
+  var upload;
+  promise.then((res)=>{
+    alert(res);
+    return res
+  })
+  }
+  /*getBalUsd(){
+    var re = ".";
+    var str = this.crtUsr();
+    var newstr = str.replace(re,"");
+
     this.fdb.database.ref('UserID').child(newstr).child('USD Balance').once('value', function(snapshot) {
       if (snapshot.val() !== null) {
 
@@ -70,10 +109,33 @@ export class DepositPage {
               datearr[key] = new Date(temparr[key]);
           }
           var maxDate=new Date(Math.max.apply(null,datearr));
-          alert(maxDate);
+          this.rtnDate =new Date(Math.max.apply(null,datearr));
+         // alert(url);
+          //alert(maxDate);
+          //rtnDate = maxDate;
+          //alert(rtnDate);
+          //return rtnDate;
       }
   });
-  }
+
+  var url:string ='/UserID/'//+newstr+'/USD Balance'+'/'+this.rtnDate+'/';
+  this.fdb.list(url).valueChanges().subscribe(
+    _data => {
+      arr_data = _data;
+      alert(url);
+    })
+//////////////////////////////////////
+    var arr_data = [];
+    var re = ".";
+    var str = this.crtUsr();
+    var newstr = str.replace(re,"");
+    /*this.fdb.list(url).valueChanges().subscribe(
+      _data => {
+        arr_data = _data;
+        alert(arr_data[0]);
+      }
+    )
+}*/
  /* getBal(){
     this.getAllCatList().then((res: any) => {
       this.ListCategory = res;
