@@ -81,6 +81,7 @@ export class SellbtcPage {
   }
   
   makeTransaction(){
+  
 
     let loader = this.loadingCtrl.create({
       spinner: "bubbles",
@@ -103,6 +104,7 @@ export class SellbtcPage {
           GET_BTC:this.getBtc,
           TOTAL:this.payamnt,
     })
+    
   }
   crtUsr(){
     var re = "@";
@@ -110,4 +112,5 @@ export class SellbtcPage {
     var newstr = str.replace(re,"");
     return newstr;
   }
+ 
 }
