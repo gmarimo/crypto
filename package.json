@@ -33,6 +33,7 @@
     "@types/express": "^4.11.1",
     "@types/method-override": "0.0.31",
     "@types/morgan": "^1.7.35",
+    "angular-typescript-validation": "^1.8.0",
     "angularfire2": "^5.0.0-rc.5-next",
     "axios": "^0.18.0",
     "cordova-plugin-camera": "^4.0.3",

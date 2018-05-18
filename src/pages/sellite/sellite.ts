@@ -8,8 +8,9 @@ import { AlertController } from 'ionic-angular';
 import { WalletsPage } from '../wallets/wallets';
 //import { LoadingController } from 'ionic-angular';
 import { BtcbuysuccessPage } from '../btcbuysuccess/btcbuysuccess';
+
 /**
- * Generated class for the SellbtcPage page.
+ * Generated class for the SellitePage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -17,20 +18,20 @@ import { BtcbuysuccessPage } from '../btcbuysuccess/btcbuysuccess';
 
 @IonicPage()
 @Component({
-  selector: 'page-sellbtc',
-  templateUrl: 'sellbtc.html',
+  selector: 'page-sellite',
+  templateUrl: 'sellite.html',
 })
-export class SellbtcPage {
+export class SellitePage {
 
-  @ViewChild('btcamnt') btcamnt;
+  @ViewChild('liteamnt') liteamnt;
   @ViewChild('usdamnt') usdamnt;
   total:number;
   usd: number;
   commissionRate:number;
   commission:number;
-  btc: number;
-  btcVal:number;
-  getBtc:number;
+  lite: number;
+  liteVal:number;
+  getLite:number;
   payamnt:number;
   datastore //= firebase.database();
   listId: string;
@@ -40,48 +41,47 @@ export class SellbtcPage {
   constructor(private dbAuth: AngularFireAuth, public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams,private fdb:AngularFireDatabase) {
     this.payamnt = 0;
     this.commissionRate = 0.1;
-    this.getBtc = 0;
+    this.getLite = 0;
     this.commission=0;
     this.usd;
-    this.btc;
+    this.lite;
     this.total=0;
-    this.btcVal = 10000;
+    this.liteVal = 10000;
 
     
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad BuybtcPage');
+    console.log('ionViewDidLoad SellitePage');
   }
 
-  numBtc(){
-    var numbtc:number = this.usdamnt.value/this.btcVal;
-    this.btc = numbtc;
-    this.commission = this.calcCommission(numbtc);
+  numLite(){
+    var numlite:number = this.usdamnt.value/this.liteVal;
+    this.lite = numlite;
+    this.commission = this.calcCommission(numlite);
     this.payamnt = this.usdamnt.value;
     var commissionUsd = this.usdamnt.value *this.commissionRate;
-    this.getBtc = this.calcGet(this.usdamnt.value,commissionUsd);
+    this.getLite = this.calcGet(this.usdamnt.value,commissionUsd);
 
   }
   amntUsd(){
-    var amnt:number = this.btcamnt.value *this.btcVal; 
+    var amnt:number = this.liteamnt.value *this.liteVal; 
     this.usd = amnt;
-    this.commission = (this.calcCommission(amnt))/this.btcVal;
+    this.commission = (this.calcCommission(amnt))/this.liteVal;
     this.payamnt = amnt;
     var commissionUsd = amnt*this.commissionRate;
-    this.getBtc = this.calcGet(amnt,commissionUsd);
+    this.getLite = this.calcGet(amnt,commissionUsd);
   }
-   calcCommission(btc:number){
-    var com:number = btc*this.commissionRate;
+   calcCommission(lite:number){
+    var com:number = lite*this.commissionRate;
     return com;
   }
   calcGet(amnt:number,commission:number){
-    var get = (amnt-commission)/this.btcVal;
+    var get = (amnt-commission)/this.liteVal;
     return get;
   }
   
   makeTransaction(){
-  
 
     let loader = this.loadingCtrl.create({
       spinner: "bubbles",
@@ -96,15 +96,14 @@ export class SellbtcPage {
     var str = this.crtUsr();
     var newstr = str.replace(re,"");
     
-    var ref = this.fdb.database.ref('UserID').child(newstr).child('Buy BTC').child(''+date);
+    var ref = this.fdb.database.ref('UserID').child(newstr).child('Buy LITE').child(''+date);
     ref.set({
           USD:this.usd,
-          BTC:this.btc,
+          LITE:this.lite,
           COMMISSION:this.commission,
-          GET_BTC:this.getBtc,
+          GET_LITE:this.getLite,
           TOTAL:this.payamnt,
     })
-    
   }
   crtUsr(){
     var re = "@";
@@ -115,10 +114,10 @@ export class SellbtcPage {
 
   emptyonsubmit(){
     this.usdamnt.value=null;
-    this.btcamnt.value=null;
+    this.liteamnt.value=null;
     this.payamnt=0;
     this.commission=0;
-    this.getBtc=0;
+    this.getLite=0;
     
   }
 }
