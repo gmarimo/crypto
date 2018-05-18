@@ -17,6 +17,10 @@ import  'rxjs/add/operator/map';
 import { RemoteServiceProvider } from '../../providers/remote-service/remote-service';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, snapshotChanges } from 'angularfire2/database';
+import { SellitePage } from '../sellite/sellite';
+import { MylitewalletPage } from '../mylitewallet/mylitewallet';
+import { BuylitePage } from '../buylite/buylite';
+
 /**
  * Generated class for the WalletsPage page.
  *
@@ -134,4 +138,17 @@ export class WalletsPage {
     var newstr = str.replace(re,"");
     return newstr;
   } 
+
+  buyinglite(){
+    this.navCtrl.push(BuylitePage);
+  }
+  
+  sellinglite(){
+    this.navCtrl.push(SellitePage);
+  }
+  litewallet(){
+    this.navCtrl.push(MylitewalletPage)
+  }
+
+
 }

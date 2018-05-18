@@ -1,5 +1,4 @@
-page-sellbtc {
-
+page-buylite {
     .ioninput{
         border: #ff8c00 solid 1px;
         border-radius: 10px;
@@ -10,12 +9,8 @@ page-sellbtc {
 
     ion-label{
         padding-left: 12px;
-       
+     
     }
-
-    .lbl{
-        color: #fff!important;
-     }
 
     .comm{
         margin-left: 30%;
@@ -50,6 +45,11 @@ page-sellbtc {
     .btn1{
         background: #0000ff;
     }
+    
+    .lbl{
+        color: #fff!important;
+    }
+
     .btnclear{
         background: #35B253;
     }

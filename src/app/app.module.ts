@@ -56,6 +56,9 @@ import { Camera} from '@ionic-native/camera';
 import { RecaptchaModule } from 'ng-recaptcha';
 import { EmailconfirmationPage } from '../pages/emailconfirmation/emailconfirmation';
 import { DeposithistoryPage } from '../pages/deposithistory/deposithistory';
+import { BuylitePage } from '../pages/buylite/buylite';
+import { SellitePage } from '../pages/sellite/sellite';
+import { MylitewalletPage } from '../pages/mylitewallet/mylitewallet';
 
 
 
@@ -110,7 +113,10 @@ const firebase = {
     ResetpasswordPage,
     EmailverifyPage,
     EmailconfirmationPage,
-    DeposithistoryPage
+    DeposithistoryPage,
+    BuylitePage,
+    SellitePage,
+    MylitewalletPage
 
   ],
   imports: [
@@ -167,7 +173,10 @@ const firebase = {
     ResetpasswordPage,
     EmailverifyPage,
     EmailconfirmationPage,
-    DeposithistoryPage
+    DeposithistoryPage,
+    BuylitePage,
+    SellitePage,
+    MylitewalletPage
   ],
   providers: [
     StatusBar,
