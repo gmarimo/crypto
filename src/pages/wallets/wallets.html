@@ -62,7 +62,7 @@
         </div>
   
         <div class="eth_info">
-          <p (click)="usdwallet()">Balance: <strong>$150.00</strong></p>
+          <p (click)="usdwallet()" (load)="getBal()" ([ngModel]) ="accbal">Balance: {{accbal.number}}<strong></strong></p>
         </div>
   
         <div class="eth_buy">
@@ -129,15 +129,15 @@
     </div>
 
     <div class="eth_buy">
-      <a href="#">Buy</a>
+      <a href="#" (click)="buyinglite()">Buy</a>
     </div>
 
     <div class="eth_sell">
-      <a href="#">Sell</a>
+      <a href="#" (click)="sellinglite()">Sell</a>
     </div>
 
     <div class="eth_wallet">
-      <a href="#">My Wallet</a>
+      <a href="#" (click)="litewallet()">My Wallet</a>
     </div>
 
 

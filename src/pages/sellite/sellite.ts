@@ -10,7 +10,7 @@ import { WalletsPage } from '../wallets/wallets';
 import { BtcbuysuccessPage } from '../btcbuysuccess/btcbuysuccess';
 
 /**
- * Generated class for the SellethPage page.
+ * Generated class for the SellitePage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -18,20 +18,20 @@ import { BtcbuysuccessPage } from '../btcbuysuccess/btcbuysuccess';
 
 @IonicPage()
 @Component({
-  selector: 'page-selleth',
-  templateUrl: 'selleth.html',
+  selector: 'page-sellite',
+  templateUrl: 'sellite.html',
 })
-export class SellethPage {
+export class SellitePage {
 
-  @ViewChild('ethamnt') ethamnt;
+  @ViewChild('liteamnt') liteamnt;
   @ViewChild('usdamnt') usdamnt;
   total:number;
   usd: number;
   commissionRate:number;
   commission:number;
-  eth: number;
-  ethVal:number;
-  getEth:number;
+  lite: number;
+  liteVal:number;
+  getLite:number;
   payamnt:number;
   datastore //= firebase.database();
   listId: string;
@@ -40,44 +40,44 @@ export class SellethPage {
   
   constructor(private dbAuth: AngularFireAuth, public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams,private fdb:AngularFireDatabase) {
     this.payamnt = 0;
-    this.commissionRate = 0.08;
-    this.getEth = 0;
+    this.commissionRate = 0.1;
+    this.getLite = 0;
     this.commission=0;
     this.usd;
-    this.eth;
+    this.lite;
     this.total=0;
-    this.ethVal = 1200;
+    this.liteVal = 10000;
 
     
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad BuyethPage');
+    console.log('ionViewDidLoad SellitePage');
   }
 
-  numEth(){
-    var numeth:number = this.usdamnt.value/this.ethVal;
-    this.eth = numeth;
-    this.commission = this.calcCommission(numeth);
+  numLite(){
+    var numlite:number = this.usdamnt.value/this.liteVal;
+    this.lite = numlite;
+    this.commission = this.calcCommission(numlite);
     this.payamnt = this.usdamnt.value;
     var commissionUsd = this.usdamnt.value *this.commissionRate;
-    this.getEth = this.calcGet(this.usdamnt.value,commissionUsd);
+    this.getLite = this.calcGet(this.usdamnt.value,commissionUsd);
 
   }
   amntUsd(){
-    var amnt:number = this.ethamnt.value *this.ethVal; 
+    var amnt:number = this.liteamnt.value *this.liteVal; 
     this.usd = amnt;
-    this.commission = (this.calcCommission(amnt))/this.ethVal;
+    this.commission = (this.calcCommission(amnt))/this.liteVal;
     this.payamnt = amnt;
     var commissionUsd = amnt*this.commissionRate;
-    this.getEth = this.calcGet(amnt,commissionUsd);
+    this.getLite = this.calcGet(amnt,commissionUsd);
   }
-   calcCommission(eth:number){
-    var com:number = eth*this.commissionRate;
+   calcCommission(lite:number){
+    var com:number = lite*this.commissionRate;
     return com;
   }
   calcGet(amnt:number,commission:number){
-    var get = (amnt-commission)/this.ethVal;
+    var get = (amnt-commission)/this.liteVal;
     return get;
   }
   
@@ -96,12 +96,12 @@ export class SellethPage {
     var str = this.crtUsr();
     var newstr = str.replace(re,"");
     
-    var ref = this.fdb.database.ref('UserID').child(newstr).child('Buy ETH').child(''+date);
+    var ref = this.fdb.database.ref('UserID').child(newstr).child('Buy LITE').child(''+date);
     ref.set({
           USD:this.usd,
-          ETH:this.eth,
+          LITE:this.lite,
           COMMISSION:this.commission,
-          GET_BTC:this.getEth,
+          GET_LITE:this.getLite,
           TOTAL:this.payamnt,
     })
   }
@@ -114,10 +114,10 @@ export class SellethPage {
 
   emptyonsubmit(){
     this.usdamnt.value=null;
-    this.ethamnt.value=null;
+    this.liteamnt.value=null;
     this.payamnt=0;
     this.commission=0;
-    this.getEth=0;
+    this.getLite=0;
     
   }
 }
