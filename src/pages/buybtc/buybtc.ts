@@ -6,17 +6,8 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { LoadingController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { WalletsPage } from '../wallets/wallets';
-//import { LoadingController } from 'ionic-angular';
 import { BtcbuysuccessPage } from '../btcbuysuccess/btcbuysuccess';
 import { empty } from 'rxjs/Observer';
-//import { WalletsPage } from '../wallets/wallets';
-
-/**
- * Generated class for the BuybtcPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -49,15 +40,11 @@ export class BuybtcPage {
     this.btc;
     this.total=0;
     this.btcVal = 10000;
-
-    
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad BuybtcPage');
   }
-
-  
 
   numBtc(){
     var numbtc:number = this.usdamnt.value/this.btcVal;
@@ -66,7 +53,6 @@ export class BuybtcPage {
     this.payamnt = this.usdamnt.value;
     var commissionUsd = this.usdamnt.value *this.commissionRate;
     this.getBtc = this.calcGet(this.usdamnt.value,commissionUsd);
-
   }
   amntUsd(){
     var amnt:number = this.btcamnt.value *this.btcVal; 
@@ -86,7 +72,7 @@ export class BuybtcPage {
   }
 
   public loader(){
-    if(this.usdamnt.value!=''&& this.btcamnt.value!=''){
+    if(this.usdamnt.value!='' && this.btcamnt.value!=''){
       let loader = this.loadingCtrl.create({
  
         spinner:"bubbles",
@@ -102,8 +88,8 @@ export class BuybtcPage {
   }
  }
   
-  makeTransaction(){
-  
+makeTransaction(bal:number){
+
 if(this.usdamnt.value==''||this.btcamnt.value==''){
   let toast = this.toastCtrl.create({
     message: 'Enter Amount in USD OR in BTC',
@@ -124,7 +110,7 @@ else{
   var re = ".";
   var str = this.crtUsr();
   var newstr = str.replace(re,"");
-  
+  if(bal >= this.usdamnt.value){
   var ref = this.fdb.database.ref('UserID').child(newstr).child('Buy BTC').child(''+date);
   ref.set({
         USD:this.usd,
@@ -144,10 +130,28 @@ else{
   
       });
       toast.present();          
-        });}
-
+        });
+      var newBal:number = bal - this.usdamnt.value;
+      var ref = this.fdb.database.ref('UserID').child(newstr).child('USD Balance').child(''+date);
+      ref.set({
+            USD:newBal,
+      })
+      alert('Transaction successful new wallet balance is '+newBal);
+      }
+      else
+       {
+        let toast = this.toastCtrl.create({
+          message: 'You have insufficient funds to make a deposit' ,
+          duration:5000,
+          cssClass: "toastclr"
+    
+        });
+        toast.present();   
+       }
     this.emptyonsubmit();
+      }
   }
+  
   crtUsr(){
     var re = "@";
     var str = this.dbAuth.auth.currentUser.email;
@@ -160,7 +164,46 @@ else{
     this.btcamnt.value=null;
     this.payamnt=0;
     this.commission=0;
-    this.getBtc=0;
-    
+    this.getBtc=0; 
+  }
+
+  //////////////Get Usd Bal
+  getBal(){
+    var bal:Date;
+    var re = ".";
+    var str = this.crtUsr();
+    var newstr = str.replace(re,"");
+    this.fdb.database.ref('UserID').child(newstr).child('USD Balance').once('value', function(snapshot) {
+      if (snapshot.val() !== null) {
+      }
+  }).then((snapshot) => {
+    let Catdata = Object.keys(snapshot.val());
+    let temparr = [];
+    let datearr: Date[]=[];
+
+    var datt:Date;
+    for (var key:number=0;key<Catdata.length;key++) {
+        //temparr.push(Catdata[key]);
+        temparr[key]=Catdata[key]
+        datearr[key] = new Date(temparr[key]);
+        datt = datearr[key]; 
+    }  
+    return this.getCurrentUsdBal(datt);
+  });
+  }
+  getCurrentUsdBal(date){
+    var re = ".";
+    var str = this.crtUsr();
+    var newstr = str.replace(re,"");
+    var bal:number;
+    var url = '/UserID/'+newstr+'/USD Balance/'+date;
+    this.fdb.list(url).valueChanges().subscribe(
+      data => {
+      var strbal:string = data.toString();
+      bal = +strbal
+      this.makeTransaction(bal);
+      }
+    )
+    return bal;
   }
 }

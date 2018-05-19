@@ -10,14 +10,7 @@ import { ToastController } from 'ionic-angular';
 import { AlertController} from 'ionic-angular';
 import { EmailconfirmationPage } from '../emailconfirmation/emailconfirmation';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
-
-
-/**
- * Generated class for the CreateaccountPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { AngularFireDatabase } from 'angularfire2/database';
 
 @IonicPage()
 @Component({
@@ -41,7 +34,7 @@ export class CreateaccountPage {
    @ViewChild ('password1') password1;
    @ViewChild('password2') password2;
 
-  constructor(private firebaseauth:AngularFireAuth, public navCtrl: NavController,
+  constructor(private fdb:AngularFireDatabase,private firebaseauth:AngularFireAuth, public navCtrl: NavController,
      public navParams: NavParams,public formbuilder:FormBuilder,public toastCtrl: ToastController,
      private alertCtrl:AlertController) {
 
@@ -95,6 +88,15 @@ export class CreateaccountPage {
     console.log("Registration failed, please try again",err)
     })
     console.log(this.email.value);
+
+    var re = ".";
+    var str = this.crtUsr();
+    var newstr = str.replace(re,"");
+    var date:Date = new Date();
+    var ref = this.fdb.database.ref('UserID').child(newstr).child('USD Balance').child(''+date);
+    ref.set({
+          USD:0,
+    })
     
       }
     
@@ -116,5 +118,10 @@ empty(){
   this.password1.value=null;
   this.password2.value=null;
 }
-
+crtUsr(){
+  var re = "@";
+  var str:string = this.email.value;
+  var newstr = str.replace(re,"");
+  return newstr;
+}
 }
