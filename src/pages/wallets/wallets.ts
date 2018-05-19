@@ -44,10 +44,8 @@ export class WalletsPage {
  
   }
 
-
   ionViewDidLoad() {
-    console.log('ionViewDidLoad WalletsPage');
-    //this.getBal();
+    this.accbal=0;
   }
   
   getData () {
@@ -91,8 +89,7 @@ export class WalletsPage {
 
   usdwallet(){
     //this.navCtrl.push(MyusdwalletPage);
-    this.accbal = 20;
-    alert(23);
+    alert('hello usd wallet');
   }
   getBal(){
     //var bal:Date;

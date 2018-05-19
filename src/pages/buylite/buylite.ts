@@ -40,7 +40,7 @@ export class BuylitePage {
   elClass:string;
   title: string;
   
-  constructor(private toastCtrl:ToastController, private dbAuth: AngularFireAuth, public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams,private fdb:AngularFireDatabase) {
+  constructor(private toastCtrl:ToastController,public alertctrl:AlertController, private dbAuth: AngularFireAuth, public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams,private fdb:AngularFireDatabase) {
     this.payamnt = 0;
     this.commissionRate = 0.1;
     this.getLite = 0;
@@ -175,4 +175,16 @@ else{
     this.getLite=0;
     
   }
+  alert(){
+  let alert = this.alertctrl.create({
+
+    title: "LiteCoin",
+    subTitle: "LiteCoin is coming soon!!",
+    buttons: ['ok']
+
+  });
+  alert.present();
+  
+}
+
 }
