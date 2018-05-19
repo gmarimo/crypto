@@ -46,8 +46,8 @@ export class WalletsPage {
 
 
   ionViewDidLoad() {
-    //console.log('ionViewDidLoad WalletsPage');
-    this.getBal();
+    console.log('ionViewDidLoad WalletsPage');
+    //this.getBal();
   }
   
   getData () {
@@ -95,7 +95,7 @@ export class WalletsPage {
     alert(23);
   }
   getBal(){
-    var bal:Date;
+    //var bal:Date;
     var re = ".";
     var str = this.crtUsr();
     var newstr = str.replace(re,"");
