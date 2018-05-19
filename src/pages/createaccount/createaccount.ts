@@ -8,6 +8,7 @@ import { FormBuilder,FormGroup,Validators,AbstractControl} from '@angular/forms'
 import { FormControl } from '@angular/forms';
 import { ToastController } from 'ionic-angular';
 import { AlertController} from 'ionic-angular';
+import { LoadingController } from 'ionic-angular';
 import { EmailconfirmationPage } from '../emailconfirmation/emailconfirmation';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -34,7 +35,7 @@ export class CreateaccountPage {
    @ViewChild ('password1') password1;
    @ViewChild('password2') password2;
 
-  constructor(private fdb:AngularFireDatabase,private firebaseauth:AngularFireAuth, public navCtrl: NavController,
+  constructor(private fdb:AngularFireDatabase,public loadingCtrl: LoadingController,private firebaseauth:AngularFireAuth, public navCtrl: NavController,
      public navParams: NavParams,public formbuilder:FormBuilder,public toastCtrl: ToastController,
      private alertCtrl:AlertController) {
 
@@ -56,38 +57,38 @@ export class CreateaccountPage {
     console.log('ionViewDidLoad CreateaccountPage');
   }
 
-  createuser () {
-    
-      if(this.password1.value==this.password2.value){
-
-
-    this.firebaseauth.auth.createUserWithEmailAndPassword(this.email.value, this.password1.value)
-    .then (data => {
-    
-      let Alert = this.alertCtrl.create({
-        subTitle: 'User was added successfully',
-        buttons: ['OK']    
+  public loader(){
+      let loader = this.loadingCtrl.create({
+        spinner:"bubbles",
+        content:"Creating your account..",
+        duration:5000 
       });
-      Alert.present();
-    console.log("Registration Successful", data);
-    
-    this.empty();
-    //this.login();
+      loader.present(); 
+    }
 
+  createuser () {
+      if (this.email.value == '' || this.password1.value == ''){
 
-      
-    })
-    .catch(err => {
-    
         let toast = this.toastCtrl.create({
-          message: ''+err,
+          message: 'Email and password field should not be empty ',
           duration: 5000
         });
         toast.present();
-      
-    console.log("Registration failed, please try again",err)
-    })
-    console.log(this.email.value);
+
+      }else if(this.password1.value == this.password2.value){
+        this.loader();
+        this.firebaseauth.auth.createUserWithEmailAndPassword(this.email.value, this.password1.value)
+        .then (data => { 
+          this.navCtrl.setRoot(EmailconfirmationPage);
+          })
+          .catch(err => {
+          
+              let toast = this.toastCtrl.create({
+                message: 'Oops, ' + err,
+                duration: 7000
+              });
+              toast.present();
+          });
 
     var re = ".";
     var str = this.crtUsr();
@@ -102,7 +103,7 @@ export class CreateaccountPage {
     
       else{
         let toast = this.toastCtrl.create({
-          message:'Passwords mismatch',
+          message:'Please match your passwords.',
           duration:5000
         });
         toast.present();
