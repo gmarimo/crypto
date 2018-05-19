@@ -38,7 +38,7 @@ export class SellitePage {
   elClass:string;
   title: string;
   
-  constructor(private dbAuth: AngularFireAuth, public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams,private fdb:AngularFireDatabase) {
+  constructor(private dbAuth: AngularFireAuth,public alertctrl: AlertController, public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams,private fdb:AngularFireDatabase) {
     this.payamnt = 0;
     this.commissionRate = 0.1;
     this.getLite = 0;
@@ -120,4 +120,15 @@ export class SellitePage {
     this.getLite=0;
     
   }
+  alert(){
+    let alert = this.alertctrl.create({
+  
+      title: "LiteCoin",
+      subTitle: "LiteCoin is coming soon!!",
+      buttons: ['ok']
+  
+    });
+    alert.present();
+  }
+
 }

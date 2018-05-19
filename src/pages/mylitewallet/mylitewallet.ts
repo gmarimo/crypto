@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 
 /**
  * Generated class for the MylitewalletPage page.
@@ -15,11 +15,22 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class MylitewalletPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public alertctrl: AlertController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MylitewalletPage');
+  }
+
+  alert(){
+    let alert = this.alertctrl.create({
+  
+      title: "LiteCoin",
+      subTitle: "LiteCoin is coming soon!!",
+      buttons: ['ok']
+  
+    });
+    alert.present();
   }
 
 }
