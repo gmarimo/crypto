@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
@@ -15,11 +15,21 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class WithdrawPage {
 
+  @ViewChild('amnt') amnt;
+  @ViewChild('num') num;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad WithdrawPage');
+  }
+
+  emptyonsubmit(){
+    this.amnt.value=null;
+    this.num.value=null;
+   
+    
   }
 
 }

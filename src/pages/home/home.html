@@ -7,6 +7,8 @@
 </ion-header>
 
 <ion-content padding>
+
+    <form [formGroup]=formgroup>
 <form [formGroup]=formgroup> 
     <ion-item align="center">
       <img class="img" src="assets/imgs/bash.png">
@@ -23,11 +25,6 @@
     </ion-item>
 
     <p>Forgot password? <a (click)='resetpass()' >Reset it</a></p>
-
-<!--   <ion-item no-lines>
-      <re-captcha (resolved)="captchaResolved($event)" siteKey="6Le0E1kUAAAAAFwSd_f6nzmuc7KgPV3UDRisBmd3"></re-captcha>
-      <button [disabled]="!captchaPassed" ion-button (click)="sendForm()">Submit</button>
-    </ion-item>-->
 
   </ion-list>
 
@@ -47,5 +44,5 @@
   {{ p.title }}
 </button>
 </ion-menu>
-</ion-content>
+<!--/ion-content>-->
 

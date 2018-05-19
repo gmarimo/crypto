@@ -21,14 +21,14 @@
           <ion-col>
             <ion-item no-lines>
               <ion-label floating>USD</ion-label>
-              <ion-input class="ioninput" type="number" (keyup)="numEth()" [(ngModel)] ="usd" #usdamnt>{{usd}}</ion-input>
+              <ion-input class="ioninput" type="number" (keyup)="numEth()" [(ngModel)] ="usd" #usdamnt required=true>{{usd}}</ion-input>
             </ion-item>
           </ion-col>
   
           <ion-col>
             <ion-item no-lines>
               <ion-label floating>ETH</ion-label>
-              <ion-input class="ioninput" type="number" [(ngModel)]="eth" (keyup)="amntUsd()" #ethamnt>{{eth}}</ion-input>
+              <ion-input class="ioninput" type="number" [(ngModel)]="eth" (keyup)="amntUsd()" #ethamnt required=true>{{eth}}</ion-input>
             </ion-item>
           </ion-col>
   
@@ -36,16 +36,16 @@
       </ion-grid>
   
       <ion-item>
-        <ion-label>Fees (ETH)</ion-label>
+        <ion-label class="lbl">Fees (ETH)</ion-label>
         <ion-input text-right class="comm" type="number" disabled="true" [(ngModel)]="commission">{{commission.number}}</ion-input>
       </ion-item>
   
       <ion-item>
-          <ion-label>Get (ETH)</ion-label>
+          <ion-label class="lbl">Get (ETH)</ion-label>
           <ion-input text-right class="comm1" type="number" disabled="true" [(ngModel)]="getEth">{{getEth.number}}</ion-input>ETH
       </ion-item>
       <ion-item>
-          <ion-label>Pay ($)</ion-label>
+          <ion-label class="lbl">Pay ($)</ion-label>
           <ion-input text-right class="comm1" type="number" disabled="true" [(ngModel)]="payamnt">{{payamnt.number}}</ion-input>$
       </ion-item>
       
@@ -53,6 +53,6 @@
   
   <ion-footer>
       <button ion-button class="button" (click) = "makeTransaction()" full color="primary">BUY</button>
-      <button ion-button full class="btnclear">Clear</button>
+      <button ion-button full class="btnclear" (click)="emptyonsubmit()">Clear</button>
   </ion-footer>
   
