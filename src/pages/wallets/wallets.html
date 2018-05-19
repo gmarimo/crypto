@@ -62,7 +62,7 @@
         </div>
   
         <div class="eth_info">
-          <p (click)="usdwallet()" (load)="getBal()" ([ngModel]) ="accbal">Balance: {{accbal.number}}<strong></strong></p>
+          <p (click)="usdwallet()" (load)="getBal()" ([ngBind]) ="accbal">Balance: {{accbal.number}}<strong></strong></p>
         </div>
   
         <div class="eth_buy">

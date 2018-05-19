@@ -117,10 +117,6 @@ export class BuybtcPage {
 
 
 
-
-
-
-
           ] 
         });
         alert.present();       
