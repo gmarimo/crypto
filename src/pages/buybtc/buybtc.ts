@@ -8,6 +8,13 @@ import { AlertController } from 'ionic-angular';
 import { WalletsPage } from '../wallets/wallets';
 import { BtcbuysuccessPage } from '../btcbuysuccess/btcbuysuccess';
 import { empty } from 'rxjs/Observer';
+//import { WalletsPage } from '../wallets/wallets';
+/**
+ * Generated class for the BuybtcPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
 
 @IonicPage()
 @Component({
