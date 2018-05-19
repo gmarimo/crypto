@@ -101,6 +101,7 @@ export class WalletsPage {
     var newstr = str.replace(re,"");
     this.fdb.database.ref('UserID').child(newstr).child('USD Balance').once('value', function(snapshot) {
       if (snapshot.val() !== null) {
+        return snapshot;
       }
   }).then((snapshot) => {
     let Catdata = Object.keys(snapshot.val());
