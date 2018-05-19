@@ -10,7 +10,6 @@ import { WalletsPage } from '../wallets/wallets';
 import { BtcbuysuccessPage } from '../btcbuysuccess/btcbuysuccess';
 import { empty } from 'rxjs/Observer';
 //import { WalletsPage } from '../wallets/wallets';
-
 /**
  * Generated class for the BuybtcPage page.
  *
