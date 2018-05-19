@@ -14,7 +14,7 @@
 </ion-header>
 
 
-<ion-content class="background">
+<ion-content class="background" (load)="usdwallet()">
   <ion-item>
 
       <div class="eth_sec">
@@ -62,7 +62,7 @@
         </div>
   
         <div class="eth_info">
-          <p (click)="usdwallet()" (load)="getBal()" ([ngBind]) ="accbal">Balance: {{accbal.number}}<strong></strong></p>
+          <p (click)="usdwallet()" ([ngBind]) ="accbal">Balance: {{accbal.number}}<strong>Balance: {{accbal.number}}</strong></p>
         </div>
   
         <div class="eth_buy">
