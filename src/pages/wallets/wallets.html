@@ -25,7 +25,7 @@
   
         <div class="eth_header" *ngFor="let coin of coins">
           <h1>Bitcoin</h1>
-          <h2>Price: {{coin.price_usd | json}}</h2>
+          <h2>Price: {{coin.price_usd*1.5 | json}}</h2>
         </div>
   
         <div class="eth_info" *ngFor="let coin of coins">
@@ -85,7 +85,7 @@
 
     <div class="eth_header" *ngFor="let eths of eth">
       <h1>Ethereum</h1>
-      <h2>Price: {{eths.price_usd | json}}</h2>
+      <h2>Price: {{eths.price_usd*1.5 | json}}</h2>
     </div>
 
     <div class="eth_info" *ngFor="let eths of eth">
@@ -119,7 +119,7 @@
 
     <div class="eth_header" *ngFor="let ltcs of ltc">
       <h1>LiteCoin</h1>
-      <h2>Price: {{ltcs.price_usd | json}}</h2>
+      <h2>Price: {{ltcs.price_usd*1.5 | json}}</h2>
     </div>
 
     <div class="eth_info" *ngFor="let ltcs of ltc">
