@@ -94,9 +94,17 @@ export class CreateaccountPage {
     var str = this.crtUsr();
     var newstr = str.replace(re,"");
     var date:Date = new Date();
-    var ref = this.fdb.database.ref('UserID').child(newstr).child('USD Balance').child(''+date);
-    ref.set({
+    var refUsd = this.fdb.database.ref('UserID').child(newstr).child('USD Balance').child(''+date);
+    refUsd.set({
           USD:0,
+    })
+    var refBTC = this.fdb.database.ref('UserID').child(newstr).child('Bit Coin').child(''+date);
+    refBTC.set({
+          Bit_Coins:0,
+    })
+    var refLith = this.fdb.database.ref('UserID').child(newstr).child('Litherium').child(''+date);
+    refLith.set({
+          Litherium:0,
     })
     
       }

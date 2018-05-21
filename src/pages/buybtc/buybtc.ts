@@ -54,7 +54,7 @@ export class BuybtcPage {
     this.usd;
     this.btc;
     this.total=0;
-    //this.latprice = 20000;
+    this.latprice = 10000;
     //this.btcVal = this.latprice;
 
     
@@ -131,8 +131,8 @@ export class BuybtcPage {
      loader.present()
   }
  }
-  
-  makeTransaction(bal:number){
+
+ makeTransaction(bal:number,usdBal:number){
     const date:Date = new Date();
     var re = ".";
     var str = this.crtUsr();
@@ -158,7 +158,7 @@ if(this.usdamnt.value==''||this.btcamnt.value==''){
   var re = ".";
   var str = this.crtUsr();
   var newstr = str.replace(re,"");
-  if(bal >= this.usdamnt.value){
+  if(usdBal >= this.usdamnt.value){
   var ref = this.fdb.database.ref('UserID').child(newstr).child('Buy BTC').child(''+date);
   ref.set({
         USD_BEFORE_COMMISSION:this.usd,
@@ -167,13 +167,23 @@ if(this.usdamnt.value==''||this.btcamnt.value==''){
         BTC_AFTER_COMMISSION:this.getBtc,
         USD_AFTER_COMMISSION:this.payamnt,
   })
-  var newBal:number = bal - this.usdamnt.value;
+  var newBal:number = usdBal - this.usdamnt.value;
   this.loader();
+  
+     /* var refBTC = this.fdb.database.ref('UserID').child(newstr).child('Bit Coin').child(''+date);
+      refBTC.set({
+            USD:newBal,
+      })*/
+      var btcbal = bal + this.getBtc;
+      var ref1 = this.fdb.database.ref('UserID').child(newstr).child('Bit Coin').child(''+date);
+      ref1.set({
+            Bit_Coins:btcbal,
+      })
+
       var ref = this.fdb.database.ref('UserID').child(newstr).child('USD Balance').child(''+date);
       ref.set({
             USD:newBal,
       })
-
     .catch(error => { 
 
         let toast = this.toastCtrl.create({
@@ -181,6 +191,8 @@ if(this.usdamnt.value==''||this.btcamnt.value==''){
         duration:5000,
         cssClass: "toastclr" 
       });
+
+      //////////////////////////
       toast.present();          
         });
       }
@@ -234,7 +246,43 @@ if(this.usdamnt.value==''||this.btcamnt.value==''){
     return this.getCurrentUsdBal(datt);
   });
   }
-  getCurrentUsdBal(date){
+  getBtcBal(usdBal:number){
+    var re = ".";
+    var str = this.crtUsr();
+    var newstr = str.replace(re,"");
+    this.fdb.database.ref('UserID').child(newstr).child('Bit Coin').once('value', function(snapshot) {
+      if (snapshot.val() !== null) {
+      }
+  }).then((snapshot) => {
+    let Catdata = Object.keys(snapshot.val());
+    let temparr = [];
+    let datearr: Date[]=[];
+  
+    var datt:Date;
+    for (var key:number=0;key<Catdata.length;key++) {
+        temparr[key]=Catdata[key]
+        datearr[key] = new Date(temparr[key]);
+        datt = datearr[key]; 
+    }  
+    return this.getCurrentBTCBal(datt,usdBal);
+  });
+  }
+  getCurrentBTCBal(date:Date,usdBal){
+    var re = ".";
+    var str = this.crtUsr();
+    var newstr = str.replace(re,"");
+    var bal:number;
+    var url = '/UserID/'+newstr+'/Bit Coin/'+date;
+    this.fdb.list(url).valueChanges().subscribe(
+      data => {
+      var strbal:string = data.toString();
+      bal = +strbal
+      this.makeTransaction(bal,usdBal);
+      }
+    )
+    return bal;
+  }
+  getCurrentUsdBal(date:Date){
     var re = ".";
     var str = this.crtUsr();
     var newstr = str.replace(re,"");
@@ -244,7 +292,7 @@ if(this.usdamnt.value==''||this.btcamnt.value==''){
       data => {
       var strbal:string = data.toString();
       bal = +strbal
-      this.makeTransaction(bal);
+      this.getBtcBal(bal);
       }
     )
     return bal;
