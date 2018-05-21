@@ -34,6 +34,7 @@ export class CreateaccountPage {
    @ViewChild ('email') email;
    @ViewChild ('password1') password1;
    @ViewChild('password2') password2;
+   user;
 
   constructor(private fdb:AngularFireDatabase,public loadingCtrl: LoadingController,private firebaseauth:AngularFireAuth, public navCtrl: NavController,
      public navParams: NavParams,public formbuilder:FormBuilder,public toastCtrl: ToastController,
@@ -78,7 +79,9 @@ export class CreateaccountPage {
       }else if(this.password1.value == this.password2.value){
         this.loader();
         this.firebaseauth.auth.createUserWithEmailAndPassword(this.email.value, this.password1.value)
-        .then (data => { 
+        this.user = this.firebaseauth.auth.currentUser
+        this.user.sendVerificationEmail(this.email.value)
+        .then (data => {
           this.navCtrl.setRoot(EmailconfirmationPage);
           })
           .catch(err => {
