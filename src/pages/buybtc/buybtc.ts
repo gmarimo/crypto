@@ -9,6 +9,8 @@ import { WalletsPage } from '../wallets/wallets';
 //import { LoadingController } from 'ionic-angular';
 import { BtcbuysuccessPage } from '../btcbuysuccess/btcbuysuccess';
 import { empty } from 'rxjs/Observer';
+import  'rxjs/add/operator/map';
+import { RemoteServiceProvider } from '../../providers/remote-service/remote-service';
 //import { WalletsPage } from '../wallets/wallets';
 
 /**
@@ -39,8 +41,12 @@ export class BuybtcPage {
   listId: string;
   elClass:string;
   title: string;
+  btcprice;
+  uptprice;
+  latprice: number;
   
-  constructor(private toastCtrl:ToastController, public alertctrl: AlertController, private dbAuth: AngularFireAuth, public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams,private fdb:AngularFireDatabase) {
+  constructor(private toastCtrl:ToastController, private remoteserviceprovider: RemoteServiceProvider, public alertctrl: AlertController, private dbAuth: AngularFireAuth, public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams,private fdb:AngularFireDatabase) {
+    //this.getData();
     this.payamnt = 0;
     this.commissionRate = 0.1;
     this.getBtc = 0;
@@ -48,7 +54,8 @@ export class BuybtcPage {
     this.usd;
     this.btc;
     this.total=0;
-    this.btcVal = 10000;
+    //this.latprice = 20000;
+    //this.btcVal = this.latprice;
 
     
   }
@@ -60,7 +67,7 @@ export class BuybtcPage {
   
 
   numBtc(){
-    var numbtc:number = this.usdamnt.value/this.btcVal;
+    var numbtc:number = this.usdamnt.value / this.latprice;
     this.btc = numbtc;
     this.commission = this.calcCommission(numbtc);
     this.payamnt = this.usdamnt.value;
@@ -69,19 +76,19 @@ export class BuybtcPage {
 
   }
   amntUsd(){
-    var amnt:number = this.btcamnt.value *this.btcVal; 
+    var amnt:number = this.btcamnt.value * this.latprice; 
     this.usd = amnt;
-    this.commission = (this.calcCommission(amnt))/this.btcVal;
+    this.commission = (this.calcCommission(amnt)) / this.latprice;
     this.payamnt = amnt;
     var commissionUsd = amnt*this.commissionRate;
     this.getBtc = this.calcGet(amnt,commissionUsd);
   }
    calcCommission(btc:number){
-    var com:number = btc*this.commissionRate;
+    var com:number = btc * this.commissionRate;
     return com;
   }
   calcGet(amnt:number,commission:number){
-    var get = (amnt-commission)/this.btcVal;
+    var get = (amnt-commission) / this.latprice;
     return get;
   }
 
@@ -137,8 +144,15 @@ if(this.usdamnt.value==''||this.btcamnt.value==''){
     duration: 5000
   });
   toast.present(); 
-}
-else{
+}else if(this.usdamnt.value < 20){
+
+  let toast = this.toastCtrl.create({
+    message: 'You can only buy a minimum of $20 worth of BTC.',
+    duration: 5000
+  });
+  toast.present(); 
+
+}else{
   
   const date:Date = new Date();
   var re = ".";
@@ -147,11 +161,11 @@ else{
   if(bal >= this.usdamnt.value){
   var ref = this.fdb.database.ref('UserID').child(newstr).child('Buy BTC').child(''+date);
   ref.set({
-        USD:this.usd,
-        BTC:this.btc,
+        USD_BEFORE_COMMISSION:this.usd,
+        BTC_BEFORE_COMMISSION:this.btc,
         COMMISSION:this.commission,
-        GET_BTC:this.getBtc,
-        TOTAL:this.payamnt,
+        BTC_AFTER_COMMISSION:this.getBtc,
+        USD_AFTER_COMMISSION:this.payamnt,
   })
   var newBal:number = bal - this.usdamnt.value;
   this.loader();
@@ -172,7 +186,7 @@ else{
       }
       else{
         let toast = this.toastCtrl.create({
-          message: 'You have insufficient funds to make a deposit' ,
+          message: 'You have insufficient funds to purchase this amount of BTC.' ,
           duration:5000,
           cssClass: "toastclr"
     

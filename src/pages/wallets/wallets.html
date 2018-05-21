@@ -23,18 +23,16 @@
             <img class="img" src="assets/imgs/btc.png">
         </div>
   
-        <div class="eth_header">
-          <h2>Bitcoin</h2>
-          <h4 *ngFor="let data of priceList"> 
-            {{ data.price }}
-          </h4>
+        <div class="eth_header" *ngFor="let coin of coins">
+          <h1>Bitcoin</h1>
+          <h2>Price: {{coin.price_usd | json}}</h2>
         </div>
   
-        <div class="eth_info">
-          <p>1h 0.88%</p>
+        <div class="eth_info" *ngFor="let coin of coins">
+          <h4 color="subtle" [ngClass]="(coin.percent_change_1h > 0) ? 'positive' : 'negative'">1h: ({{coin.percent_change_1h}}%)</h4>
         </div>
   
-        <div class="eth_buy">
+        <div class="btc_buy">
           <a href="#" (click)="buyingbtc()">Buy</a>
         </div>
   
@@ -58,18 +56,18 @@
         </div>
   
         <div class="eth_header">
-          <h2 (click)="usdwallet()">USD Wallet</h2>
+          <h1 (click)="usdwallet()">USD Wallet</h1>
         </div>
   
-        <div class="eth_info">
-          <p (click)="usdwallet()" (load)="getBal()" ([ngBind]) ="accbal">Balance: {{accbal.number}}<strong></strong></p>
+        <div class="eth_info" *ngFor = "let user of userid">
+          <h4 (click)="usdwallet()">Balance: {{ user }}</h4>
         </div>
   
-        <div class="eth_buy">
+        <div class="usd_wallet">
           <a href="#" (click)="depositusd()">Deposit</a>
         </div>
   
-        <div class="eth_sell">
+        <div class="usd_wallet">
           <a href="#" (click)="withdrawusd()">Withdraw</a>
         </div>
   
@@ -85,13 +83,13 @@
         <img class="img" src="assets/imgs/eth.png">
     </div>
 
-    <div class="eth_header">
-      <h2>Ethereum</h2>
-      <h4>Price: $13 567</h4>
+    <div class="eth_header" *ngFor="let eths of eth">
+      <h1>Ethereum</h1>
+      <h2>Price: {{eths.price_usd | json}}</h2>
     </div>
 
-    <div class="eth_info">
-      <p>1h 0.88%</p>
+    <div class="eth_info" *ngFor="let eths of eth">
+      <h4 color="subtle" [ngClass]="(eths.percent_change_1h > 0) ? 'positive' : 'negative'">1h: ({{eths.percent_change_1h}}%)</h4>
     </div>
 
     <div class="eth_buy">
@@ -119,13 +117,13 @@
         <img class="img" src="assets/imgs/litecoin.png">
     </div>
 
-    <div class="eth_header">
-      <h2>LiteCoin</h2>
-      <h4>Price: $13 567</h4>
+    <div class="eth_header" *ngFor="let ltcs of ltc">
+      <h1>LiteCoin</h1>
+      <h2>Price: {{ltcs.price_usd | json}}</h2>
     </div>
 
-    <div class="eth_info">
-      <p>1h 0.88%</p>
+    <div class="eth_info" *ngFor="let ltcs of ltc">
+      <h4 color="subtle" [ngClass]="(ltcs.percent_change_1h > 0) ? 'positive' : 'negative'">1h: ({{ltcs.percent_change_1h}}%)</h4>
     </div>
 
     <div class="eth_buy">

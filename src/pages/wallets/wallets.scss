@@ -6,12 +6,12 @@ page-wallets {
         height: 100%;
     }
 
-    h2{
+    h1{
         color: #fff;
     }
 
-    h4{
-        color: #35B253;
+    h2{
+        color: #337AB7;
     }
 
 
@@ -43,8 +43,21 @@ page-wallets {
         margin-right: 20px;
     }
 
+    .btc_buy{
+        float: left;
+        margin-left: 25px;
+        
+    }
+
     .eth_buy{
         float: left;
+        margin-left: 20px;
+        
+    }
+
+    .usd_wallet{
+        float: left;
+        
         
     }
 
@@ -57,6 +70,21 @@ page-wallets {
     .eth_wallet{
         float: left;
         margin-left: 20px;
+    }
+
+    .positive {
+        background: #35BD59; // fallback for old browsers
+        background: -webkit-linear-gradient(to right, #35BD59, #299446); // Chrome 10-25, Safari 5.1-6
+        background: linear-gradient(to right, #35BD59, #299446); // W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .negative {
+        background: #E34C3C; // fallback for old browsers
+        background: -webkit-linear-gradient(to right, #E34C3C, #BD3F32); // Chrome 10-25, Safari 5.1-6
+        background: linear-gradient(to right, #E34C3C, #BD3F32); // W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
     }
 
   
