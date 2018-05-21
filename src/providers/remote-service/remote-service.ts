@@ -1,48 +1,51 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
-import { IfObservable } from 'rxjs/observable/IfObservable';
-import  'rxjs/add/operator/catch';
-import { Observable } from 'rxjs/Observable';
-
-
-/*
-  Generated class for the RemoteServiceProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
+import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class RemoteServiceProvider {
 
-  private url: string = "https://api.coinmarketcap.com/v2/ticker/1/";
+  constructor(private http: Http) { }
 
-  constructor(private http: Http) {
-    console.log("Hello Bitcoin");
-    
-  }
-
-  getData() {
-    return this.http.get(this.url)
-    .do(this.logResponse)
+  getCoins() {
+    return this.http.get('https://api.coinmarketcap.com/v1/ticker/?limit=1')
     .map(this.extractData)
+    .do(this.logResponse)
     .catch(this.catchError)
   }
 
+  getEth(){
+    return this.http.get('https://api.coinmarketcap.com/v1/ticker/?start=1&limit=1')
+    .map(this.extractData)
+    .do(this.logResponse)
+    .catch(this.catchError)
+  }
+
+  getLtc(){
+    return this.http.get('https://api.coinmarketcap.com/v1/ticker/?start=5&limit=1')
+    .map(this.extractData)
+    .do(this.logResponse)
+    .catch(this.catchError)
+  }
+
+  getGlobal() {
+	  return this.http.get('https://api.coinmarketcap.com/v1/global/')
+	  .map(this.extractData)
+	  .do(this.logResponse)
+	  .catch(this.catchError)
+  }
+
   private catchError(error: Response | any) {
-    console.log(error);
-    return Observable.throw(error.json().error || "Serve error.");
+	  console.log(error);
+	  return Observable.throw(error.json().error || "Server error!");
   }
-
   private logResponse(res: Response) {
-    console.log(res);
-  }
-
+		console.log(res);
+	}
   private extractData(res: Response){
-    return res.json();
-  }
-
+		return res.json();
+	}
 }

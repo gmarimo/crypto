@@ -159,14 +159,19 @@ app.listen(process.env.PORT || 8080);
 
        spinner:"bubbles",
        content:"Securely Logging you in...",
-       duration:3000
+       duration:2000
 
      });
 
      loader.onDidDismiss(() => {
-      console.log('Dismissed loading');
-    });
-  
+      let loader = this.loadingCtrl.create({
+        spinner:"dots",
+        //content:"Loading ..",
+        duration:5000,
+        cssClass: "loaderwrap"
+      }); 
+      loader.present();
+    }); 
     loader.present()
  }
 
@@ -178,21 +183,13 @@ app.listen(process.env.PORT || 8080);
       this.firebaseauth.auth.signInWithEmailAndPassword(this.email.value, this.password.value)
     .then(data => {
       console.log("Login successful", this.firebaseauth.auth.currentUser)
-      let alert = this.alertctrl.create({
-
-        title: "Login Status",
-        subTitle: "Logged in successfully!",
-        buttons: ['ok']
-
-      });
-      alert.present();
       this.navCtrl.setRoot(WalletsPage);
     })
 
    .catch(error => { 
 
     let toast = this.toastCtrl.create({
-      message: 'Email or password invalid, please verify your details and try again.' ,
+      message: 'Oops! ' + error ,
       duration:5000,
       cssClass: "toastclr"
 

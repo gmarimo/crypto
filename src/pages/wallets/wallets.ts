@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 
 
 import { BuybtcPage } from '../buybtc/buybtc';
@@ -11,6 +11,7 @@ import { WithdrawPage } from '../withdraw/withdraw';
 import { MybtcwalletPage } from '../mybtcwallet/mybtcwallet';
 import { MyusdwalletPage } from '../myusdwallet/myusdwallet';
 import { MyethwalletPage } from '../myethwallet/myethwallet';
+import { LoadingController } from 'ionic-angular';
 import  'rxjs/add/operator/map';
 //import { RemoteServiceProvider } from '../../providers/remote-service/remote-service';
 //import { Http } from '@angular/http';
@@ -35,25 +36,32 @@ import { BuylitePage } from '../buylite/buylite';
 })
 export class WalletsPage {
   accbal:number;
-  priceList = [];
+  coins = [];
+  eth = [];
+  ltc = [];
+  userid;
 
   
-  constructor(private afAuth: AngularFireAuth, private fdb: AngularFireDatabase,private remoteserviceprovider: RemoteServiceProvider, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public afAuth: AngularFireAuth, public loadingCtrl: LoadingController, private toastCtrl:ToastController, public fdb: AngularFireDatabase,private remoteserviceprovider: RemoteServiceProvider, public navCtrl: NavController, public navParams: NavParams) {
       this.accbal = 0;
-    this.getData();
+      this.updatebal();
+      this.remoteserviceprovider.getCoins().subscribe(data => { this.coins = data });
+      this.remoteserviceprovider.getEth().subscribe(data => {this.eth = data});
+      this.remoteserviceprovider.getLtc().subscribe(data => {this.ltc = data});
+
  
   }
 
   ionViewDidLoad() {
+<<<<<<< HEAD
+    //console.log('ionViewDidLoad WalletsPage');
+    
+=======
     this.accbal=0;
+>>>>>>> 31e7e94d75bdeb90ed130bfdfed86586b8ba872a
   }
   
-  getData () {
-    this.remoteserviceprovider.getData().subscribe(data => {
-      this.priceList = data,
-      this.priceList = Array.of(this.priceList);},);
-
-  }
+ 
 
   buyingbtc(){
     this.navCtrl.push(BuybtcPage);
@@ -88,9 +96,19 @@ export class WalletsPage {
   }
 
   usdwallet(){
-    //this.navCtrl.push(MyusdwalletPage);
-    alert('hello usd wallet');
+    this.navCtrl.push(MyusdwalletPage);
   }
+
+  updatebal(){ //updating wallet balance
+
+   
+      this.fdb.list('/UserID/').valueChanges().subscribe(data => {
+        this.userid = data;
+      })
+    
+
+  }
+
   getBal(){
     //var bal:Date;
     var re = ".";

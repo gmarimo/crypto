@@ -51,6 +51,11 @@ page-deposit {
         color: #fff;
     }
 
+    .para1{
+        color: red;
+        size: 5px;
+    }
+
     ion-input{
         color: #fff;
         border: gray solid 1px;
@@ -83,6 +88,18 @@ page-deposit {
 
     ion-list{
         text-align: center;
+    }
+
+    p{
+        color: #fff;
+    }
+
+    .lbl{
+        text-align: center;
+    }
+
+    .ionicon{
+        color: #35B253;
     }
 
 }
