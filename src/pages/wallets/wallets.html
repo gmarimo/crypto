@@ -48,9 +48,7 @@
     </ion-item>
 
     <ion-item>
-
       <div class="eth_sec">
-  
         <div class="eth_logo">
             <img class="img" (click)="usdwallet()" src="assets/imgs/wallet.png">
         </div>
@@ -60,7 +58,7 @@
         </div>
   
         <div class="eth_info">
-          <p (click)="usdwallet()" ([ngBind]) ="accbal">Balance: {{accbal.number}}<strong>Balance: {{accbal.number}}</strong></p>
+          <p (click)="usdwallet()" *ngFor ="let item of items"><strong>Balance: {{item}}</strong></p>
         </div>
   
         <div class="usd_wallet">

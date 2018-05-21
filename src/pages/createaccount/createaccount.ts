@@ -102,7 +102,7 @@ export class CreateaccountPage {
     refBTC.set({
           Bit_Coins:0,
     })
-    var refLith = this.fdb.database.ref('UserID').child(newstr).child('Litherium').child(''+date);
+    var refLith = this.fdb.database.ref('UserID').child(newstr).child('Ethereum').child(''+date);
     refLith.set({
           Litherium:0,
     })

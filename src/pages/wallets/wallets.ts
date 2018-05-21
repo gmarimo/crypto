@@ -36,6 +36,8 @@ import { BuylitePage } from '../buylite/buylite';
 })
 export class WalletsPage {
   accbal:number;
+  items;
+  item:number;
   coins = [];
   eth = [];
   ltc = [];
@@ -44,6 +46,7 @@ export class WalletsPage {
 
   
   constructor(public afAuth: AngularFireAuth, public loadingCtrl: LoadingController, private toastCtrl:ToastController, public fdb: AngularFireDatabase,private remoteserviceprovider: RemoteServiceProvider, public navCtrl: NavController, public navParams: NavParams) {
+      this.item = 30;
       this.accbal = 0;
       this.updatebal();
       this.remoteserviceprovider.getCoins().subscribe(data => { this.coins = data });
@@ -53,7 +56,7 @@ export class WalletsPage {
   }
 
   ionViewDidLoad() {
-    this.accbal=0;
+    this.accbal=2000;
   }
   
  
@@ -92,17 +95,49 @@ export class WalletsPage {
   usdwallet(){
     this.navCtrl.push(MyusdwalletPage);
   }
+//////////////////////////////////pass value to html
+  updatebal(){ 
+    this.accbal = 0;
+    var bal:Date;
+    var re = ".";
+    var str = this.crtUsr();
+    var newstr = str.replace(re,"");
+    this.fdb.database.ref('UserID').child(newstr).child('USD Balance').once('value', function(snapshot) {
+      if (snapshot.val() !== null) {
+        return snapshot;
+      }
+  }).then((snapshot) => {
+    let Catdata = Object.keys(snapshot.val());
+    let temparr = [];
+    let datearr: Date[]=[];
 
-  updatebal(){ //updating wallet balance
-
-   
-      this.fdb.list('/UserID/').valueChanges().subscribe(data => {
-        this.userid = data;
-      })
-    
-
+    var datt:Date;
+    for (var key:number=0;key<Catdata.length;key++) {
+        //temparr.push(Catdata[key]);
+        temparr[key]=Catdata[key]
+        datearr[key] = new Date(temparr[key]);
+        datt = datearr[key]; 
+    }  
+    return this.setBal(datt);
+  });
   }
-
+setBal(date:Date){
+  var re = ".";
+  var str = this.crtUsr();
+  var newstr = str.replace(re,"");
+  var bal:number;
+  var url = '/UserID/'+newstr+'/USD Balance/'+date;
+  this.fdb.list(url).valueChanges().subscribe(
+    data => {
+    //var strbal:string = data.toString();
+    //bal = +strbal
+    //this.accbal= bal;
+    this.items = data;
+    }
+  )
+  return bal;
+}
+////////////////////////////////////////////////////
   getBal(){
     var bal:Date;
     var re = ".";
