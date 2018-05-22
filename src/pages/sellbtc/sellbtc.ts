@@ -80,7 +80,7 @@ export class SellbtcPage {
     return get;
   }
   
-  makeTransaction(){
+  makeTransaction(bal:number,usdBal:number){
     let loader = this.loadingCtrl.create({
       spinner: "bubbles",
       content: "Completing deposit process...",
@@ -117,6 +117,85 @@ export class SellbtcPage {
     this.payamnt=0;
     this.commission=0;
     this.getBtc=0;
+  }
+
+  ////// get Usd balance
+  getBal(){
+    var bal:Date;
+    var re = ".";
+    var str = this.crtUsr();
+    var newstr = str.replace(re,"");
+    this.fdb.database.ref('UserID').child(newstr).child('USD Balance').once('value', function(snapshot) {
+      if (snapshot.val() !== null) {
+      }
+  }).then((snapshot) => {
+    let Catdata = Object.keys(snapshot.val());
+    let temparr = [];
+    let datearr: Date[]=[];
+
+    var datt:Date;
+    for (var key:number=0;key<Catdata.length;key++) {
+        //temparr.push(Catdata[key]);
+        temparr[key]=Catdata[key]
+        datearr[key] = new Date(temparr[key]);
+        datt = datearr[key]; 
+    }  
+    return this.getCurrentUsdBal(datt);
+  });
+  }
+
+  getCurrentUsdBal(date:Date){
+    var re = ".";
+    var str = this.crtUsr();
+    var newstr = str.replace(re,"");
+    var bal:number;
+    var url = '/UserID/'+newstr+'/USD Balance/'+date;
+    this.fdb.list(url).valueChanges().subscribe(
+      data => {
+      var strbal:string = data.toString();
+      bal = +strbal
+      this.getBtcBal(bal);
+      }
+    )
+    return bal;
+  }
+
+  
+  getBtcBal(usdBal:number){
+    var re = ".";
+    var str = this.crtUsr();
+    var newstr = str.replace(re,"");
+    this.fdb.database.ref('UserID').child(newstr).child('Bit Coin').once('value', function(snapshot) {
+      if (snapshot.val() !== null) {
+      }
+  }).then((snapshot) => {
+    let Catdata = Object.keys(snapshot.val());
+    let temparr = [];
+    let datearr: Date[]=[];
+  
+    var datt:Date;
+    for (var key:number=0;key<Catdata.length;key++) {
+        temparr[key]=Catdata[key]
+        datearr[key] = new Date(temparr[key]);
+        datt = datearr[key]; 
+    }  
     
+    return this.getCurrentBTCBal(datt,usdBal);
+  });
+  }
+  getCurrentBTCBal(date:Date,usdBal){
+    var re = ".";
+    var str = this.crtUsr();
+    var newstr = str.replace(re,"");
+    var bal:number;
+    var url = '/UserID/'+newstr+'/Bit Coin/'+date;
+    this.fdb.list(url).valueChanges().subscribe(
+      data => {
+      var strbal:string = data.toString();
+      bal = +strbal
+      this.makeTransaction(bal,usdBal);
+      }
+    )
+    return bal;
   }
 }

@@ -295,19 +295,3 @@ if(this.usdamnt.value==''||this.btcamnt.value==''){
     return bal;
   }
 }
-
-
-     
-     /* }
-      else
-       {
-        let toast = this.toastCtrl.create({
-          message: 'You have insufficient funds to make a deposit' ,
-          duration:5000,
-          cssClass: "toastclr"
-    
-        });
-        toast.present();   
-       }
-    this.emptyonsubmit();
-      }*/
