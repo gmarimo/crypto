@@ -183,7 +183,7 @@ else{
         var newBal:number = usdBal - this.usdamnt.value;
         this.loader();
       
-            var ethtotal = ethbal + this.getEth;
+            var ethtotal = ethbal + this.getEthm;
             var ref1 = this.fdb.database.ref('UserID').child(newstr).child('Ethereum').child(''+date);
             ref1.set({
                   Ethereum:ethtotal,
