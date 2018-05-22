@@ -170,10 +170,6 @@ if(this.usdamnt.value==''||this.btcamnt.value==''){
   var newBal:number = usdBal - this.usdamnt.value;
   this.loader();
   
-     /* var refBTC = this.fdb.database.ref('UserID').child(newstr).child('Bit Coin').child(''+date);
-      refBTC.set({
-            USD:newBal,
-      })*/
       var btcbal = bal + this.getBtc;
       var ref1 = this.fdb.database.ref('UserID').child(newstr).child('Bit Coin').child(''+date);
       ref1.set({
@@ -264,6 +260,7 @@ if(this.usdamnt.value==''||this.btcamnt.value==''){
         datearr[key] = new Date(temparr[key]);
         datt = datearr[key]; 
     }  
+    
     return this.getCurrentBTCBal(datt,usdBal);
   });
   }
