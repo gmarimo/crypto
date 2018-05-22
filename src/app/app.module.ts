@@ -3,6 +3,8 @@ import { ErrorHandler, NgModule } from '@angular/core';
 //import { Camera } from '@ionic-native/camera';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuth } from 'angularfire2/auth';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
@@ -38,10 +40,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
 //import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 //import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
-
-import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
-import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { HttpClientModule } from '@angular/common/http';
 import { RemoteServiceProvider } from '../providers/remote-service/remote-service';
 import { ChangepasswordPage } from '../pages/changepassword/changepassword';
@@ -59,6 +59,7 @@ import { DeposithistoryPage } from '../pages/deposithistory/deposithistory';
 import { BuylitePage } from '../pages/buylite/buylite';
 import { SellitePage } from '../pages/sellite/sellite';
 import { MylitewalletPage } from '../pages/mylitewallet/mylitewallet';
+import { AuthProvider } from '../providers/auth/auth';
 
 
 
@@ -184,7 +185,9 @@ const firebase = {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     RemoteServiceProvider,
     SocialSharing,
-    AngularFireAuth
+    AngularFireAuth,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AuthProvider
   ]
 })
 export class AppModule {}

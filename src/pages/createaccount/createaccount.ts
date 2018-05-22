@@ -1,7 +1,11 @@
 import { Component, ViewChild, ErrorHandler } from '@angular/core';
 import { IonicPage, NavController, NavParams, Alert } from 'ionic-angular';
-//import { AngularFireAuthModule } from 'angularfire2/auth';
+//import { AngularFireAuthModule } from 'angularfire2/auth'
+import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
+import AuthProvider = firebase.auth.AuthProvider;
+
 
 import { HomePage } from '../home/home';
 import { FormBuilder,FormGroup,Validators,AbstractControl} from '@angular/forms';
@@ -18,9 +22,9 @@ import { AngularFireDatabase } from 'angularfire2/database';
   selector: 'page-createaccount',
   templateUrl: 'createaccount.html',
 })
-
+@Injectable()
 export class CreateaccountPage {
-
+  private user: firebase.User;
   
   format:string = '\d{1}[a-zA-Z]{2}\d{6}';
 
@@ -37,8 +41,12 @@ export class CreateaccountPage {
 
   constructor(private fdb:AngularFireDatabase,public loadingCtrl: LoadingController,private firebaseauth:AngularFireAuth, public navCtrl: NavController,
      public navParams: NavParams,public formbuilder:FormBuilder,public toastCtrl: ToastController,
-     private alertCtrl:AlertController) {
+     private alertCtrl:AlertController,public afAuth: AngularFireAuth) {
 
+
+      afAuth.authState.subscribe(user => {
+        this.user = user;
+      });
       this.formgroup=formbuilder.group({
         email:['',Validators.required],
         //password1: ['', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(12), Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,12}$')])],
@@ -124,5 +132,17 @@ crtUsr(){
   var str:string = this.email.value;
   var newstr = str.replace(re,"");
   return newstr;
+}
+signupUser(email, password1): Promise<any> {
+  return firebase
+    .auth()
+    .createUserWithEmailAndPassword(this.email.value, this.password1.value)
+    .then( newUser => {
+      firebase
+      .database()
+      .ref('/userProfile')
+      .child(newUser.uid)
+      .set({ email: email });
+    });
 }
 }

@@ -53,12 +53,7 @@ export class WalletsPage {
   }
 
   ionViewDidLoad() {
-<<<<<<< HEAD
-    //console.log('ionViewDidLoad WalletsPage');
-    
-=======
     this.accbal=0;
->>>>>>> 31e7e94d75bdeb90ed130bfdfed86586b8ba872a
   }
   
  

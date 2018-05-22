@@ -22,7 +22,7 @@
     <ion-list no-lines>
       <ion-item no-lines> 
         <ion-label floating color="primary"><ion-icon name="mail"></ion-icon> Email</ion-label>
-        <ion-input type="email" formControlName="email" #email required="true"></ion-input>
+        <ion-input type="email" #email formControlName="email" required="true"></ion-input>
       </ion-item>
 
       <ion-item no-lines>
@@ -42,7 +42,7 @@
     </ion-list>
   
     
-      <button ion-button full color="primary" class="btn" (click)="createuser ()">Create Account</button>
+      <button ion-button full color="primary" class="btn" (click)="confirmSignIn(url)">Create Account</button>
 
 
     </form>
