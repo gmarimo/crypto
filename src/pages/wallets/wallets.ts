@@ -43,6 +43,7 @@ export class WalletsPage {
   ltc = [];
   userid;
 
+
   
   constructor(public afAuth: AngularFireAuth, public loadingCtrl: LoadingController, private toastCtrl:ToastController, public fdb: AngularFireDatabase,private remoteserviceprovider: RemoteServiceProvider, public navCtrl: NavController, public navParams: NavParams) {
       this.item = 30;
@@ -51,8 +52,7 @@ export class WalletsPage {
       this.remoteserviceprovider.getCoins().subscribe(data => { this.coins = data });
       this.remoteserviceprovider.getEth().subscribe(data => {this.eth = data});
       this.remoteserviceprovider.getLtc().subscribe(data => {this.ltc = data});
-
- 
+    
   }
 
   ionViewDidLoad() {
@@ -60,7 +60,6 @@ export class WalletsPage {
   }
   
  
-
   buyingbtc(){
     this.navCtrl.push(BuybtcPage);
   }
