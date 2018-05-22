@@ -81,8 +81,6 @@ export class SellbtcPage {
   }
   
   makeTransaction(){
-  
-
     let loader = this.loadingCtrl.create({
       spinner: "bubbles",
       content: "Completing deposit process...",
@@ -96,7 +94,7 @@ export class SellbtcPage {
     var str = this.crtUsr();
     var newstr = str.replace(re,"");
     
-    var ref = this.fdb.database.ref('UserID').child(newstr).child('Buy BTC').child(''+date);
+    var ref = this.fdb.database.ref('UserID').child(newstr).child('Sell BTC').child(''+date);
     ref.set({
           USD:this.usd,
           BTC:this.btc,
