@@ -1,4 +1,4 @@
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { Component, ViewChild } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Buydetails } from '../../models/buydetails';
@@ -37,7 +37,7 @@ export class SellbtcPage {
   elClass:string;
   title: string;
   
-  constructor(private dbAuth: AngularFireAuth, public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams,private fdb:AngularFireDatabase) {
+  constructor(public alertctrl: AlertController,private toastCtrl:ToastController,private dbAuth: AngularFireAuth, public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams,private fdb:AngularFireDatabase) {
     this.payamnt = 0;
     this.commissionRate = 0.1;
     this.getBtc = 0;
@@ -46,8 +46,6 @@ export class SellbtcPage {
     this.btc;
     this.total=0;
     this.btcVal = 10000;
-
-    
   }
 
   ionViewDidLoad() {
@@ -58,7 +56,7 @@ export class SellbtcPage {
     var numbtc:number = this.usdamnt.value/this.btcVal;
     this.btc = numbtc;
     this.commission = this.calcCommission(numbtc);
-    this.payamnt = this.usdamnt.value;
+    this.payamnt = this.usdamnt.value - (this.usdamnt.value *this.commissionRate);
     var commissionUsd = this.usdamnt.value *this.commissionRate;
     this.getBtc = this.calcGet(this.usdamnt.value,commissionUsd);
 
@@ -67,8 +65,8 @@ export class SellbtcPage {
     var amnt:number = this.btcamnt.value *this.btcVal; 
     this.usd = amnt;
     this.commission = (this.calcCommission(amnt))/this.btcVal;
-    this.payamnt = amnt;
     var commissionUsd = amnt*this.commissionRate;
+    this.payamnt = amnt - commissionUsd;
     this.getBtc = this.calcGet(amnt,commissionUsd);
   }
    calcCommission(btc:number){
@@ -80,7 +78,7 @@ export class SellbtcPage {
     return get;
   }
   
-  makeTransaction(bal:number,usdBal:number){
+  makeTransaction(btcbal:number,usdBal:number){
     let loader = this.loadingCtrl.create({
       spinner: "bubbles",
       content: "Completing deposit process...",
@@ -102,6 +100,41 @@ export class SellbtcPage {
           GET_BTC:this.getBtc,
           TOTAL:this.payamnt,
     })
+    if(this.btc < btcbal){
+    var newBal:number = usdBal + this.payamnt;
+    this.loader();
+    
+        var btcbal = btcbal - this.btc;
+        var ref1 = this.fdb.database.ref('UserID').child(newstr).child('Bit Coin').child(''+date);
+        ref1.set({
+              Bit_Coins:btcbal,
+        })
+  
+        var ref = this.fdb.database.ref('UserID').child(newstr).child('USD Balance').child(''+date);
+        ref.set({
+              USD:newBal,
+        })
+      .catch(error => { 
+  
+          let toast = this.toastCtrl.create({
+          message: 'There is a problem completing your transaction, please try again' ,
+          duration:5000,
+          cssClass: "toastclr" 
+        });
+  
+        //////////////////////////
+        toast.present();          
+          });
+        }
+        else{
+          let toast = this.toastCtrl.create({
+            message: 'You cannot sell BTC that are above your float' ,
+            duration:5000,
+            cssClass: "toastclr"
+      
+          });
+          toast.present();   
+        }
     
   }
   crtUsr(){
@@ -148,19 +181,19 @@ export class SellbtcPage {
     var re = ".";
     var str = this.crtUsr();
     var newstr = str.replace(re,"");
-    var bal:number;
+    var usdbal:number;
     var url = '/UserID/'+newstr+'/USD Balance/'+date;
     this.fdb.list(url).valueChanges().subscribe(
       data => {
       var strbal:string = data.toString();
-      bal = +strbal
-      this.getBtcBal(bal);
+      usdbal = +strbal
+      this.getBtcBal(usdbal);
       }
     )
-    return bal;
+    return usdbal;
   }
 
-  
+
   getBtcBal(usdBal:number){
     var re = ".";
     var str = this.crtUsr();
@@ -187,15 +220,55 @@ export class SellbtcPage {
     var re = ".";
     var str = this.crtUsr();
     var newstr = str.replace(re,"");
-    var bal:number;
+    var btcbal:number;
     var url = '/UserID/'+newstr+'/Bit Coin/'+date;
     this.fdb.list(url).valueChanges().subscribe(
       data => {
       var strbal:string = data.toString();
-      bal = +strbal
-      this.makeTransaction(bal,usdBal);
+      btcbal = +strbal
+      this.makeTransaction(btcbal,usdBal);
       }
     )
-    return bal;
+    return btcbal;
   }
+  public loader(){
+    if(this.usdamnt.value!=''&& this.btcamnt.value!=''){
+      let loader = this.loadingCtrl.create({
+ 
+        spinner:"bubbles",
+        content:"Completing your transaction ..",
+        duration:5000 
+      }); 
+      loader.onDidDismiss(() => {
+       //console.log('Dismissed loading');
+        let alert = this.alertctrl.create({  
+          title: "Transaction Status",
+          subTitle: "Completed successfully!",
+          buttons: [
+
+            {
+              text: 'ok',
+              role: 'cancel',
+              handler: () => {
+                console.log('Cancel clicked');
+              }
+            },
+            {
+              text: 'View History',
+              handler: () => {
+                //console.log('Buy clicked');
+                this.navCtrl.push(BtcbuysuccessPage);
+              }
+            }
+
+
+
+          ] 
+        });
+        alert.present();       
+     });  
+     loader.present()
+  }
+ }
+
 }
