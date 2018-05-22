@@ -101,11 +101,11 @@ export class CreateaccountPage {
     })
     var refBTC = this.fdb.database.ref('UserID').child(newstr).child('Bit Coin').child(''+date);
     refBTC.set({
-          Bit_Coins:0,
+          Ethereum:0,
     })
     var refLith = this.fdb.database.ref('UserID').child(newstr).child('Ethereum').child(''+date);
     refLith.set({
-          Litherium:0,
+          Ethereum:0,
     })
     
       }
