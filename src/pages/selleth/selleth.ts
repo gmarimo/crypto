@@ -132,7 +132,7 @@ export class SellethPage {
           }
           else{
             let toast = this.toastCtrl.create({
-              message: 'You cannot sell Ethereum that are above your float' ,
+              message: 'You cannot sell Eth that are above your float' ,
               duration:5000,
               cssClass: "toastclr"
         
@@ -260,7 +260,6 @@ export class SellethPage {
             {
               text: 'View History',
               handler: () => {
-                //console.log('Buy clicked');
                 this.navCtrl.push(BtcbuysuccessPage);
               }
             }
