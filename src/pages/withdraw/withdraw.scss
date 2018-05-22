@@ -4,33 +4,61 @@ page-withdraw {
         text-align: center;
         color: #fff;
     }
-
-    ion-input{
-        color: #fff;
-        border: gray solid 1px;
-        padding-left: 20px;
-        border-radius: 10px;
-    }
-
-    .btnclear{
-        padding: 30px 0;
-        margin: 0px;
-        background: #ff9966;
-    }
-
-    ion-footer .button{
-        padding: 30px 0;
-        margin: 0px; 
-    }
-
-    ion-label{
-        padding-left: 20px;
-    }
-
-
-    .btnclear{
-        background: #35B253;
-    }
+  
+        ion-input{
+            border: grey solid 1px;
+            border-radius: 10px;
+            padding-left: 12px;
+            color: #fff;
+            
+        }
+    
+        ion-label{
+            padding-left: 12px;
+          
+        }
+    
+        .lbl{
+            color: #fff!important;
+    
+        }
+    
+        .comm{
+            color: #fff;
+        }
+    
+        .comm1{
+            color: #fff;
+        }
+    
+        .pymntlbl{
+            text-align: center;
+        }
+    
+        .img{
+            width: 80px;
+            height: 30px;
+            
+        }
+    
+        .pymnt{
+            text-align: center;
+            border: #ff8c00 solid 1px;
+        }
+    
+        .pymntbtn{
+            
+            border-radius: 10px;
+            width: 250px;
+            text-align: center;
+        }
+    
+        .btn1{
+            background: #0000ff;
+        }
+        .btnclear{
+            background: grey;
+        }
     
 
 }

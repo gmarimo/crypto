@@ -12,6 +12,8 @@ import { empty } from 'rxjs/Observer';
 import  'rxjs/add/operator/map';
 import { RemoteServiceProvider } from '../../providers/remote-service/remote-service';
 //import { WalletsPage } from '../wallets/wallets';
+import { HttpModule } from '@angular/http';
+import { json } from 'body-parser';
 
 /**
  * Generated class for the BuybtcPage page.
@@ -20,11 +22,13 @@ import { RemoteServiceProvider } from '../../providers/remote-service/remote-ser
  * Ionic pages and navigation.
  */
 
+ 
 @IonicPage()
 @Component({
   selector: 'page-buybtc',
   templateUrl: 'buybtc.html',
 })
+
 export class BuybtcPage {
   
   @ViewChild('btcamnt') btcamnt;
@@ -43,10 +47,13 @@ export class BuybtcPage {
   title: string;
   btcprice;
   uptprice;
-  latprice: number;
+  latprice:number;
+  coins;
+  
+  
   
   constructor(private toastCtrl:ToastController, private remoteserviceprovider: RemoteServiceProvider, public alertctrl: AlertController, private dbAuth: AngularFireAuth, public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams,private fdb:AngularFireDatabase) {
-    //this.getData();
+    this.getCoins();
     this.payamnt = 0;
     this.commissionRate = 0.1;
     this.getBtc = 0;
@@ -54,7 +61,7 @@ export class BuybtcPage {
     this.usd;
     this.btc;
     this.total=0;
-    this.latprice = 10000;
+    this.latprice;
     //this.btcVal = this.latprice;
 
     
@@ -64,10 +71,22 @@ export class BuybtcPage {
     console.log('ionViewDidLoad BuybtcPage');
   }
 
-  
+  getCoins(){
+      this.remoteserviceprovider.getCoins().subscribe((data) => {
+        this.coins = data;
+    });
+  }
+
+  ba(){
+    
+  var cd = (JSON.stringify(this.coins[0]["price_usd"]));
+  var latprice = JSON.parse(cd);
+  return latprice *1.5;
+  }
 
   numBtc(){
-    var numbtc:number = this.usdamnt.value / this.latprice;
+
+    var numbtc:number = this.usdamnt.value / this.ba();
     this.btc = numbtc;
     this.commission = this.calcCommission(numbtc);
     this.payamnt = this.usdamnt.value;
@@ -76,9 +95,9 @@ export class BuybtcPage {
 
   }
   amntUsd(){
-    var amnt:number = this.btcamnt.value * this.latprice; 
+    var amnt:number = this.btcamnt.value * this.ba(); 
     this.usd = amnt;
-    this.commission = (this.calcCommission(amnt)) / this.latprice;
+    this.commission = (this.calcCommission(amnt)) /this.ba();
     this.payamnt = amnt;
     var commissionUsd = amnt*this.commissionRate;
     this.getBtc = this.calcGet(amnt,commissionUsd);
@@ -88,7 +107,7 @@ export class BuybtcPage {
     return com;
   }
   calcGet(amnt:number,commission:number){
-    var get = (amnt-commission) / this.latprice;
+    var get = (amnt-commission) / this.ba();
     return get;
   }
 

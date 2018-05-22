@@ -1,7 +1,7 @@
 page-buyeth {
 
     .ioninput{
-        border: #ff8c00 solid 1px;
+        border: grey solid 1px;
         border-radius: 10px;
         padding-left: 12px;
         color: #fff;
@@ -10,15 +10,20 @@ page-buyeth {
 
     ion-label{
         padding-left: 12px;
-        
+      
+    }
+
+    .lbl{
+        color: #fff!important;
+
     }
 
     .comm{
-        margin-left: 30%;
+        color: #fff;
     }
 
     .comm1{
-        margin-left: 45%;
+        color: #fff;
     }
 
     .pymntlbl{
@@ -46,14 +51,9 @@ page-buyeth {
     .btn1{
         background: #0000ff;
     }
-
-    .lbl{
-        color: #fff!important;
-    }
     .btnclear{
-        background: #35B253;
+        background: grey;
     }
-
 
 
 
