@@ -57,6 +57,14 @@ page-wallets {
 
     .usd_wallet{
         float: left;
+        margin-left: 20px;
+        
+        
+    }
+    .usd_wallet1{
+        float: left;
+        margin-left: 25px;
+       
         
         
     }
@@ -85,6 +93,13 @@ page-wallets {
         background: linear-gradient(to right, #E34C3C, #BD3F32); // W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+    }
+
+    .usdbal{
+        color:#C3A6A6;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 20px;
+        
     }
 
   

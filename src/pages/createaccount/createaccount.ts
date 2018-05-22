@@ -79,8 +79,6 @@ export class CreateaccountPage {
       }else if(this.password1.value == this.password2.value){
         this.loader();
         this.firebaseauth.auth.createUserWithEmailAndPassword(this.email.value, this.password1.value)
-        this.user = this.firebaseauth.auth.currentUser
-        this.user.sendVerificationEmail(this.email.value)
         .then (data => {
           this.navCtrl.setRoot(EmailconfirmationPage);
           })
