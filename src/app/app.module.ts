@@ -59,6 +59,7 @@ import { DeposithistoryPage } from '../pages/deposithistory/deposithistory';
 import { BuylitePage } from '../pages/buylite/buylite';
 import { SellitePage } from '../pages/sellite/sellite';
 import { MylitewalletPage } from '../pages/mylitewallet/mylitewallet';
+import { Clipboard } from '@ionic-native/clipboard';
 
 
 
@@ -133,6 +134,7 @@ const firebase = {
     RecaptchaModule.forRoot(),
     //BsDropdownModule.forRoot(),
     //NgxIntlTelInputModule
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -184,7 +186,9 @@ const firebase = {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     RemoteServiceProvider,
     SocialSharing,
-    AngularFireAuth
+    AngularFireAuth,
+    Clipboard,
+    
   ]
 })
 export class AppModule {}
