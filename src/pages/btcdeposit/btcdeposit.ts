@@ -114,7 +114,7 @@ share(index){
 this.socialSharing.share(this.message, this.file, [this.link,this.subject]).then(() => {
   // Success!
 }).catch(error=>{
-  alert(error)
+  //alert(error)
       });
 }
 }
