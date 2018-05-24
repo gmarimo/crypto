@@ -140,9 +140,6 @@ export class BuybtcPage {
                 this.navCtrl.push(BtcbuysuccessPage);
               }
             }
-
-
-
           ] 
         });
         alert.present();       

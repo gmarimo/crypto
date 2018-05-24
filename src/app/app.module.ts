@@ -59,6 +59,7 @@ import { DeposithistoryPage } from '../pages/deposithistory/deposithistory';
 import { BuylitePage } from '../pages/buylite/buylite';
 import { SellitePage } from '../pages/sellite/sellite';
 import { MylitewalletPage } from '../pages/mylitewallet/mylitewallet';
+import { DatePipe } from '@angular/common';
 
 
 
@@ -184,7 +185,8 @@ const firebase = {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     RemoteServiceProvider,
     SocialSharing,
-    AngularFireAuth
+    AngularFireAuth,
+    DatePipe
   ]
 })
 export class AppModule {}
