@@ -5,8 +5,6 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import AuthProvider = firebase.auth.AuthProvider;
-
-
 import { HomePage } from '../home/home';
 import { FormBuilder,FormGroup,Validators,AbstractControl} from '@angular/forms';
 import { FormControl } from '@angular/forms';
@@ -16,6 +14,7 @@ import { LoadingController } from 'ionic-angular';
 import { EmailconfirmationPage } from '../emailconfirmation/emailconfirmation';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { MenuController } from 'ionic-angular/index';
 
 @IonicPage()
 @Component({
@@ -36,30 +35,37 @@ export class CreateaccountPage {
 */
 
    @ViewChild ('email') email;
-   @ViewChild ('password1') password1;
-   @ViewChild('password2') password2;
 
   constructor(private fdb:AngularFireDatabase,public loadingCtrl: LoadingController,private firebaseauth:AngularFireAuth, public navCtrl: NavController,
      public navParams: NavParams,public formbuilder:FormBuilder,public toastCtrl: ToastController,
-     private alertCtrl:AlertController,public afAuth: AngularFireAuth) {
+     private alertCtrl:AlertController,public angularFireAuth: AngularFireAuth,private menu: MenuController) {
 
 
-      afAuth.authState.subscribe(user => {
-        this.user = user;
-      });
+    
       this.formgroup=formbuilder.group({
         email:['',Validators.required],
         //password1: ['', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(12), Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,12}$')])],
-        password1:['',Validators.required],
-        password2:['',Validators.required]
        // password2: ['', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(12), Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,12}$')])],
       });
       this.email = this.formgroup.controls['email'];
-      this.password1 = this.formgroup.controls['password1'];
-      this.password2 = this.formgroup.controls['password2'];
     
     
   }
+  ionViewDidEnter() {
+    this.menu.swipeEnable(false);
+
+    // If you have more than one side menu, use the id like below
+    // this.menu.swipeEnable(false, 'menu1');
+  }
+
+  ionViewWillLeave() {
+    // Don't forget to return the swipe to normal, otherwise 
+    // the rest of the pages won't be able to swipe to open menu
+    this.menu.swipeEnable(true);
+
+    // If you have more than one side menu, use the id like below
+    // this.menu.swipeEnable(true, 'menu1');
+   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CreateaccountPage');
@@ -75,19 +81,22 @@ export class CreateaccountPage {
     }
 
   createuser () {
-      if (this.email.value == '' || this.password1.value == ''){
+      if (this.email.value == ''){
 
         let toast = this.toastCtrl.create({
-          message: 'Email and password field should not be empty ',
+          message: 'Email field should not be empty ',
           duration: 5000
         });
         toast.present();
+       
+      }else{
 
-      }else if(this.password1.value == this.password2.value){
         this.loader();
-        this.firebaseauth.auth.createUserWithEmailAndPassword(this.email.value, this.password1.value)
+        
+        
+        this.firebaseauth.auth.createUserWithEmailAndPassword(this.email.value,'jddsjdjhd')
         .then (data => { 
-          this.navCtrl.setRoot(EmailconfirmationPage);
+          this.sendcode();
           })
           .catch(err => {
           
@@ -97,7 +106,7 @@ export class CreateaccountPage {
               });
               toast.present();
           });
-
+          
     var re = ".";
     var str = this.crtUsr();
     var newstr = str.replace(re,"");
@@ -109,13 +118,6 @@ export class CreateaccountPage {
     
       }
     
-      else{
-        let toast = this.toastCtrl.create({
-          message:'Please match your passwords.',
-          duration:5000
-        });
-        toast.present();
-      }
 } 
     login (){
       this.navCtrl.push(HomePage);
@@ -124,25 +126,58 @@ export class CreateaccountPage {
   }
 empty(){
   this.email.value=null;
-  this.password1.value=null;
-  this.password2.value=null;
+
 }
 crtUsr(){
   var re = "@";
+  var r=".";
   var str:string = this.email.value;
   var newstr = str.replace(re,"");
   return newstr;
 }
-signupUser(email, password1): Promise<any> {
-  return firebase
-    .auth()
-    .createUserWithEmailAndPassword(this.email.value, this.password1.value)
-    .then( newUser => {
-      firebase
-      .database()
-      .ref('/userProfile')
-      .child(newUser.uid)
-      .set({ email: email });
+signUp(){
+
+ /* var generator = require('generate-password');
+ 
+  this.password1.value = generator.generate({
+      length: 10,
+      numbers: true
+  });
+   
+  // 'uEyMTw32v9'
+  console.log(this.password1.value);
+*/ 
+
+}
+sendcode(){
+
+  this.angularFireAuth.auth.sendPasswordResetEmail(this.email.value,) 
+  .then(() => {
+    console.log('email sent');
+
+   //* this.load();
+
+  let alert= this.alertCtrl.create({subTitle:'Please check your email to reset password!',
+  buttons: [{
+    text: "OK",
+    handler: () => {
+        this.navCtrl.push(HomePage, {});
+    },
+}],});
+  alert.present();
+  })
+
+  .catch(error => {
+  
+    let toast = this.toastCtrl.create({
+      message: ''+error,
+      duration: 5000
     });
+    toast.present();
+  
+console.log("Email verification failed, please try again", error)
+})
+console.log(this.email.value);
+
 }
 }

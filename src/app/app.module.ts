@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 //import { Camera } from '@ionic-native/camera';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { MyApp } from './app.component';
@@ -132,6 +131,8 @@ const firebase = {
     HttpModule,
     HttpClientModule,
     RecaptchaModule.forRoot(),
+    BrowserModule,
+    AngularFireAuthModule
     //BsDropdownModule.forRoot(),
     //NgxIntlTelInputModule
   ],

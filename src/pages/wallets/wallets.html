@@ -25,7 +25,7 @@
   
         <div class="eth_header" *ngFor="let coin of coins">
           <h1>Bitcoin</h1>
-          <h2>Price: {{coin.price_usd | json}}</h2>
+          <h2>Price: ${{coin.price_usd*1.5 | json}}</h2>
         </div>
   
         <div class="eth_info" *ngFor="let coin of coins">
@@ -48,11 +48,9 @@
     </ion-item>
 
     <ion-item>
-
       <div class="eth_sec">
-  
         <div class="eth_logo">
-            <img class="img" (click)="usdwallet()" src="assets/imgs/wallet.png">
+            <img class="img" (click)="usdwallet()" src="assets/imgs/logowallet.png">
         </div>
   
         <div class="eth_header">
@@ -60,16 +58,21 @@
         </div>
   
         <div class="eth_info">
-          <p (click)="usdwallet()" ([ngBind]) ="accbal">Balance: {{accbal.number}}<strong>Balance: {{accbal.number}}</strong></p>
-        </div>
+          <h2 class="usdbal" (click)="usdwallet()" *ngFor ="let item of items"><strong>Balance: ${{item}}</strong></h2>
+        </div><br/>
   
-        <div class="usd_wallet">
+        <div class="usd_wallet1">
           <a href="#" (click)="depositusd()">Deposit</a>
         </div>
   
         <div class="usd_wallet">
           <a href="#" (click)="withdrawusd()">Withdraw</a>
         </div>
+
+        <div class="usd_wallet">
+          <a href="#" (click)="withdrawusd()">Wallet</a>
+        </div>
+  
   
   
       </div>
@@ -85,7 +88,7 @@
 
     <div class="eth_header" *ngFor="let eths of eth">
       <h1>Ethereum</h1>
-      <h2>Price: {{eths.price_usd | json}}</h2>
+      <h2>Price: ${{eths.price_usd*1.5 | json}}</h2>
     </div>
 
     <div class="eth_info" *ngFor="let eths of eth">
@@ -119,7 +122,7 @@
 
     <div class="eth_header" *ngFor="let ltcs of ltc">
       <h1>LiteCoin</h1>
-      <h2>Price: {{ltcs.price_usd | json}}</h2>
+      <h2>Price: ${{ltcs.price_usd*1.5 | json}}</h2>
     </div>
 
     <div class="eth_info" *ngFor="let ltcs of ltc">
