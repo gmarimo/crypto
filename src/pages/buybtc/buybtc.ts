@@ -294,6 +294,7 @@ if(this.usdamnt.value==''||this.btcamnt.value==''){
       var strbal:string = data.toString();
       bal = +strbal
       this.makeTransaction(bal,usdBal);
+      
       }
     )
     return bal;
