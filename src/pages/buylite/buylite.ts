@@ -10,6 +10,11 @@ import { WalletsPage } from '../wallets/wallets';
 import { BtcbuysuccessPage } from '../btcbuysuccess/btcbuysuccess';
 import { empty } from 'rxjs/Observer';
 //import { WalletsPage } from '../wallets/wallets';
+import { RemoteServiceProvider } from '../../providers/remote-service/remote-service';
+//import { WalletsPage } from '../wallets/wallets';
+import { HttpModule } from '@angular/http';
+import { json } from 'body-parser';
+
 
 /**
  * Generated class for the BuylitePage page.
@@ -39,8 +44,11 @@ export class BuylitePage {
   listId: string;
   elClass:string;
   title: string;
+  ltc;
   
-  constructor(private toastCtrl:ToastController,public alertctrl:AlertController, private dbAuth: AngularFireAuth, public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams,private fdb:AngularFireDatabase) {
+  constructor(private toastCtrl:ToastController,private remoteserviceprovider: RemoteServiceProvider,public alertctrl:AlertController, private dbAuth: AngularFireAuth, public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams,private fdb:AngularFireDatabase) {
+    
+    this.getLtc()
     this.payamnt = 0;
     this.commissionRate = 0.1;
     this.getLite = 0;
@@ -48,7 +56,7 @@ export class BuylitePage {
     this.usd;
     this.lite;
     this.total=0;
-    this.liteVal = 10000;
+    //this.liteVal = 10000;
 
     
   }
@@ -57,8 +65,24 @@ export class BuylitePage {
     console.log('ionViewDidLoad BuylitePage');
   }
 
+  getLtc(){
+    this.remoteserviceprovider.getLtc().subscribe(data => {
+      this.ltc = data;
+      //alert(JSON.stringify(this.ltc[0]["price_usd"]))
+  });
+}
+
+ba(){
+  
+var cd = (JSON.stringify(this.ltc[0]["price_usd"]));
+var latprice = JSON.parse(cd);
+return latprice *1.5;
+}
+
+
+
   numLite(){
-    var numlite:number = this.usdamnt.value/this.liteVal;
+    var numlite:number = this.usdamnt.value/this.ba();
     this.lite = numlite;
     this.commission = this.calcCommission(numlite);
     this.payamnt = this.usdamnt.value;
@@ -67,9 +91,9 @@ export class BuylitePage {
 
   }
   amntUsd(){
-    var amnt:number = this.liteamnt.value *this.liteVal; 
+    var amnt:number = this.liteamnt.value *this.ba(); 
     this.usd = amnt;
-    this.commission = (this.calcCommission(amnt))/this.liteVal;
+    this.commission = (this.calcCommission(amnt))/this.ba();
     this.payamnt = amnt;
     var commissionUsd = amnt*this.commissionRate;
     this.getLite = this.calcGet(amnt,commissionUsd);
@@ -79,7 +103,7 @@ export class BuylitePage {
     return com;
   }
   calcGet(amnt:number,commission:number){
-    var get = (amnt-commission)/this.liteVal;
+    var get = (amnt-commission)/this.ba();
     return get;
   }
 

@@ -1,4 +1,4 @@
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Alert } from 'ionic-angular';
 import { Component, ViewChild } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Buydetails } from '../../models/buydetails';
@@ -8,6 +8,11 @@ import { AlertController,ToastController  } from 'ionic-angular';
 import { WalletsPage } from '../wallets/wallets';
 //import { LoadingController } from 'ionic-angular';
 import { BtcbuysuccessPage } from '../btcbuysuccess/btcbuysuccess';
+import { RemoteServiceProvider } from '../../providers/remote-service/remote-service';
+//import { WalletsPage } from '../wallets/wallets';
+import { HttpModule } from '@angular/http';
+import { json } from 'body-parser';
+
 
 /**
  * Generated class for the BuyethPage page.
@@ -29,24 +34,27 @@ export class BuyethPage {
   usd: number;
   commissionRate:number;
   commission:number;
-  eth: number;
+  ethm: number;
   ethVal:number;
-  getEth:number;
+  getEthm:number;
   payamnt:number;
   datastore //= firebase.database();
   listId: string;
   elClass:string;
   title: string;
+  eth;
   
-  constructor(private toastCtrl:ToastController, private dbAuth: AngularFireAuth, public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams,private fdb:AngularFireDatabase) {
+  
+  constructor(private toastCtrl:ToastController, private remoteserviceprovider: RemoteServiceProvider,private dbAuth: AngularFireAuth, public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams,private fdb:AngularFireDatabase) {
+    this.getEth();
     this.payamnt = 0;
     this.commissionRate = 0.1;
-    this.getEth = 0;
+    this.getEthm = 0;
     this.commission=0;
     this.usd;
-    this.eth;
+    this.ethm;
     this.total=0;
-    this.ethVal = 10000;
+    //this.ethVal = 10000;
 
     
   }
@@ -55,31 +63,46 @@ export class BuyethPage {
     console.log('ionViewDidLoad BuyethPage');
   }
 
+  getEth(){
+    this.remoteserviceprovider.getEth().subscribe((data) => {
+      this.ethm = data;
+      //alert(JSON.stringify(this.eth[0]["price_usd"]))
+  });
+}
+
+ba(){
+  
+var cd = (JSON.stringify(this.ethm[0]["price_usd"]));
+var latprice = JSON.parse(cd);
+return latprice *1.5;
+}
+
+
   
 
   numEth(){
-    var numeth:number = this.usdamnt.value/this.ethVal;
+    var numeth:number = this.usdamnt.value/this.ba();
     this.eth = numeth;
     this.commission = this.calcCommission(numeth);
     this.payamnt = this.usdamnt.value;
     var commissionUsd = this.usdamnt.value *this.commissionRate;
-    this.getEth = this.calcGet(this.usdamnt.value,commissionUsd);
+    this.getEthm= this.calcGet(this.usdamnt.value,commissionUsd);
 
   }
   amntUsd(){
-    var amnt:number = this.ethamnt.value *this.ethVal; 
+    var amnt:number = this.ethamnt.value *this.ba(); 
     this.usd = amnt;
-    this.commission = (this.calcCommission(amnt))/this.ethVal;
+    this.commission = (this.calcCommission(amnt))/this.ba();
     this.payamnt = amnt;
     var commissionUsd = amnt*this.commissionRate;
-    this.getEth = this.calcGet(amnt,commissionUsd);
+    this.getEthm = this.calcGet(amnt,commissionUsd);
   }
    calcCommission(eth:number){
     var com:number = eth*this.commissionRate;
     return com;
   }
   calcGet(amnt:number,commission:number){
-    var get = (amnt-commission)/this.ethVal;
+    var get = (amnt-commission)/this.ba();
     return get;
   }
 
@@ -100,7 +123,7 @@ export class BuyethPage {
   }
  }
   
-  makeTransaction(){
+  makeTransaction(ethbal:number,usdBal:number){
     this.loader();
     const date:Date = new Date();
    // alert(''+date);
@@ -130,7 +153,7 @@ else{
     duration: 3000
   });
   loader.present();
-
+  if(this.usd < usdBal){
   const date:Date = new Date();
  // alert(''+date);
   var re = ".";
@@ -156,8 +179,42 @@ else{
   
       });
       toast.present();          
-        });}
-
+        });
+        var newBal:number = usdBal - this.usdamnt.value;
+        this.loader();
+      
+            var ethtotal = ethbal + this.getEthm;
+            var ref1 = this.fdb.database.ref('UserID').child(newstr).child('Ethereum').child(''+date);
+            ref1.set({
+                  Ethereum:ethtotal,
+            })
+      
+            var ref = this.fdb.database.ref('UserID').child(newstr).child('USD Balance').child(''+date);
+            ref.set({
+                  USD:newBal,
+            })
+          .catch(error => { 
+      
+              let toast = this.toastCtrl.create({
+              message: 'There is a problem completing your transaction, please try again' ,
+              duration:5000,
+              cssClass: "toastclr" 
+            });
+      
+            //////////////////////////
+            toast.present();          
+              });
+      }
+      else{
+        let toast = this.toastCtrl.create({
+          message: 'Insufficient credit in your account to buy Ethereum.' ,
+          duration:5000,
+          cssClass: "toastclr"
+    
+        });
+        toast.present(); 
+      }
+      }
     this.emptyonsubmit();
   }
   crtUsr(){
@@ -172,7 +229,83 @@ else{
     this.ethamnt.value=null;
     this.payamnt=0;
     this.commission=0;
-    this.getEth=0;
+    this.getEthm=0;
     
+  }
+  getBal(){
+    var bal:Date;
+    var re = ".";
+    var str = this.crtUsr();
+    var newstr = str.replace(re,"");
+    this.fdb.database.ref('UserID').child(newstr).child('USD Balance').once('value', function(snapshot) {
+      if (snapshot.val() !== null) {
+      }
+  }).then((snapshot) => {
+    let Catdata = Object.keys(snapshot.val());
+    let temparr = [];
+    let datearr: Date[]=[];
+
+    var datt:Date;
+    for (var key:number=0;key<Catdata.length;key++) {
+        //temparr.push(Catdata[key]);
+        temparr[key]=Catdata[key]
+        datearr[key] = new Date(temparr[key]);
+        datt = datearr[key]; 
+    }  
+    return this.getCurrentUsdBal(datt);
+  });
+  }
+
+  getCurrentUsdBal(date:Date){
+    var re = ".";
+    var str = this.crtUsr();
+    var newstr = str.replace(re,"");
+    var bal:number;
+    var url = '/UserID/'+newstr+'/USD Balance/'+date;
+    this.fdb.list(url).valueChanges().subscribe(
+      data => {
+      var strbal:string = data.toString();
+      bal = +strbal
+      this.getEthBal(bal);
+      }
+    )
+    return bal;
+  }
+  getEthBal(usdBal:number){
+    var re = ".";
+    var str = this.crtUsr();
+    var newstr = str.replace(re,"");
+    this.fdb.database.ref('UserID').child(newstr).child('Ethereum').once('value', function(snapshot) {
+      if (snapshot.val() !== null) {
+      }
+  }).then((snapshot) => {
+    let Catdata = Object.keys(snapshot.val());
+    let temparr = [];
+    let datearr: Date[]=[];
+  
+    var datt:Date;
+    for (var key:number=0;key<Catdata.length;key++) {
+        temparr[key]=Catdata[key]
+        datearr[key] = new Date(temparr[key]);
+        datt = datearr[key]; 
+    }  
+    return this.getCurrentETHBal(datt,usdBal);
+  });
+  }
+
+  getCurrentETHBal(date:Date,usdBal){
+    var re = ".";
+    var str = this.crtUsr();
+    var newstr = str.replace(re,"");
+    var bal:number;
+    var url = '/UserID/'+newstr+'/Ethereum/'+date;
+    this.fdb.list(url).valueChanges().subscribe(
+      data => {
+      var strbal:string = data.toString();
+      bal = +strbal
+      this.makeTransaction(bal,usdBal);
+      }
+    )
+    return bal;
   }
 }

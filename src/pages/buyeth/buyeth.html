@@ -28,7 +28,7 @@
           <ion-col>
             <ion-item no-lines>
               <ion-label floating>ETH</ion-label>
-              <ion-input class="ioninput" type="number" [(ngModel)]="eth" (keyup)="amntUsd()" #ethamnt required=true>{{eth}}</ion-input>
+              <ion-input class="ioninput" type="number" [(ngModel)]="eth" (keyup)="amntUsd()" #ethamnt required=true>{{ethm}}</ion-input>
             </ion-item>
           </ion-col>
   
@@ -42,7 +42,7 @@
   
       <ion-item>
           <ion-label class="lbl">Get (ETH)</ion-label>
-          <ion-input text-right class="comm1" type="number" disabled="true" [(ngModel)]="getEth">{{getEth.number}}</ion-input>ETH
+          <ion-input text-right class="comm1" type="number" disabled="true" [(ngModel)]="getEthm">{{getEthm.number}}</ion-input>ETH
       </ion-item>
       <ion-item>
           <ion-label class="lbl">Pay ($)</ion-label>
@@ -52,7 +52,7 @@
   </ion-content>
   
   <ion-footer>
-      <button ion-button class="button" (click) = "makeTransaction()" full color="primary">BUY</button>
+      <button ion-button class="button" (click) = "getBal()" full color="primary">BUY</button>
       <button ion-button full class="btnclear" (click)="emptyonsubmit()">Clear</button>
   </ion-footer>
   

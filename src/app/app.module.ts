@@ -58,7 +58,11 @@ import { DeposithistoryPage } from '../pages/deposithistory/deposithistory';
 import { BuylitePage } from '../pages/buylite/buylite';
 import { SellitePage } from '../pages/sellite/sellite';
 import { MylitewalletPage } from '../pages/mylitewallet/mylitewallet';
+<<<<<<< HEAD
 import { AuthProvider } from '../providers/auth/auth';
+=======
+import { Clipboard } from '@ionic-native/clipboard';
+>>>>>>> 04fa6239a773af197601815ed2a031a85ffaab37
 
 
 
@@ -135,6 +139,7 @@ const firebase = {
     AngularFireAuthModule
     //BsDropdownModule.forRoot(),
     //NgxIntlTelInputModule
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -187,8 +192,13 @@ const firebase = {
     RemoteServiceProvider,
     SocialSharing,
     AngularFireAuth,
+<<<<<<< HEAD
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider
+=======
+    Clipboard,
+    
+>>>>>>> 04fa6239a773af197601815ed2a031a85ffaab37
   ]
 })
 export class AppModule {}

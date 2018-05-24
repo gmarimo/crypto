@@ -129,9 +129,6 @@ setBal(date:Date){
   var url = '/UserID/'+newstr+'/USD Balance/'+date;
   this.fdb.list(url).valueChanges().subscribe(
     data => {
-    //var strbal:string = data.toString();
-    //bal = +strbal
-    //this.accbal= bal;
     this.items = data;
     }
   )

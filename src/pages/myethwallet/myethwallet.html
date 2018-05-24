@@ -15,7 +15,7 @@
 
 
 <ion-content padding>
-  <h1>0.00000 ETH</h1>
+  <h1 class="usdbal" *ngFor ="let item of items">{{item}} ETH</h1>
 
   <ion-footer>
     <button ion-button full color="primary" (click)="depositeth()">Deposit</button>
