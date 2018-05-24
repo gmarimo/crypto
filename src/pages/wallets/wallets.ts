@@ -136,7 +136,7 @@ setBal(date:Date){
 }
 ////////////////////////////////////////////////////
   getBal(){
-    var bal:Date;
+    //var bal:Date;
     var re = ".";
     var str = this.crtUsr();
     var newstr = str.replace(re,"");

@@ -2,7 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 //import { Camera } from '@ionic-native/camera';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuth } from 'angularfire2/auth';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
@@ -39,10 +40,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
 //import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 //import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
-
-import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
-import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { HttpClientModule } from '@angular/common/http';
 import { RemoteServiceProvider } from '../providers/remote-service/remote-service';
 import { ChangepasswordPage } from '../pages/changepassword/changepassword';
@@ -134,6 +133,8 @@ const firebase = {
     HttpModule,
     HttpClientModule,
     RecaptchaModule.forRoot(),
+    BrowserModule,
+    AngularFireAuthModule
     //BsDropdownModule.forRoot(),
     //NgxIntlTelInputModule
     
