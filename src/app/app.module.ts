@@ -59,6 +59,7 @@ import { DeposithistoryPage } from '../pages/deposithistory/deposithistory';
 import { BuylitePage } from '../pages/buylite/buylite';
 import { SellitePage } from '../pages/sellite/sellite';
 import { MylitewalletPage } from '../pages/mylitewallet/mylitewallet';
+import { DatePipe } from '@angular/common';
 import { Clipboard } from '@ionic-native/clipboard';
 
 
@@ -191,8 +192,8 @@ const firebase = {
     RemoteServiceProvider,
     SocialSharing,
     AngularFireAuth,
+    DatePipe,
     Clipboard,
-    
   ]
 })
 export class AppModule {}

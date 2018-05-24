@@ -245,6 +245,7 @@ return latprice *1.5;
     return this.getCurrentEthBal(datt,usdBal);
   });
   }
+  
   getCurrentEthBal(date:Date,usdBal){
     var re = ".";
     var str = this.crtUsr();
