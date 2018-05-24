@@ -32,6 +32,7 @@ import { TradePage } from '../pages/trade/trade';
 import { TermsPage } from '../pages/terms/terms';
 import { TabsPage } from '../pages/tabs/tabs';
 import { BtcbuysuccessPage } from '../pages/btcbuysuccess/btcbuysuccess';
+import { EthbuysuccessPage } from '../pages/ethbuysuccess/ethbuysuccess';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -117,7 +118,8 @@ const firebase = {
     DeposithistoryPage,
     BuylitePage,
     SellitePage,
-    MylitewalletPage
+    MylitewalletPage,
+    EthbuysuccessPage
 
   ],
   imports: [
@@ -178,7 +180,8 @@ const firebase = {
     DeposithistoryPage,
     BuylitePage,
     SellitePage,
-    MylitewalletPage
+    MylitewalletPage,
+    EthbuysuccessPage
   ],
   providers: [
     StatusBar,
