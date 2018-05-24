@@ -2,7 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 //import { Camera } from '@ionic-native/camera';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuth } from 'angularfire2/auth';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
@@ -32,16 +33,15 @@ import { TradePage } from '../pages/trade/trade';
 import { TermsPage } from '../pages/terms/terms';
 import { TabsPage } from '../pages/tabs/tabs';
 import { BtcbuysuccessPage } from '../pages/btcbuysuccess/btcbuysuccess';
+import { EthbuysuccessPage } from '../pages/ethbuysuccess/ethbuysuccess';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
 //import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 //import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
-
-import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
-import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { HttpClientModule } from '@angular/common/http';
 import { RemoteServiceProvider } from '../providers/remote-service/remote-service';
 import { ChangepasswordPage } from '../pages/changepassword/changepassword';
@@ -59,7 +59,11 @@ import { DeposithistoryPage } from '../pages/deposithistory/deposithistory';
 import { BuylitePage } from '../pages/buylite/buylite';
 import { SellitePage } from '../pages/sellite/sellite';
 import { MylitewalletPage } from '../pages/mylitewallet/mylitewallet';
+<<<<<<< HEAD
 import { DatePipe } from '@angular/common';
+=======
+import { Clipboard } from '@ionic-native/clipboard';
+>>>>>>> 3bf2e08d2601f3b156e6c8420a46ad236c932ff0
 
 
 
@@ -117,7 +121,8 @@ const firebase = {
     DeposithistoryPage,
     BuylitePage,
     SellitePage,
-    MylitewalletPage
+    MylitewalletPage,
+    EthbuysuccessPage
 
   ],
   imports: [
@@ -132,8 +137,11 @@ const firebase = {
     HttpModule,
     HttpClientModule,
     RecaptchaModule.forRoot(),
+    BrowserModule,
+    AngularFireAuthModule
     //BsDropdownModule.forRoot(),
     //NgxIntlTelInputModule
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -177,7 +185,8 @@ const firebase = {
     DeposithistoryPage,
     BuylitePage,
     SellitePage,
-    MylitewalletPage
+    MylitewalletPage,
+    EthbuysuccessPage
   ],
   providers: [
     StatusBar,
@@ -186,7 +195,12 @@ const firebase = {
     RemoteServiceProvider,
     SocialSharing,
     AngularFireAuth,
+<<<<<<< HEAD
     DatePipe
+=======
+    Clipboard,
+    
+>>>>>>> 3bf2e08d2601f3b156e6c8420a46ad236c932ff0
   ]
 })
 export class AppModule {}

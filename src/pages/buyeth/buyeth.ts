@@ -12,6 +12,7 @@ import { RemoteServiceProvider } from '../../providers/remote-service/remote-ser
 //import { WalletsPage } from '../wallets/wallets';
 import { HttpModule } from '@angular/http';
 import { json } from 'body-parser';
+import { EthbuysuccessPage } from '../ethbuysuccess/ethbuysuccess';
 
 
 /**
@@ -45,8 +46,10 @@ export class BuyethPage {
   eth;
   
   
-  constructor(private toastCtrl:ToastController, private remoteserviceprovider: RemoteServiceProvider,private dbAuth: AngularFireAuth, public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams,private fdb:AngularFireDatabase) {
-    this.getEth();
+  constructor(private toastCtrl:ToastController, private remoteserviceprovider: RemoteServiceProvider,
+    private dbAuth: AngularFireAuth, public alertctrl: AlertController, public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams,private fdb:AngularFireDatabase) {
+    
+    this.getEthereum();
     this.payamnt = 0;
     this.commissionRate = 0.1;
     this.getEthm = 0;
@@ -54,7 +57,7 @@ export class BuyethPage {
     this.usd;
     this.ethm;
     this.total=0;
-    //this.ethVal = 10000;
+    this.ethVal;
 
     
   }
@@ -63,18 +66,18 @@ export class BuyethPage {
     console.log('ionViewDidLoad BuyethPage');
   }
 
-  getEth(){
+  getEthereum(){
     this.remoteserviceprovider.getEth().subscribe((data) => {
       this.ethm = data;
-      //alert(JSON.stringify(this.eth[0]["price_usd"]))
   });
+
 }
 
 ba(){
   
-var cd = (JSON.stringify(this.ethm[0]["price_usd"]));
-var latprice = JSON.parse(cd);
-return latprice *1.5;
+var bd = (JSON.stringify(this.ethm[0]["price_usd"]));
+var lat = JSON.parse(bd);
+return lat *1.5;
 }
 
 
@@ -117,14 +120,39 @@ return latprice *1.5;
       });
  
       loader.onDidDismiss(() => {
-       console.log('Dismissed loading');
+       //console.log('Dismissed loading');
+       let alert = this.alertctrl.create({  
+        title: "Transaction Status",
+        subTitle: "Completed successfully!",
+        buttons: [
+
+          {
+            text: 'ok',
+            role: 'cancel',
+            handler: () => {
+              console.log('Cancel clicked');
+            }
+          },
+          {
+            text: 'View History',
+            handler: () => {
+              //console.log('Buy clicked');
+              this.navCtrl.push(EthbuysuccessPage);
+            }
+          }
+
+
+
+        ] 
+      });
+      alert.present();    
      });  
      loader.present()
   }
  }
   
   makeTransaction(ethbal:number,usdBal:number){
-    this.loader();
+    //this.loader();
     const date:Date = new Date();
    // alert(''+date);
     var re = ".";
@@ -132,11 +160,12 @@ return latprice *1.5;
     var newstr = str.replace(re,"");
     
     var ref = this.fdb.database.ref('UserID').child(newstr).child('Buy ETH').child(''+date);
+    //alert(" >> " + this.usd);
     ref.set({
           USD:this.usd,
           ETH:this.eth,
           COMMISSION:this.commission,
-          GET_ETH:this.getEth,
+          GET_ETH:this.getEthm,
           TOTAL:this.payamnt,
     })
 if(this.usdamnt.value==''||this.ethamnt.value==''){
@@ -165,7 +194,7 @@ else{
         USD:this.usd,
         ETH:this.eth,
         COMMISSION:this.commission,
-        GET_ETH:this.getEth,
+        GET_ETH:this.getEthm,
         TOTAL:this.payamnt,
   })
 

@@ -6,7 +6,7 @@ page-createaccount {
         border-radius: 5px;
         padding-left: 10px;
     }
-
+    
     ion-label{
         padding-left: 10px;
     }
@@ -24,6 +24,9 @@ page-createaccount {
         height: 80px;
         
     }
+    .format{
+        color: #D4AF37;
+    }
 
     .img1{
         text-align: center;
@@ -39,5 +42,6 @@ page-createaccount {
     .error{
         color:red;
     }
+
 
 }

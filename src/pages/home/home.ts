@@ -45,10 +45,10 @@ export class HomePage {
 
 
   formgroup:FormGroup;
-  email:AbstractControl;
-  password:AbstractControl;
- // @ViewChild ('email') email;
-  //@ViewChild ('password') password;
+  //email:AbstractControl;
+  //password:AbstractControl;
+ @ViewChild ('email') email;
+ @ViewChild ('password') password;
   private captchaPassed: boolean = false;
   private captchaResponse: string;
 
@@ -215,6 +215,7 @@ app.listen(process.env.PORT || 8080);
   isActive(page: PageInterface) {
 
   }
+  
 
 }
 
