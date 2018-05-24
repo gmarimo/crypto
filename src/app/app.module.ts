@@ -59,11 +59,8 @@ import { DeposithistoryPage } from '../pages/deposithistory/deposithistory';
 import { BuylitePage } from '../pages/buylite/buylite';
 import { SellitePage } from '../pages/sellite/sellite';
 import { MylitewalletPage } from '../pages/mylitewallet/mylitewallet';
-<<<<<<< HEAD
 import { DatePipe } from '@angular/common';
-=======
 import { Clipboard } from '@ionic-native/clipboard';
->>>>>>> 3bf2e08d2601f3b156e6c8420a46ad236c932ff0
 
 
 
@@ -195,12 +192,8 @@ const firebase = {
     RemoteServiceProvider,
     SocialSharing,
     AngularFireAuth,
-<<<<<<< HEAD
-    DatePipe
-=======
+    DatePipe,
     Clipboard,
-    
->>>>>>> 3bf2e08d2601f3b156e6c8420a46ad236c932ff0
   ]
 })
 export class AppModule {}
