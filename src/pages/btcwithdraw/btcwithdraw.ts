@@ -42,7 +42,7 @@ export class BtcwithdrawPage {
       //this.withd = 0;
       this.commsale = 0.00;
       this.total = 0.00;
-      this.commissionRate = 0.01;   
+      this.commissionRate = 0.009;   
       //this.btcVal = this.wamnt * this.commissionRate;
     
   }

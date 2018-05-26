@@ -47,6 +47,7 @@ import { RemoteServiceProvider } from '../providers/remote-service/remote-servic
 import { ChangepasswordPage } from '../pages/changepassword/changepassword';
 import { LogoutPage} from '../pages/logout/logout';
 import { PersonalInfoPage} from '../pages/personal-info/personal-info';
+import { UsdwithdrawalPage } from '../pages/usdwithdrawal/usdwithdrawal';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { SecuritysettingsPage } from '../pages/securitysettings/securitysettings';
 import { ChangepinPage } from '../pages/changepin/changepin';
@@ -67,11 +68,11 @@ import { Clipboard } from '@ionic-native/clipboard';
 
 const firebase = {
   apiKey: "AIzaSyBj6shCVnamFe9IAptn0TGklVuFZCypmxQ",
-  authDomain: "crypto-ex.firebaseapp.com",
-  databaseURL: "https://crypto-ex.firebaseio.com",
-  projectId: "crypto-ex",
-  storageBucket: "crypto-ex.appspot.com",
-  messagingSenderId: "730339161700"
+    authDomain: "crypto-ex.firebaseapp.com",
+    databaseURL: "https://crypto-ex.firebaseio.com",
+    projectId: "crypto-ex",
+    storageBucket: "crypto-ex.appspot.com",
+    messagingSenderId: "730339161700"
 };
 
 
@@ -119,7 +120,8 @@ const firebase = {
     BuylitePage,
     SellitePage,
     MylitewalletPage,
-    EthbuysuccessPage
+    EthbuysuccessPage,
+    UsdwithdrawalPage
 
   ],
   imports: [
@@ -183,7 +185,8 @@ const firebase = {
     BuylitePage,
     SellitePage,
     MylitewalletPage,
-    EthbuysuccessPage
+    EthbuysuccessPage,
+    UsdwithdrawalPage
   ],
   providers: [
     StatusBar,

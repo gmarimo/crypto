@@ -1,7 +1,8 @@
 import { Component, ViewChild} from '@angular/core';
-import { IonicPage, NavController, NavParams,ToastController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, snapshotChanges } from 'angularfire2/database';
+import { IonicPage, NavController, NavParams, ToastController, AlertController, LoadingController } from 'ionic-angular';
+import { UsdwithdrawalPage } from '../usdwithdrawal/usdwithdrawal';
 
 /**
  * Generated class for the WithdrawPage page.
@@ -23,13 +24,50 @@ export class WithdrawPage {
   @ViewChild('num') num;
   temparr = [];
   datearr:Date[] =[];
-  constructor(private toastCtrl:ToastController,public fdb: AngularFireDatabase,public afAuth: AngularFireAuth,public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private alertctrl:AlertController,private loadingCtrl:LoadingController,private toastCtrl:ToastController,public fdb: AngularFireDatabase,public afAuth: AngularFireAuth,public navCtrl: NavController, public navParams: NavParams) {
     this.updatebal();
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad WithdrawPage');
+    console.log('ionViewDidLoad BuybtcPage');
   }
+
+  public loader(){
+    if(this.amnt.value!=''&& this.num.value!=''){
+      let loader = this.loadingCtrl.create({
+ 
+        spinner:"bubbles",
+        content:"Completing your transaction ..",
+        duration:5000 
+      }); 
+      loader.onDidDismiss(() => {
+       //console.log('Dismissed loading');
+        let alert = this.alertctrl.create({  
+          title: "Transaction Status",
+          subTitle: "Completed successfully!",
+          buttons: [
+
+            {
+              text: 'ok',
+              role: 'cancel',
+              handler: () => {
+                console.log('Cancel clicked');
+              }
+            },
+            {
+              text: 'View History',
+              handler: () => {
+                //console.log('Buy clicked');
+                this.navCtrl.push(UsdwithdrawalPage);
+              }
+            }
+          ] 
+        });
+        alert.present();       
+     });  
+     loader.present()
+  }
+ }
 
   emptyonsubmit(){
     this.amnt.value=null;
@@ -102,8 +140,10 @@ makeWithdrawal(){
   }
   else{
     alert('you cannot make a deposit above your float');
+    this.num.value=null;
   }
-}
+  }
+  
 crtUsr(){
   var re = "@";
   var str = this.afAuth.auth.currentUser.email;

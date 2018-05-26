@@ -10,7 +10,7 @@ page-prepaid{
     }
    
     ion-select{
-        border: #ff8c00 solid 1px;
+        border: grey solid 1px;
             border-radius: 10px;
             color: #fff;
             margin-left: 15px;
@@ -21,7 +21,21 @@ page-prepaid{
         margin-left: 30px;
     }
 
-    
+    .bal{
+        color: #fff;
+        text-align: center;
+    }
+
+    p{
+        text-align: center;
+        color: #D4AF37;
+        
+    }
+
+    .toplbl{
+        text-align: center;
+        color: #fff;
+    }   
 }
 
 ion-label{

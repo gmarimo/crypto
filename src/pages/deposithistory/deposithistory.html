@@ -1,5 +1,5 @@
 <!--
-  Generated template for the DeposithistoryPage page.
+  Generated template for the BtcbuysuccessPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>deposithistory</ion-title>
+    <ion-title>Deposit History</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,4 +15,25 @@
 
 <ion-content padding>
 
+  <ion-label class="cmplt">History of Deposits</ion-label>
+  <p><ion-icon name="timer"></ion-icon></p>
+  <ion-item>
+    <ion-label *ngFor ="let val of valuu">{{val}}</ion-label>
+  </ion-item>
+
+  <ion-label>History</ion-label>
+  <ion-grid>
+    <ion-row>
+
+      <ion-col>
+        <strong>Date Time</strong>
+        <p class="para" *ngFor ="let date of dates">{{date}}</p>  
+      </ion-col>
+      
+      <ion-col>
+        <strong>USD Amnt</strong>
+        <p class="para" *ngFor ="let btc of btcs">${{btc}}</p> 
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
