@@ -26,6 +26,7 @@ export class WithdrawPage {
   datearr:Date[] =[];
   constructor(private alertctrl:AlertController,private loadingCtrl:LoadingController,private toastCtrl:ToastController,public fdb: AngularFireDatabase,public afAuth: AngularFireAuth,public navCtrl: NavController, public navParams: NavParams) {
     this.updatebal();
+    //this.getMaxDate();
   }
 
   ionViewDidLoad() {
@@ -88,10 +89,16 @@ export class WithdrawPage {
     for (var key:number=0;key<Catdata.length;key++) {
         this.temparr.push(Catdata[key]);
     }  
+    for(var key =0; key<this.temparr.length;key++){
+      this.datearr.push(new Date(this.temparr[key]));
+      }
+    var maxDate=new Date(Math.max.apply(null,this.datearr));
+    this.setBal(maxDate);
+    //this.setBal(Catdata[9]);
   });
   }
-setBal(date:Date){
-  alert('in setBal')
+
+setBal(date){
   var re = ".";
   var str = this.crtUsr();
   var newstr = str.replace(re,"");
@@ -101,27 +108,18 @@ setBal(date:Date){
       for(var i = 0; i < data.length;i++){
         this.bal.push(data[i]);
         this.usdbal = this.bal[i];
-        alert("nyasha"+data[i]);
+        alert('in setBal'+data);
       }
     }
   )
 }
-getMaxDate(){
-  for(var key =0; key<this.temparr.length;key++){
-    this.datearr.push(new Date(this.temparr[key]));
-    }
-  var maxDate=new Date(Math.max.apply(null,this.datearr));
-  alert(maxDate);
 
-}
 makeWithdrawal(){
 
   var date:Date = new Date();
   var re = ".";
   var str = this.crtUsr();
   var newstr = str.replace(re,"");
-
-  alert(this.bal);
 
   if(this.amnt.value < this.usdbal){
     var newBal:number = this.usdbal - this.amnt.value;
