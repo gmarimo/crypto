@@ -55,7 +55,7 @@ export class BuybtcPage {
   constructor(private toastCtrl:ToastController, private remoteserviceprovider: RemoteServiceProvider, public alertctrl: AlertController, private dbAuth: AngularFireAuth, public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams,private fdb:AngularFireDatabase) {
     this.getCoins();
     this.payamnt = 0;
-    this.commissionRate = 0.1;
+    this.commissionRate = 0;
     this.getBtc = 0;
     this.commission=0;
     this.usd;
@@ -105,7 +105,7 @@ export class BuybtcPage {
   }
    calcCommission(btc:number){
     var com:number = btc * this.commissionRate;
-    return parseFloat(com.toFixed(4));
+    return parseFloat(com.toFixed(5));
   }
   calcGet(amnt:number,commission:number){
     var get = (amnt-commission) / this.ba();
