@@ -21,8 +21,10 @@ export class EthbuysuccessPage {
   Catdata = [];
   eths;
   dates;
+  ethtotalbal;
   constructor(public dp: DatePipe,public fdb: AngularFireDatabase,public afAuth: AngularFireAuth,public navCtrl: NavController, public navParams: NavParams) {
     this.updatebal();
+    this.updatebalToHtml();
   }
 
   ionViewDidLoad() {
@@ -38,6 +40,7 @@ export class EthbuysuccessPage {
     this.navCtrl.push(EthwithdrawPage);
   }
   updatebal(){ 
+    //this.ethtotalbal = 90;
     var re = ".";
     var str = this.crtUsr();
     var newstr = str.replace(re,"");
@@ -82,5 +85,49 @@ DatesFormat(Dates:string[]){
    }
    this.setBal(getBtc);
   this.dates = latest_date;
+}
+
+///// pass value to html
+
+updatebalToHtml(){ 
+  var bal:Date;
+  var re = ".";
+  var str = this.crtUsr();
+  var newstr = str.replace(re,"");
+  this.fdb.database.ref('UserID').child(newstr).child('Ethereum').once('value', function(snapshot) {
+    if (snapshot.val() !== null) {
+      return snapshot;
+    }
+}).then((snapshot) => {
+  let Catdata = Object.keys(snapshot.val());
+  let temparr = [];
+  let datearr: Date[]=[];
+
+  var datt:Date;
+  for (var key:number=0;key<Catdata.length;key++) {
+      //temparr.push(Catdata[key]);
+      temparr[key]=Catdata[key]
+      datearr[key] = new Date(temparr[key]);
+      datt = datearr[key]; 
+  }  
+  return this.setBalToHtml(datt);
+});
+}
+setBalToHtml(date:Date){
+  var re = ".";
+  let btcbal = [];
+  var str = this.crtUsr();
+  var newstr = str.replace(re,"");
+  var bal:number;
+  var url = '/UserID/'+newstr+'/Ethereum/'+date;
+  this.fdb.list(url).valueChanges().subscribe(
+    data => {
+      for(var i =0 ;i <data.length;i++){
+     btcbal[i] = data[i];
+     this.ethtotalbal = btcbal[i];
+      }
+    }
+  )
+  return bal;
 }
 }
