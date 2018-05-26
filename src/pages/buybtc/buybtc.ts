@@ -87,7 +87,7 @@ export class BuybtcPage {
   numBtc(){
 
     var numbtc:number = this.usdamnt.value / this.ba();
-    this.btc = numbtc;
+    this.btc = parseFloat(numbtc.toFixed(5));
     this.commission = this.calcCommission(numbtc);
     this.payamnt = this.usdamnt.value;
     var commissionUsd = this.usdamnt.value *this.commissionRate;
@@ -96,7 +96,8 @@ export class BuybtcPage {
   }
   amntUsd(){
     var amnt:number = this.btcamnt.value * this.ba(); 
-    this.usd = amnt;
+    //var amnbal = 
+    this.usd =  parseFloat(amnt.toFixed(2));
     this.commission = (this.calcCommission(amnt)) /this.ba();
     this.payamnt = amnt;
     var commissionUsd = amnt*this.commissionRate;
@@ -104,11 +105,11 @@ export class BuybtcPage {
   }
    calcCommission(btc:number){
     var com:number = btc * this.commissionRate;
-    return com;
+    return parseFloat(com.toFixed(4));
   }
   calcGet(amnt:number,commission:number){
     var get = (amnt-commission) / this.ba();
-    return get;
+    return parseFloat(get.toFixed(4));
   }
 
   public loader(){

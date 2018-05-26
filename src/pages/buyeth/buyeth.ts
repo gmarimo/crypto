@@ -85,7 +85,7 @@ return lat *1.5;
 
   numEth(){
     var numeth:number = this.usdamnt.value/this.ba();
-    this.eth = numeth;
+    this.eth = parseFloat(numeth.toFixed(5));
     this.commission = this.calcCommission(numeth);
     this.payamnt = this.usdamnt.value;
     var commissionUsd = this.usdamnt.value *this.commissionRate;
@@ -94,7 +94,7 @@ return lat *1.5;
   }
   amntUsd(){
     var amnt:number = this.ethamnt.value *this.ba(); 
-    this.usd = amnt;
+    this.usd = parseFloat(amnt.toFixed(2));
     this.commission = (this.calcCommission(amnt))/this.ba();
     this.payamnt = amnt;
     var commissionUsd = amnt*this.commissionRate;
@@ -102,11 +102,11 @@ return lat *1.5;
   }
    calcCommission(eth:number){
     var com:number = eth*this.commissionRate;
-    return com;
+    return parseFloat(com.toFixed(4))
   }
   calcGet(amnt:number,commission:number){
     var get = (amnt-commission)/this.ba();
-    return get;
+    return parseFloat(get.toFixed(4));
   }
 
   public loader(){
