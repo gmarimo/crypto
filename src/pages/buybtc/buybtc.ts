@@ -6,12 +6,10 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { LoadingController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { WalletsPage } from '../wallets/wallets';
-//import { LoadingController } from 'ionic-angular';
 import { BtcbuysuccessPage } from '../btcbuysuccess/btcbuysuccess';
 import { empty } from 'rxjs/Observer';
 import  'rxjs/add/operator/map';
 import { RemoteServiceProvider } from '../../providers/remote-service/remote-service';
-//import { WalletsPage } from '../wallets/wallets';
 import { HttpModule } from '@angular/http';
 import { json } from 'body-parser';
 
