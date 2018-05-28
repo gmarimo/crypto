@@ -126,6 +126,10 @@ export class DepositPage {
     toast.present();
 
    }
+
+   this.emptyonsubmit();
+   
+
   }  
   getBalToDeposit(balance:number){
     var bal:Date;
@@ -264,4 +268,9 @@ export class DepositPage {
       }
     )
   }
+
+  emptyonsubmit(){
+    this.amount.value=null;
+    
+ }
 }

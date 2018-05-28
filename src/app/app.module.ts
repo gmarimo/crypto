@@ -60,6 +60,7 @@ import { BuylitePage } from '../pages/buylite/buylite';
 import { SellitePage } from '../pages/sellite/sellite';
 import { MylitewalletPage } from '../pages/mylitewallet/mylitewallet';
 import { Clipboard } from '@ionic-native/clipboard';
+import {ScreenOrientation} from "@ionic-native/screen-orientation";
 
 
 
@@ -192,6 +193,7 @@ const firebase = {
     SocialSharing,
     AngularFireAuth,
     Clipboard,
+    ScreenOrientation,
     
   ]
 })

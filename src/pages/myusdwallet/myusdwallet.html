@@ -9,7 +9,7 @@
 
  
 <ion-content padding>
-  <h1 class="usdbal" *ngFor ="let item of items">{{item}}</h1>
+  <h1 class="usdbal" *ngFor ="let item of items">${{item}}</h1>
 
   <ion-footer>
     <button ion-button class="button" full color="primary" (click)="depositusd()">Deposit</button>

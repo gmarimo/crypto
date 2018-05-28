@@ -162,6 +162,7 @@ return latprice *1.5;
           });
           toast.present();   
         }
+        this.emptyonsubmit();
     
   }
   crtUsr(){

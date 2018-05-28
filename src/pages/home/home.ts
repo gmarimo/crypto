@@ -19,6 +19,7 @@ import * as bodyParser from 'body-parser';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { HttpHeaders,HttpClientModule } from '@angular/common/http';
 import { Request, RequestMethod} from '@angular/http';
+import {ScreenOrientation} from "@ionic-native/screen-orientation";
 
 export interface PageInterface {
   title: string;
@@ -34,6 +35,8 @@ export interface PageInterface {
   templateUrl: 'home.html'
 })
 export class HomePage {
+
+  public screenOrientation: ScreenOrientation;
 
   rootPage = 'HomePage';
   @ViewChild(Nav) nav: Nav;
@@ -54,7 +57,7 @@ export class HomePage {
 
   constructor(private firebaseauth:AngularFireAuth, public loadingCtrl: LoadingController,
      public alertctrl:AlertController, public navCtrl: NavController, public http: Http, private zone: NgZone,
-     private toastCtrl:ToastController, public formbuilder:FormBuilder,private menu: MenuController) {
+     private toastCtrl:ToastController,screenOrientation: ScreenOrientation, public formbuilder:FormBuilder,private menu: MenuController) {
       this.formgroup=formbuilder.group({
         email:['',Validators.required],
         password:['',Validators.required]
@@ -63,6 +66,8 @@ export class HomePage {
     
       this.email = this.formgroup.controls['email'];
       this.password = this.formgroup.controls['password'];
+
+      //this.lockPortrait();
     
   }
   ionViewDidEnter() {
@@ -80,6 +85,11 @@ export class HomePage {
     // If you have more than one side menu, use the id like below
     // this.menu.swipeEnable(true, 'menu1');
    }
+
+   //lockPortrait() {
+    //alert('Orientation locked portrait.');
+    //this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+  //}
   /*
 //capture function
   captchaResolved(response: string): void {

@@ -48,7 +48,7 @@ export class SellethPage {
   constructor(private dbAuth: AngularFireAuth, private remoteserviceprovider: RemoteServiceProvider, 
     public loadingCtrl: LoadingController, public navCtrl: NavController, 
     public navParams: NavParams,private fdb:AngularFireDatabase, private toastCtrl:ToastController, public alertctrl:AlertController) {
-    this.getEth();
+    this.getEthereum();
     this.payamnt = 0;
     this.commissionRate = 0.1;
     this.getEthm = 0;
@@ -65,7 +65,7 @@ export class SellethPage {
     console.log('ionViewDidLoad BuyethPage');
   }
 
-  getEth(){
+  getEthereum(){
     this.remoteserviceprovider.getEth().subscribe((data) => {
       this.ethm = data;
       //alert(JSON.stringify(this.eth[0]["price_usd"]))
@@ -125,7 +125,7 @@ return latprice *1.5;
           USD:this.usd,
           ETH:this.eth,
           COMMISSION:this.commission,
-          GET_BTC:this.getEth,
+          GET_ETH:this.getEthm,
           TOTAL:this.payamnt,
     })
     if(this.eth < ethbal){
@@ -163,6 +163,8 @@ return latprice *1.5;
             });
             toast.present();   
           }
+
+          this.emptyonsubmit();
 
   }
   crtUsr(){
