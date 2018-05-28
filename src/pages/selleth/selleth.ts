@@ -53,11 +53,11 @@ export class SellethPage {
     this.commissionRate = 0.1;
     this.getEthm = 0;
     this.commission=0;
-    this.usd;
-    this.ethm;
+    this.usd=0;
+    this.ethm =0;
     this.total=0;
+    this.eth=0;
     //this.ethVal = 10000;
-
     
   }
 
@@ -125,7 +125,7 @@ return latprice *1.5;
           USD:this.usd,
           ETH:this.eth,
           COMMISSION:this.commission,
-          GET_BTC:this.getEth,
+          GET_ETH:this.ethm,
           TOTAL:this.payamnt,
     })
     if(this.eth < ethbal){
@@ -202,7 +202,8 @@ return latprice *1.5;
         datearr[key] = new Date(temparr[key]);
         datt = datearr[key]; 
     }  
-    return this.getCurrentUsdBal(datt);
+    var maxDate=new Date(Math.max.apply(null,datearr));
+    return this.getCurrentUsdBal(maxDate);
   });
   }
 
@@ -241,8 +242,8 @@ return latprice *1.5;
         datearr[key] = new Date(temparr[key]);
         datt = datearr[key]; 
     }  
-    
-    return this.getCurrentEthBal(datt,usdBal);
+    var maxDate=new Date(Math.max.apply(null,datearr));
+    return this.getCurrentEthBal(maxDate,usdBal);
   });
   }
   

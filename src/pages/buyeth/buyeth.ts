@@ -281,7 +281,8 @@ else{
         datearr[key] = new Date(temparr[key]);
         datt = datearr[key]; 
     }  
-    return this.getCurrentUsdBal(datt);
+    var maxDate=new Date(Math.max.apply(null,datearr));
+    return this.getCurrentUsdBal(maxDate);
   });
   }
 
@@ -318,7 +319,8 @@ else{
         datearr[key] = new Date(temparr[key]);
         datt = datearr[key]; 
     }  
-    return this.getCurrentETHBal(datt,usdBal);
+    var maxDate=new Date(Math.max.apply(null,datearr));
+    return this.getCurrentETHBal(maxDate,usdBal);
   });
   }
 
