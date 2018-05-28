@@ -28,6 +28,7 @@ export class DepositPage {
 
   constructor(private afAuth: AngularFireAuth, public toastCtrl: ToastController, private fdb: AngularFireDatabase, public navCtrl: NavController, public loadingCtrl: LoadingController, public navParams: NavParams, public alertctrl:AlertController) {
   this.amount=0;
+  this.getBal();
   }
 
   ionViewDidLoad() {
@@ -151,6 +152,7 @@ export class DepositPage {
     var maxDate = Math.max.apply(null, datearr)
     maxDate = new Date(maxDate)
     this.getCurrentUsdBalToDeposit(maxDate,balance);
+  // alert(maxDate);
   });
   }
   getCurrentUsdBalToDeposit(names,balance){
@@ -169,7 +171,6 @@ export class DepositPage {
       this.UpdateUsdBal(total);
       }
     )
-    
   }
   UpdateUsdBal(amtDeposited:number){
     var date:Date = new Date();
@@ -207,7 +208,10 @@ export class DepositPage {
         datearr[key] = new Date(temparr[key]);
         datt = datearr[key]; 
     }  
-    return this.getCurrentUsdBal(datt);
+    var maxDate = Math.max.apply(null, datearr)
+    maxDate = new Date(maxDate)
+    //alert(maxDate)
+    return this.getCurrentUsdBal(maxDate);
   });
   }
   getCurrentUsdBal(names){
