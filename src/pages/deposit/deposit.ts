@@ -308,7 +308,7 @@ export class DepositPage {
   }
 
   emptyonsubmit(){
-    this.amount.value=null;
+    //this.amount.value=null;
     
  }
 }
