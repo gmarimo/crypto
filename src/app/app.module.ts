@@ -34,6 +34,7 @@ import { TermsPage } from '../pages/terms/terms';
 import { TabsPage } from '../pages/tabs/tabs';
 import { BtcbuysuccessPage } from '../pages/btcbuysuccess/btcbuysuccess';
 import { EthbuysuccessPage } from '../pages/ethbuysuccess/ethbuysuccess';
+import { MyaccPage } from '../pages/myacc/myacc';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -62,11 +63,8 @@ import { SellitePage } from '../pages/sellite/sellite';
 import { MylitewalletPage } from '../pages/mylitewallet/mylitewallet';
 import { DatePipe } from '@angular/common';
 import { Clipboard } from '@ionic-native/clipboard';
-<<<<<<< HEAD
 import {ScreenOrientation} from "@ionic-native/screen-orientation";
-=======
-import { CallNumber } from '@ionic-native/call-number';
->>>>>>> 4e946520b40bc5a55668f2828814bb8e0abad4a5
+//import { CallNumber } from '@ionic-native/call-number';
 
 
 
@@ -126,7 +124,8 @@ const firebase = {
     SellitePage,
     MylitewalletPage,
     EthbuysuccessPage,
-    UsdwithdrawalPage
+    UsdwithdrawalPage,
+    MyaccPage
 
   ],
   imports: [
@@ -191,7 +190,8 @@ const firebase = {
     SellitePage,
     MylitewalletPage,
     EthbuysuccessPage,
-    UsdwithdrawalPage
+    UsdwithdrawalPage,
+    MyaccPage
   ],
   providers: [
     StatusBar,
@@ -202,12 +202,8 @@ const firebase = {
     AngularFireAuth,
     DatePipe,
     Clipboard,
-<<<<<<< HEAD
     ScreenOrientation,
     
-=======
-    CallNumber
->>>>>>> 4e946520b40bc5a55668f2828814bb8e0abad4a5
   ]
 })
 export class AppModule {}

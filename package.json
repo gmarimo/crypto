@@ -73,11 +73,7 @@
       "cordova-plugin-x-socialsharing": {},
       "cordova-plugin-firebase": {},
       "cordova-clipboard": {},
-<<<<<<< HEAD
       "cordova-plugin-screen-orientation": {}
-=======
-      "mx.ferreyra.callnumber": {}
->>>>>>> 4e946520b40bc5a55668f2828814bb8e0abad4a5
     }
   },
   "cordova-plugin-camera": {},

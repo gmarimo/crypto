@@ -7,6 +7,7 @@ import {AlertController} from 'ionic-angular';
 import { FormBuilder,FormGroup,Validators,AbstractControl} from '@angular/forms';
 import { ToastController } from 'ionic-angular';
 import { HomePage } from '../home/home';
+import { MenuController } from 'ionic-angular/index';
 
 
 /**
@@ -27,7 +28,7 @@ export class EmailverifyPage {
   email:AbstractControl;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public angularFireAuth: AngularFireAuth, 
-    private alertCtrl: AlertController,public formbuilder:FormBuilder,
+    private alertCtrl: AlertController,public formbuilder:FormBuilder,private menu: MenuController,
      public loadingCtrl: LoadingController,public toastCtrl: ToastController) {
 
       this.formgroup=formbuilder.group({
@@ -37,27 +38,55 @@ export class EmailverifyPage {
 
   }
 
+  ionViewDidEnter() {
+    this.menu.swipeEnable(false);
+
+    // If you have more than one side menu, use the id like below
+    // this.menu.swipeEnable(false, 'menu1');
+  }
+
+  ionViewWillLeave() {
+    // Don't forget to return the swipe to normal, otherwise 
+    // the rest of the pages won't be able to swipe to open menu
+    this.menu.swipeEnable(true);
+
+    // If you have more than one side menu, use the id like below
+    // this.menu.swipeEnable(true, 'menu1');
+   }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad EmailverifyPage');
   }
 
-  sendPassword(email) {
+  
+sendPassword(email) {
     this.angularFireAuth.auth.sendPasswordResetEmail(this.email.value,) 
     .then(() => {
+
+      let loader = this.loadingCtrl.create({
+        spinner:"dots",
+        content:"Please wait ..",
+        duration:3500,
+        cssClass: "loaderwrap"
+      }); 
+      loader.present();
+  
       console.log('email sent');
 
-     //* this.load();
+    
 
+     //* this.load();
+     loader.onDidDismiss(() => {
     let alert= this.alertCtrl.create({subTitle:'Please check your email to reset password!',
     buttons: [{
       text: "OK",
       handler: () => {
-          this.navCtrl.push(HomePage, {});
+          this.navCtrl.setRoot(HomePage, {});
       },
   }],});
     alert.present();
     })
-
+  })
     .catch(error => {
     
       let toast = this.toastCtrl.create({
@@ -70,9 +99,10 @@ export class EmailverifyPage {
   })
   console.log(this.email.value);
   
-    }
- 
-  }  
+    
+  }
+  }
+
 
  /*load(){
   let loading = this.loadingCtrl.create({
