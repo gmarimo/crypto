@@ -18,11 +18,13 @@ import { DeposithistoryPage } from '../deposithistory/deposithistory';
   selector: 'page-myusdwallet',
   templateUrl: 'myusdwallet.html',
 })
+
 export class MyusdwalletPage {
 
   items;
   constructor(public fdb: AngularFireDatabase,public afAuth: AngularFireAuth,public navCtrl: NavController, public navParams: NavParams) {
     this.updatebal()
+    this.items=0;
   }
 
   ionViewDidLoad() {
@@ -57,7 +59,8 @@ export class MyusdwalletPage {
         datearr[key] = new Date(temparr[key]);
         datt = datearr[key]; 
     }  
-    return this.setBal(datt);
+    var maxDate=new Date(Math.max.apply(null,datearr));
+    return this.setBal(maxDate);
   });
   }
 setBal(date:Date){

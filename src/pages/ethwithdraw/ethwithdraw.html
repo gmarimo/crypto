@@ -16,21 +16,21 @@
 
 <ion-content padding>
 
-  <h1>0.00000 ETH</h1>
+  <h1>{{ethaccbal}} ETH</h1>
 
   <ion-item>
     <ion-label floating>Withdrawal Amount</ion-label>
-    <ion-input type="number"></ion-input>
+    <ion-input type="number" (keyup)="withdrawcal()" #wamnt></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label>Commission:</ion-label>
-    <ion-input type="number" placeholder="0.00" disabled="true"></ion-input>
+    <ion-input type="number" [(ngModel)]="commsale" placeholder="0.00" disabled="true" #comm>{{commsale.number}}</ion-input>
   </ion-item>
 
   <ion-item>
       <ion-label>Total</ion-label>
-      <ion-input type="number" placeholder="0.00" disabled="true"></ion-input>
+      <ion-input type="number" [(ngModel)]="totaleth" placeholder="0.00" disabled="true" #total>{{totaleth.number}}</ion-input>
   </ion-item>
 
   <ion-item>
@@ -41,10 +41,9 @@
 
   <ion-footer>
 
-      <button ion-button full color="primary">Withdraw</button>
+      <button ion-button full color="primary" (click)="withdrawEth()">Withdraw</button>
       <button ion-button full color="danger">Clear</button>
 
   </ion-footer>
 
 </ion-content>
-

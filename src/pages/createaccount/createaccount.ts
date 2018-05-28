@@ -35,6 +35,7 @@ export class CreateaccountPage {
 */
 
    @ViewChild ('email') email;
+   
 
   constructor(private fdb:AngularFireDatabase,public loadingCtrl: LoadingController,private firebaseauth:AngularFireAuth, public navCtrl: NavController,
      public navParams: NavParams,public formbuilder:FormBuilder,public toastCtrl: ToastController,
@@ -49,7 +50,16 @@ export class CreateaccountPage {
       });
       this.email = this.formgroup.controls['email'];
     
-    
+    var generator = require('generate-password');
+ 
+  var pass:string = generator.generate({
+      length: 10,
+      numbers: true
+  });
+   
+  // 'uEyMTw32v9'
+  console.log(pass);
+ 
   }
   ionViewDidEnter() {
     this.menu.swipeEnable(false);
@@ -92,9 +102,19 @@ export class CreateaccountPage {
       }else{
 
         this.loader();
+
+         var generator = require('generate-password');
+ 
+  var password1 = generator.generate({
+      length: 10,
+      numbers: true
+  });
+   
+  // 'uEyMTw32v9'
+  //console.log(password1);
+
         
-        
-        this.firebaseauth.auth.createUserWithEmailAndPassword(this.email.value,'jddsjdjhd')
+        this.firebaseauth.auth.createUserWithEmailAndPassword(this.email.value,password1)
         .then (data => { 
           this.sendcode();
           })

@@ -27,17 +27,6 @@ export class DepositPage {
     alert('nyasha'+date);
   }
 
-  //paynow http post fields
-  id;
-  reference;
-  amount;
-  returnurl;
-  resulturl;
-  authemail;
-  status;
-  hash;
-  url : string = "https://www.paynow.co.zw/interface/initiatetransaction";
-
   constructor(private http: Http,private afAuth: AngularFireAuth, public toastCtrl: ToastController, private fdb: AngularFireDatabase, public navCtrl: NavController, public loadingCtrl: LoadingController, public navParams: NavParams, public alertctrl:AlertController) {
   this.amnt=0;
   }
@@ -112,7 +101,7 @@ export class DepositPage {
   } 
 
 
-  paynowDeposit () {
+  /*paynowDeposit () {
     var paymentData = [
     this.id = "5396",
     this.reference = "",
@@ -140,7 +129,7 @@ export class DepositPage {
 
       }
 
-
+*/
 
 
   depositBal(){
@@ -201,6 +190,7 @@ export class DepositPage {
     var maxDate = Math.max.apply(null, datearr)
     maxDate = new Date(maxDate)
     this.getCurrentUsdBalToDeposit(maxDate,balance);
+  // alert(maxDate);
   });
   }
   getCurrentUsdBalToDeposit(names,balance){
@@ -219,7 +209,6 @@ export class DepositPage {
       this.UpdateUsdBal(total);
       }
     )
-    
   }
   UpdateUsdBal(amtDeposited:number){
     var date:Date = new Date();
@@ -257,7 +246,10 @@ export class DepositPage {
         datearr[key] = new Date(temparr[key]);
         datt = datearr[key]; 
     }  
-    return this.getCurrentUsdBal(datt);
+    var maxDate = Math.max.apply(null, datearr)
+    maxDate = new Date(maxDate)
+    //alert(maxDate)
+    return this.getCurrentUsdBal(maxDate);
   });
   }
   getCurrentUsdBal(names){
