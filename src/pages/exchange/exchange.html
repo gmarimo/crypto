@@ -20,19 +20,19 @@
     <ion-row class="balances">
       <ion-col>
         <ion-label>USD</ion-label>
-        <p>200.00</p>
+        <p>0</p>
       </ion-col>
       <ion-col>
           <ion-label>BTC</ion-label>
-          <p>0.012343</p>
+          <p>0</p>
       </ion-col>
       <ion-col>
           <ion-label>ETH</ion-label>
-          <p>0.00000</p>
+          <p>0</p>
       </ion-col>
       <ion-col>
           <ion-label>BSH</ion-label>
-          <p>2.43233</p>
+          <p>0</p>
       </ion-col>
       </ion-row>
   </ion-grid>
@@ -68,7 +68,7 @@
           </ion-col>
       </ion-row>
 
-      <button ion-button color="primary" full> <ion-icon name="swap"></ion-icon> Convert</button>
+      <button ion-button color="primary" full (click)="exchange()"> <ion-icon name="swap"></ion-icon> Convert</button>
  </ion-grid>
 
 </ion-content>

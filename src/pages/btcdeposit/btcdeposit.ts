@@ -12,6 +12,7 @@ import { ToastController, Nav } from 'ionic-angular';
  */
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, snapshotChanges } from 'angularfire2/database';
+import { RemoteServiceProvider } from '../../providers/remote-service/remote-service';
 
 @IonicPage()
 @Component({
@@ -29,15 +30,16 @@ export class BtcdepositPage {
   link:string=null;
   subject:string=null;
   items;
+  btcwallet = [];
 
  
   
 
-  constructor(public navCtrl: NavController, public toastCtrl: ToastController,public fdb: AngularFireDatabase,public afAuth: AngularFireAuth, 
+  constructor(public navCtrl: NavController,private remoteserviceprovider: RemoteServiceProvider, public toastCtrl: ToastController,public fdb: AngularFireDatabase,public afAuth: AngularFireAuth, 
     public navParams: NavParams,private socialSharing: SocialSharing, private clipboard: Clipboard) {
-
+      this.remoteserviceprovider.getCoins().subscribe(data => { this.btcwallet = data });
       //this.copy();
-      this.address="1BoatSLRHtKNngkdXEeobR76b53LET";
+      this.address="1GJ3ZYsN6VBUMyGpcVbq7GLJXBAbkL7qrR";
       //alert(this.address);
       this.updatebal();
     }
@@ -104,7 +106,7 @@ alert(error)
 showMsg(toastCtrl: ToastController) {
   let toast = toastCtrl.create({
       message: 'Address copied to clipboard',
-      duration: 3000,
+      duration: 5000,
       position: 'bottom'
   });
   toast.present();

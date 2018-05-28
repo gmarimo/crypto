@@ -79,7 +79,7 @@ return latprice *1.5;
 
   numLite(){
     var numlite:number = this.usdamnt.value/this.ba();
-    this.lite = numlite;
+    this.lite = parseFloat(numlite.toFixed(5));
     this.commission = this.calcCommission(numlite);
     this.payamnt = this.usdamnt.value;
     var commissionUsd = this.usdamnt.value *this.commissionRate;
@@ -88,7 +88,7 @@ return latprice *1.5;
   }
   amntUsd(){
     var amnt:number = this.liteamnt.value *this.ba(); 
-    this.usd = amnt;
+    this.usd = parseFloat(amnt.toFixed(2));
     this.commission = (this.calcCommission(amnt))/this.ba();
     this.payamnt = amnt;
     var commissionUsd = amnt*this.commissionRate;
@@ -96,11 +96,11 @@ return latprice *1.5;
   }
    calcCommission(lite:number){
     var com:number = lite*this.commissionRate;
-    return com;
+    return parseFloat(com.toFixed(4));
   }
   calcGet(amnt:number,commission:number){
     var get = (amnt-commission)/this.ba();
-    return get;
+    return parseFloat(get.toFixed(4));
   }
   
   makeTransaction(){

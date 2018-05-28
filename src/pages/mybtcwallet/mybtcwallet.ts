@@ -4,6 +4,7 @@ import { BtcdepositPage } from '../btcdeposit/btcdeposit';
 import { BtcwithdrawPage } from '../btcwithdraw/btcwithdraw';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, snapshotChanges } from 'angularfire2/database';
+import { BtcbuysuccessPage } from '../btcbuysuccess/btcbuysuccess';
 
 /**
  * Generated class for the MybtcwalletPage page.
@@ -76,5 +77,9 @@ setBal(date:Date){
     }
   )
   return bal;
+}
+
+btcbuyhist() {
+  this.navCtrl.push(BtcbuysuccessPage);
 }
 }

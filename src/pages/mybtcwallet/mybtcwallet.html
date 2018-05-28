@@ -15,7 +15,8 @@
 
 
 <ion-content padding>
-  <h1 class="usdbal" (click)="usdwallet()" *ngFor ="let item of items">{{item}} BTC</h1>
+  <h1 class="usdbal" *ngFor ="let item of items">{{item}} BTC</h1>
+  <ion-icon name="timer" (click)="btcbuyhist()"></ion-icon>
 
   <ion-footer>
     <button ion-button class="button" full color="primary" (click)="depositbtc()">Deposit</button>

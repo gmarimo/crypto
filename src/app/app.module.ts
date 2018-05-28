@@ -47,6 +47,7 @@ import { RemoteServiceProvider } from '../providers/remote-service/remote-servic
 import { ChangepasswordPage } from '../pages/changepassword/changepassword';
 import { LogoutPage} from '../pages/logout/logout';
 import { PersonalInfoPage} from '../pages/personal-info/personal-info';
+import { UsdwithdrawalPage } from '../pages/usdwithdrawal/usdwithdrawal';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { SecuritysettingsPage } from '../pages/securitysettings/securitysettings';
 import { ChangepinPage } from '../pages/changepin/changepin';
@@ -59,19 +60,24 @@ import { DeposithistoryPage } from '../pages/deposithistory/deposithistory';
 import { BuylitePage } from '../pages/buylite/buylite';
 import { SellitePage } from '../pages/sellite/sellite';
 import { MylitewalletPage } from '../pages/mylitewallet/mylitewallet';
+import { DatePipe } from '@angular/common';
 import { Clipboard } from '@ionic-native/clipboard';
+<<<<<<< HEAD
 import {ScreenOrientation} from "@ionic-native/screen-orientation";
+=======
+import { CallNumber } from '@ionic-native/call-number';
+>>>>>>> 4e946520b40bc5a55668f2828814bb8e0abad4a5
 
 
 
 
 const firebase = {
   apiKey: "AIzaSyBj6shCVnamFe9IAptn0TGklVuFZCypmxQ",
-  authDomain: "crypto-ex.firebaseapp.com",
-  databaseURL: "https://crypto-ex.firebaseio.com",
-  projectId: "crypto-ex",
-  storageBucket: "crypto-ex.appspot.com",
-  messagingSenderId: "730339161700"
+    authDomain: "crypto-ex.firebaseapp.com",
+    databaseURL: "https://crypto-ex.firebaseio.com",
+    projectId: "crypto-ex",
+    storageBucket: "crypto-ex.appspot.com",
+    messagingSenderId: "730339161700"
 };
 
 
@@ -119,7 +125,8 @@ const firebase = {
     BuylitePage,
     SellitePage,
     MylitewalletPage,
-    EthbuysuccessPage
+    EthbuysuccessPage,
+    UsdwithdrawalPage
 
   ],
   imports: [
@@ -183,7 +190,8 @@ const firebase = {
     BuylitePage,
     SellitePage,
     MylitewalletPage,
-    EthbuysuccessPage
+    EthbuysuccessPage,
+    UsdwithdrawalPage
   ],
   providers: [
     StatusBar,
@@ -192,9 +200,14 @@ const firebase = {
     RemoteServiceProvider,
     SocialSharing,
     AngularFireAuth,
+    DatePipe,
     Clipboard,
+<<<<<<< HEAD
     ScreenOrientation,
     
+=======
+    CallNumber
+>>>>>>> 4e946520b40bc5a55668f2828814bb8e0abad4a5
   ]
 })
 export class AppModule {}

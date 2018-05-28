@@ -1,3 +1,34 @@
 page-deposithistory {
 
+    p{
+        text-align: center;
+        color: #35B253;
+
+    }
+
+    ion-col{
+        color: dimgrey;
+        border-bottom: dimgrey solid 1px;
+        border-right: #355664 solid 1px;
+        padding-top: 30px;
+        border-top: darkslategrey solid 1px;
+    }
+
+    .para{
+        color: dimgrey;
+    }
+
+    .sts{
+        color: #35B253;
+    }
+
+    ion-row{
+        border: darkslategrey solid 1px;
+    }
+
+    ion-label{
+        text-align: center;
+    }
+
+
 }

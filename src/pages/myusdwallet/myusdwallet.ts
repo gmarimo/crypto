@@ -4,6 +4,7 @@ import { DepositPage } from '../deposit/deposit';
 import { WithdrawPage } from '../withdraw/withdraw';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, snapshotChanges } from 'angularfire2/database';
+import { DeposithistoryPage } from '../deposithistory/deposithistory';
 
 /**
  * Generated class for the MyusdwalletPage page.
@@ -77,6 +78,10 @@ crtUsr(){
   var str = this.afAuth.auth.currentUser.email;
   var newstr = str.replace(re,"");
   return newstr;
-} 
+}
+
+deposithistory() {
+  this.navCtrl.push(DeposithistoryPage);
+}
 
 }

@@ -17,7 +17,7 @@
   <ion-label class="cmplt">Transaction Completed Successfully</ion-label>
   <p><ion-icon name="checkmark-circle"></ion-icon></p>
   <ion-item>
-    <ion-label>New ETH Balance: 0.00000</ion-label>
+    <ion-label>New ETH Balance: {{ethtotalbal}}</ion-label>
   </ion-item>
 
   <ion-label>History</ion-label>
@@ -25,17 +25,11 @@
     <ion-row>
       <ion-col>
         <strong>Date</strong>
-        <p class="para">10/04/18</p>  
-        <p class="para">15/04/18</p>  
-        <p class="para">10/04/18</p>  
-        <p class="para">15/04/18</p>      
+        <p class="para" *ngFor ="let date of dates">{{date}}</p>       
       </ion-col>
       <ion-col>
         <strong>ETH qty</strong>
-        <p class="para">0.01000</p> 
-        <p class="para">0.07600</p>  
-        <p class="para">0.01000</p> 
-        <p class="para">0.07600</p>     
+        <p class="para" *ngFor ="let eth of eths">{{eth}}</p>    
       </ion-col>
       <ion-col>
           <strong>Status</strong> 

@@ -6,12 +6,10 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { LoadingController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { WalletsPage } from '../wallets/wallets';
-//import { LoadingController } from 'ionic-angular';
 import { BtcbuysuccessPage } from '../btcbuysuccess/btcbuysuccess';
 import { empty } from 'rxjs/Observer';
 import  'rxjs/add/operator/map';
 import { RemoteServiceProvider } from '../../providers/remote-service/remote-service';
-//import { WalletsPage } from '../wallets/wallets';
 import { HttpModule } from '@angular/http';
 import { json } from 'body-parser';
 
@@ -55,7 +53,7 @@ export class BuybtcPage {
   constructor(private toastCtrl:ToastController, private remoteserviceprovider: RemoteServiceProvider, public alertctrl: AlertController, private dbAuth: AngularFireAuth, public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams,private fdb:AngularFireDatabase) {
     this.getCoins();
     this.payamnt = 0;
-    this.commissionRate = 0.1;
+    this.commissionRate = 0;
     this.getBtc = 0;
     this.commission=0;
     this.usd;
@@ -87,7 +85,7 @@ export class BuybtcPage {
   numBtc(){
 
     var numbtc:number = this.usdamnt.value / this.ba();
-    this.btc = numbtc;
+    this.btc = parseFloat(numbtc.toFixed(5));
     this.commission = this.calcCommission(numbtc);
     this.payamnt = this.usdamnt.value;
     var commissionUsd = this.usdamnt.value *this.commissionRate;
@@ -96,7 +94,8 @@ export class BuybtcPage {
   }
   amntUsd(){
     var amnt:number = this.btcamnt.value * this.ba(); 
-    this.usd = amnt;
+    //var amnbal = 
+    this.usd =  parseFloat(amnt.toFixed(2));
     this.commission = (this.calcCommission(amnt)) /this.ba();
     this.payamnt = amnt;
     var commissionUsd = amnt*this.commissionRate;
@@ -104,11 +103,11 @@ export class BuybtcPage {
   }
    calcCommission(btc:number){
     var com:number = btc * this.commissionRate;
-    return com;
+    return parseFloat(com.toFixed(5));
   }
   calcGet(amnt:number,commission:number){
     var get = (amnt-commission) / this.ba();
-    return get;
+    return parseFloat(get.toFixed(4));
   }
 
   public loader(){
@@ -140,9 +139,6 @@ export class BuybtcPage {
                 this.navCtrl.push(BtcbuysuccessPage);
               }
             }
-
-
-
           ] 
         });
         alert.present();       
