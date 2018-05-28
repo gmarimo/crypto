@@ -5,6 +5,7 @@ import { AlertController } from 'ionic-angular';
 import { WalletsPage } from '../wallets/wallets';
 import { Buydetails } from '../../models/buydetails';
 import { LoadingController } from 'ionic-angular';
+import { Http, Response } from '@angular/http';
 import { ToastController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, snapshotChanges } from 'angularfire2/database';
@@ -20,14 +21,25 @@ export class DepositPage {
   ListCategory = [];
   temparrCat= [];
 
-  @ViewChild('amount') amount;
+  @ViewChild('amnt') amnt;
   rtnDate1:Date;
   getMaxDate(date:string){
     alert('nyasha'+date);
   }
 
-  constructor(private afAuth: AngularFireAuth, public toastCtrl: ToastController, private fdb: AngularFireDatabase, public navCtrl: NavController, public loadingCtrl: LoadingController, public navParams: NavParams, public alertctrl:AlertController) {
-  this.amount=0;
+  //paynow http post fields
+  id;
+  reference;
+  amount;
+  returnurl;
+  resulturl;
+  authemail;
+  status;
+  hash;
+  url : string = "https://www.paynow.co.zw/interface/initiatetransaction";
+
+  constructor(private http: Http,private afAuth: AngularFireAuth, public toastCtrl: ToastController, private fdb: AngularFireDatabase, public navCtrl: NavController, public loadingCtrl: LoadingController, public navParams: NavParams, public alertctrl:AlertController) {
+  this.amnt=0;
   }
 
   ionViewDidLoad() {
@@ -98,15 +110,49 @@ export class DepositPage {
     var newstr = str.replace(re,"");
     return newstr;
   } 
+
+
+  paynowDeposit () {
+    var paymentData = [
+    this.id = "5396",
+    this.reference = "",
+    this.amount = this.amnt,
+    this.returnurl = "http://www.codel.co.zw/bashwallet/",
+    this.resulturl = "http://www.codel.co.zw/bashwallet/",
+    this.authemail = "",
+    this.status = "Message",
+    this.hash = "",
+    ]
+
+    
+    
+  
+  
+  return this.http.post(this.url, JSON.stringify(paymentData)).map(res=>res.text()).subscribe(res=>
+    {
+      console.log(res)
+     // const browser = this.iab.create('https://ionicframework.com/');
+      window.open("http://www.codel.co.zw/bashwallet/")
+    },
+    err=>{
+      console.log(err)
+        });
+
+      }
+
+
+
+
   depositBal(){
-    if (this.amount.value < 20) {
+    if (this.amnt.value < 20) {
       let toast = this.toastCtrl.create({
         message: 'Minimum deposit amount is $20',
         duration: 5000
       });
       toast.present();
-    }else if (this.amount.value != '') {
-    var amtDeposited:number =this.amount.value;
+    }else if (this.amnt.value != '') {
+    //this.paynowDeposit ();
+    var amtDeposited:number =this.amnt.value;
     const date:Date = new Date();
     var re = ".";
     var str = this.crtUsr();
@@ -250,12 +296,12 @@ export class DepositPage {
   });
 
   }
-  calcBalance(amount){
+  calcBalance(amnt){
     var re = ".";
     var str = this.crtUsr();
     var newstr = str.replace(re,"");
 
-    var url = '/UserID/'+newstr+'/USD Deposit/'+amount;
+    var url = '/UserID/'+newstr+'/USD Deposit/'+amnt;
     this.fdb.list(url).valueChanges().subscribe(
       data => {
       var strbal:string = data.toString();

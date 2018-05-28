@@ -21,6 +21,7 @@
     "@angular/http": "5.2.10",
     "@angular/platform-browser": "5.2.10",
     "@angular/platform-browser-dynamic": "5.2.10",
+    "@ionic-native/call-number": "^4.7.0",
     "@ionic-native/camera": "^4.7.0",
     "@ionic-native/clipboard": "^4.7.0",
     "@ionic-native/core": "^4.7.0",
@@ -37,6 +38,7 @@
     "angular-typescript-validation": "^1.8.0",
     "angularfire2": "^5.0.0-rc.5-next",
     "axios": "^0.18.0",
+    "call-number": "^1.0.1",
     "cordova-clipboard": "^1.2.1",
     "cordova-plugin-camera": "^4.0.3",
     "cordova-plugin-firebase": "git+https://github.com/jestcastro/cordova-plugin-firebase.git",
@@ -68,7 +70,8 @@
     "plugins": {
       "cordova-plugin-x-socialsharing": {},
       "cordova-plugin-firebase": {},
-      "cordova-clipboard": {}
+      "cordova-clipboard": {},
+      "mx.ferreyra.callnumber": {}
     }
   },
   "cordova-plugin-camera": {},
