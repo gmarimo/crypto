@@ -4,7 +4,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 import { Buydetails } from '../../models/buydetails';
 import { AlertController } from 'ionic-angular';
-import { LoadingController } from 'ionic-angular';
+import { LoadingController ,ToastController} from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 
@@ -34,17 +34,19 @@ export class BtcwithdrawPage {
   total;
   commissionRate: number;
   btcVal: number;
+  btcbal;
  
   withdrawbtc = {} as Buydetails; //firebase models
 
-  constructor(private afAuth: AngularFireAuth, private fdb: AngularFireDatabase, public navCtrl: NavController, public loadingCtrl: LoadingController, public navParams: NavParams, public alertctrl:AlertController) {
-      
-      //this.withd = 0;
+  constructor(private toastCtrl:ToastController,private afAuth: AngularFireAuth, private fdb: AngularFireDatabase, public navCtrl: NavController, public loadingCtrl: LoadingController, public navParams: NavParams, public alertctrl:AlertController) {
+    this.wamnt = 0;
+    this.comm = 0;
+    this.totalbtc =0
+    this.btcbal = 0.00;
       this.commsale = 0.00;
       this.total = 0.00;
       this.commissionRate = 0.009;   
-      //this.btcVal = this.wamnt * this.commissionRate;
-    
+      this.getBtcBal();
   }
 
   ionViewDidLoad() {
@@ -61,26 +63,153 @@ export class BtcwithdrawPage {
   }
 
 
-  btcwithdraw() {
+  btcwithdraw(btcbal:number)
+  {
+    const date:Date = new Date();
+    var re = ".";
+    var str = this.crtUsr();
+    var newstr = str.replace(re,"");
 
-    let loader = this.loadingCtrl.create({
-      spinner: "bubbles",
-      content: "Completing deposit process...",
-      duration: 3000
-    });
-    loader.present();
+if(this.wamnt.value==''){
+  let toast = this.toastCtrl.create({
+    message: 'Please enter Amount in USD OR in BTC',
+    duration: 5000
+  });
+  toast.present(); 
+}
+else{
+  const date:Date = new Date();
+  var re = ".";
+  var str = this.crtUsr();
+  var newstr = str.replace(re,"");
+  if(btcbal >= this.wamnt.value){
+  this.fdb.database.ref('UserID').child(newstr).child('BTC Withdrawal').child(''+date).
+  ref.set({
+        BTC_Withdrawal_Amount:this.wamnt.value,
+        COMMISSION:this.comm.value,
+        Total_BTC:this.totalbtc.value
+  })
+  var newBal:number = btcbal - this.wamnt.value;
+  this.loader();
+  
+      var ref1 = this.fdb.database.ref('UserID').child(newstr).child('Bit Coin').child(''+date);
+      ref1.set({
+            Bit_Coins:newBal,
+      })
+    .catch(error => { 
+
+        let toast = this.toastCtrl.create({
+        message: 'There is a problem completing your transaction, please try again' ,
+        duration:5000,
+        cssClass: "toastclr" 
+      });
+
+      //////////////////////////
+      toast.present();          
+        });
+      }
+      else{
+        let toast = this.toastCtrl.create({
+          message: 'You have insufficient BTC to withdraw this amount of BTC.' ,
+          duration:5000,
+          cssClass: "toastclr"
     
-      this.afAuth.authState.subscribe(auth => {
-      this.fdb.list(`${auth.uid}/Withdraw BTC`).push(this.withdrawbtc)
-    })
+        });
+        toast.present();   
+      }
+}
+    this.emptyonsubmit();
   }
+  emptyonsubmit(){
+    this.wamnt.value=null;
+    this.comm=0;
+    this.totalbtc=0;
+  }
+  public loader(){
+    if(this.wamnt.value!=''){
+      let loader = this.loadingCtrl.create({
+ 
+        spinner:"bubbles",
+        content:"Completing your transaction ..",
+        duration:5000 
+      }); 
+      loader.onDidDismiss(() => {
+       //console.log('Dismissed loading');
+        let alert = this.alertctrl.create({  
+          title: "Transaction Status",
+          subTitle: "Completed successfully!",
+          buttons: [
+
+            {
+              text: 'ok',
+              role: 'cancel',
+              handler: () => {
+                console.log('Cancel clicked');
+              }
+            },
+            {
+              text: 'View History',
+              handler: () => {
+                //console.log('Buy clicked');
+                //this.navCtrl.push(BtcbuysuccessPage);
+              }
+            }
+          ] 
+        });
+        alert.present();       
+     });  
+     loader.present()
+  }
+ }
 
 
 
 
-
-
-
-
-
+  ////////display btc bal to html
+  getBtcBal(){
+    var re = ".";
+    var str = this.crtUsr();
+    var newstr = str.replace(re,"");
+    this.fdb.database.ref('UserID').child(newstr).child('Bit Coin').once('value', function(snapshot) {
+      if (snapshot.val() !== null) {
+      }
+  }).then((snapshot) => {
+    let Catdata = Object.keys(snapshot.val());
+    let temparr = [];
+    let datearr: Date[]=[];
+  
+    var datt:Date;
+    for (var key:number=0;key<Catdata.length;key++) {
+        temparr[key]=Catdata[key]
+        datearr[key] = new Date(temparr[key]);
+        datt = datearr[key]; 
+    }  
+    var maxDate=new Date(Math.max.apply(null,datearr));
+    return this.getCurrentBTCBal(maxDate);
+  });
+  }
+  crtUsr(){
+    var re = "@";
+    var str = this.afAuth.auth.currentUser.email;
+    var newstr = str.replace(re,"");
+    return newstr;
+  }
+  getCurrentBTCBal(date:Date){
+    var re = ".";
+    var str = this.crtUsr();
+    var newstr = str.replace(re,"");
+    var bal:number;
+    var url = '/UserID/'+newstr+'/Bit Coin/'+date;
+    this.fdb.list(url).valueChanges().subscribe(
+      data => {
+      var strbal:string = data.toString();
+      bal = +strbal
+      this.btcbal = bal;
+      }
+    )
+    return bal;
+  }
+  mkWithdrwal(){
+    this.btcwithdraw(this.btcbal);
+  }
 }

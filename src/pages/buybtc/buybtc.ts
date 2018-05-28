@@ -232,7 +232,6 @@ if(this.usdamnt.value==''||this.btcamnt.value==''){
     this.payamnt=0;
     this.commission=0;
     this.getBtc=0;
-    
   }
   getBal(){
     var bal:Date;
