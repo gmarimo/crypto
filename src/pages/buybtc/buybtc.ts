@@ -307,6 +307,7 @@ if(this.usdamnt.value==''||this.btcamnt.value==''){
       data => {
       var strbal:string = data.toString();
       bal = +strbal
+      //alert(bal)
       this.getBtcBal(bal);
       }
     )
