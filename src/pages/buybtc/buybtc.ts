@@ -254,7 +254,9 @@ if(this.usdamnt.value==''||this.btcamnt.value==''){
         datearr[key] = new Date(temparr[key]);
         datt = datearr[key]; 
     }  
-    return this.getCurrentUsdBal(datt);
+    var maxDate=new Date(Math.max.apply(null,datearr));
+    //alert(maxDate);
+    return this.getCurrentUsdBal(maxDate);
   });
   }
   getBtcBal(usdBal:number){
@@ -275,8 +277,8 @@ if(this.usdamnt.value==''||this.btcamnt.value==''){
         datearr[key] = new Date(temparr[key]);
         datt = datearr[key]; 
     }  
-    
-    return this.getCurrentBTCBal(datt,usdBal);
+    var maxDate=new Date(Math.max.apply(null,datearr));
+    return this.getCurrentBTCBal(maxDate,usdBal);
   });
   }
   getCurrentBTCBal(date:Date,usdBal){
