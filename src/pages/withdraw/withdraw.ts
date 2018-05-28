@@ -108,7 +108,6 @@ setBal(date){
       for(var i = 0; i < data.length;i++){
         this.bal.push(data[i]);
         this.usdbal = this.bal[i];
-        alert('in setBal'+data);
       }
     }
   )
