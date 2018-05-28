@@ -62,6 +62,7 @@ import { SellitePage } from '../pages/sellite/sellite';
 import { MylitewalletPage } from '../pages/mylitewallet/mylitewallet';
 import { DatePipe } from '@angular/common';
 import { Clipboard } from '@ionic-native/clipboard';
+import { CallNumber } from '@ionic-native/call-number';
 
 
 
@@ -197,6 +198,7 @@ const firebase = {
     AngularFireAuth,
     DatePipe,
     Clipboard,
+    CallNumber
   ]
 })
 export class AppModule {}

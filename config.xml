@@ -85,5 +85,6 @@
     <plugin name="cordova-plugin-camera" spec="^4.0.3" />
     <plugin name="cordova-plugin-x-socialsharing" spec="^5.4.0" />
     <plugin name="cordova-plugin-firebase" spec="https://github.com/jestcastro/cordova-plugin-firebase.git" />
+    <plugin name="mx.ferreyra.callnumber" spec="~0.0.2" />
     <plugin name="cordova-clipboard" spec="^1.2.1" />
 </widget>
