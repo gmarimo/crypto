@@ -18,12 +18,13 @@
 
   <h1 class="usdbal" *ngFor ="let item of items">{{item}} BTC</h1>
 
-  <ion-label>Scan QR Code</ion-label>
-  <img src = "assets/imgs/qr.png">
+  <ion-label>Wallet Address</ion-label>
+  <img class="img" src = "assets/imgs/qr.png">
 
   <!--<ion-label id="copyTarget">1BoatSLRHtKNngkdXEeobR76b53LETtpyT</ion-label>-->
   
-  <ion-input text-right class="comm" type="text" disabled="true" [(ngModel)]="address"></ion-input>
+  <ion-input class="comm" type="text" disabled="true" [(ngModel)]="address"></ion-input>
+ 
 
   <ion-footer>
       <button ion-button full color="primary" #cpyBtn  ion-button data-clipboard-target="#copyTarget" (click)="copy()">Copy Address</button>

@@ -38,6 +38,13 @@ export class RemoteServiceProvider {
 	  .catch(this.catchError)
   }
 
+  btcWallet() {
+    return this.http.get('https://spectrocoin.com/api/r/wallet')
+    .map(this.extractData)
+    .do(this.logResponse)
+    .catch(this.catchError)
+  }
+
   private catchError(error: Response | any) {
 	  console.log(error);
 	  return Observable.throw(error.json().error || "Server error!");

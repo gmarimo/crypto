@@ -118,7 +118,11 @@ export class WalletsPage {
         datearr[key] = new Date(temparr[key]);
         datt = datearr[key]; 
     }  
-    return this.setBal(datt);
+    //return this.setBal(datt);
+    var maxDate = Math.max.apply(null, datearr)
+    maxDate = new Date(maxDate)
+    //alert(maxDate)
+    return this.setBal(maxDate);
   });
   }
 setBal(date:Date){
