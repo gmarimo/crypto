@@ -26,6 +26,7 @@ import { json } from 'body-parser';
   selector: 'page-selleth',
   templateUrl: 'selleth.html',
 })
+
 export class SellethPage {
 
   @ViewChild('ethamnt') ethamnt;
@@ -83,7 +84,7 @@ return latprice *1.48;
     var numeth:number = this.usdamnt.value/this.ba();
     this.eth = parseFloat(numeth.toFixed(5));
     this.commission = this.calcCommission(numeth);
-    this.payamnt = this.usdamnt.value;
+    this.payamnt = this.usdamnt.value - (this.usdamnt.value *this.commissionRate);
     var commissionUsd = this.usdamnt.value *this.commissionRate;
     this.getEthm = this.calcGet(this.usdamnt.value,commissionUsd);
 
@@ -94,6 +95,7 @@ return latprice *1.48;
     this.commission = (this.calcCommission(amnt))/this.ba();
     this.payamnt = amnt;
     var commissionUsd = amnt*this.commissionRate;
+    this.payamnt = amnt - commissionUsd;
     this.getEthm = this.calcGet(amnt,commissionUsd);
   }
    calcCommission(eth:number){

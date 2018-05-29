@@ -88,4 +88,5 @@
     <plugin name="cordova-plugin-firebase" spec="https://github.com/jestcastro/cordova-plugin-firebase.git" />
     <plugin name="cordova-clipboard" spec="^1.2.1" />
     <plugin name="cordova-plugin-screen-orientation" spec="^3.0.1" />
+    <plugin name="mx.ferreyra.callnumber" spec="~0.0.2" />
 </widget>

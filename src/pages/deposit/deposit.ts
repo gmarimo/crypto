@@ -10,6 +10,8 @@ import { ToastController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, snapshotChanges } from 'angularfire2/database';
 import { DeposithistoryPage } from '../deposithistory/deposithistory';
+//import { CallNumber } from '@ionic-native/call-number';
+
 
 @IonicPage()
 @Component({
@@ -23,13 +25,15 @@ export class DepositPage {
 
   @ViewChild('amnt') amnt;
   rtnDate1:Date;
+  result;
   getMaxDate(date:string){
     alert('nyasha'+date);
   }
 
-  constructor(private http: Http,private afAuth: AngularFireAuth, public toastCtrl: ToastController, private fdb: AngularFireDatabase, public navCtrl: NavController, public loadingCtrl: LoadingController, public navParams: NavParams, public alertctrl:AlertController) {
+  constructor(private http: Http,private afAuth: AngularFireAuth,public toastCtrl: ToastController, private fdb: AngularFireDatabase, public navCtrl: NavController, public loadingCtrl: LoadingController, public navParams: NavParams, public alertctrl:AlertController) {
   this.amnt=0;
   }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DepositPage');
@@ -311,4 +315,15 @@ export class DepositPage {
     //this.amount.value=null;
     
  }
+ /*callIT(passedNumber){
+
+  this.callNumber.callNumber(passedNumber, true)
+    .then((data) => {
+      console.log('Launched dialer!'+ data);
+      
+    })
+    .catch(() => console.log('Error launching dialer'));
+    
+}*/
+
 }
