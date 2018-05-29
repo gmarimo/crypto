@@ -80,7 +80,7 @@ DatesFormat(Dates:string[]){
   let latest_date=[];
   let getBtc = [];
   for(var i=0;i<Dates.length;i++){
-    latest_date[i] =this.dp.transform(Dates[i], 'yyyy-MM-dd');
+    latest_date[i] =this.dp.transform(Dates[i], 'dd-MM-yyyy | HH:mm');
     getBtc[i] = Dates[i];
    }
    this.setBal(getBtc);

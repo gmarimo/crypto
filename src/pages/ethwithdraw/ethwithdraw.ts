@@ -48,7 +48,7 @@ export class EthwithdrawPage {
 
 if(this.wamnt.value==''){
   let toast = this.toastCtrl.create({
-    message: 'Please enter Amount in USD OR in BTC',
+    message: 'Please enter Amount in USD OR in ETH',
     duration: 5000
   });
   toast.present(); 

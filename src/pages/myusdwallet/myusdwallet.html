@@ -9,7 +9,7 @@
 
  
 <ion-content padding>
-  <h1 class="usdbal">${{items}}</h1>
+  <h1 *ngFor = "let item of items" class="usdbal">{{item | currency}}</h1>
   <ion-icon name="timer" (click)="deposithistory()"></ion-icon>
 
   <ion-footer>

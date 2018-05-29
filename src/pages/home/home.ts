@@ -37,6 +37,8 @@ export interface PageInterface {
 })
 export class HomePage {
 
+  splash = true;
+
   public screenOrientation: ScreenOrientation;
 
   rootPage = 'HomePage';
@@ -161,6 +163,7 @@ app.listen(process.env.PORT || 8080);
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
+    setTimeout(() => this.splash = false, 4000);
   }
 
  public loader(){

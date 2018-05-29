@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Success</ion-title>
+    <ion-title>BTC Buy History</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -26,12 +26,12 @@
     <ion-row>
 
       <ion-col>
-        <strong>Date</strong>
+        <strong>Date Time</strong>
         <p class="para" *ngFor ="let date of dates">{{date}}</p>  
       </ion-col>
       
       <ion-col>
-        <strong>BTC qty</strong>
+        <strong>Qty Bought</strong>
         <p class="para" *ngFor ="let btc of btcs">{{btc}}</p> 
       </ion-col>
     </ion-row>

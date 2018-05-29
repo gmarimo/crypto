@@ -50,7 +50,7 @@ export class SellethPage {
     public navParams: NavParams,private fdb:AngularFireDatabase, private toastCtrl:ToastController, public alertctrl:AlertController) {
     this.getEthereum();
     this.payamnt = 0;
-    this.commissionRate = 0.1;
+    this.commissionRate = 0.03;
     this.getEthm = 0;
     this.commission=0;
     this.usd=0;
@@ -76,7 +76,7 @@ ba(){
   
 var cd = (JSON.stringify(this.ethm[0]["price_usd"]));
 var latprice = JSON.parse(cd);
-return latprice *1.5;
+return latprice *1.48;
 }
 
   numEth(){
@@ -98,21 +98,31 @@ return latprice *1.5;
   }
    calcCommission(eth:number){
     var com:number = eth*this.commissionRate;
-    return parseFloat(com.toFixed(4));
+    return parseFloat(com.toFixed(5));
   }
   calcGet(amnt:number,commission:number){
-    var get = (amnt-commission)/this.ba();
-    return parseFloat(get.toFixed(4));
+    var getEth = (amnt-commission)/this.ba();
+    return parseFloat(getEth.toFixed(5));
   }
   
   makeTransaction(ethbal:number,usdBal:number){
-
-    let loader = this.loadingCtrl.create({
-      spinner: "bubbles",
-      content: "Completing deposit process...",
-      duration: 3000
-    });
-    loader.present();
+    if(this.usdamnt.value == '' || this.ethamnt.value == ''){
+      let toast = this.toastCtrl.create({
+        message: 'Please enter amount in USD or ETH.' ,
+        duration:5000,
+        cssClass: "toastclr"
+  
+      });
+      toast.present();
+    }else if(this.usdamnt.value < 20){
+      let toast = this.toastCtrl.create({
+        message: 'You can only purchase a minimum of $20 worth of ETH.' ,
+        duration:5000,
+        cssClass: "toastclr"
+  
+      });
+      toast.present();
+    }else{
 
     const date:Date = new Date();
    // alert(''+date);
@@ -122,13 +132,19 @@ return latprice *1.5;
     
     var ref = this.fdb.database.ref('UserID').child(newstr).child('Buy ETH').child(''+date);
     ref.set({
-          USD:this.usd,
-          ETH:this.eth,
-          COMMISSION:this.commission,
-          GET_ETH:this.ethm,
-          TOTAL:this.payamnt,
+          USD_BEFORE_FEES:this.usd,
+          ETH_BEFORE_FEES:this.eth,
+          FEES:this.commission,
+          ETH_AFTER_FEES:this.getEthm,
+          USD_AFTER_FEES:this.payamnt,
     })
     if(this.eth < ethbal){
+      let loader = this.loadingCtrl.create({
+        spinner: "bubbles",
+        content: "Completing your transaction...",
+        duration: 5000
+      });
+      loader.present();
       var newBal:number = usdBal + this.payamnt;
       this.loader();
       
@@ -145,7 +161,7 @@ return latprice *1.5;
         .catch(error => { 
     
             let toast = this.toastCtrl.create({
-            message: 'There is a problem completing your transaction, please try again' ,
+            message: 'Oops, ' + error ,
             duration:5000,
             cssClass: "toastclr" 
           });
@@ -165,6 +181,7 @@ return latprice *1.5;
           }
 
           this.emptyonsubmit();
+        }
 
   }
   crtUsr(){

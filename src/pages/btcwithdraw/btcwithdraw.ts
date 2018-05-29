@@ -28,6 +28,7 @@ export class BtcwithdrawPage {
   @ViewChild('wamnt') wamnt;
   @ViewChild('comm') comm;
   @ViewChild('totalbtc') totalbtc;
+  @ViewChild('walletaddress') walletaddress;
 
   withd: number;
   commsale;
@@ -45,7 +46,7 @@ export class BtcwithdrawPage {
     this.btcbal = 0.00;
       this.commsale = 0.00;
       this.total = 0.00;
-      this.commissionRate = 0.009;   
+      this.commissionRate = 0.01;   
       this.getBtcBal();
   }
 
@@ -77,7 +78,13 @@ if(this.wamnt.value==''){
   });
   toast.present(); 
 }
-else{
+else if(this.walletaddress.value == ''){
+  let toast = this.toastCtrl.create({
+    message: 'Please enter BTC wallet address to send funds to.',
+    duration: 5000
+  });
+  toast.present();
+}else{
   const date:Date = new Date();
   var re = ".";
   var str = this.crtUsr();
@@ -85,9 +92,10 @@ else{
   if(btcbal >= this.wamnt.value){
   this.fdb.database.ref('UserID').child(newstr).child('BTC Withdrawal').child(''+date).
   ref.set({
-        BTC_Withdrawal_Amount:this.wamnt.value,
+        BTC_AMOUNT_BEFORE_FEES:this.wamnt.value,
+        BTC_AMOUNT_AFTER_FEES:this.totalbtc.value,
+        BTC_WALLET_ADDRESS:this.walletaddress.value,
         COMMISSION:this.comm.value,
-        Total_BTC:this.totalbtc.value
   })
   var newBal:number = btcbal - this.wamnt.value;
   this.loader();
@@ -122,8 +130,9 @@ else{
   }
   emptyonsubmit(){
     this.wamnt.value=null;
-    this.comm=0;
-    this.totalbtc=0;
+    this.comm.value=0;
+    this.totalbtc.value=0;
+    this.walletaddress.value=null;
   }
   public loader(){
     if(this.wamnt.value!=''){
@@ -148,7 +157,7 @@ else{
               }
             },
             {
-              text: 'View History',
+              //text: 'View History',
               handler: () => {
                 //console.log('Buy clicked');
                 //this.navCtrl.push(BtcbuysuccessPage);

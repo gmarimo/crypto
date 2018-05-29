@@ -16,7 +16,7 @@
 
 <ion-content padding>
 
-  <h1>{{btcbal}}</h1>
+  <h1>{{btcbal | number:'1.2-5'}} BTC</h1>
 
   <ion-item>
     <ion-label floating>Withdrawal Amount (BTC):</ion-label>
@@ -35,14 +35,14 @@
 
   <ion-item>
       <ion-label floating>Wallet Address</ion-label>
-      <ion-input [(ngModel)]="withdrawbtc.wallet_address" type="text"></ion-input>
-  </ion-item><br>
-  <ion-icon name="qr-scanner"></ion-icon>
+      <ion-input [(ngModel)]="wallet_address" #walletaddress type="text"></ion-input>
+  </ion-item>
+  <!--<ion-icon name="qr-scanner"></ion-icon>-->
 </ion-content>
 
   <ion-footer>
-      <button ion-button class="button" full color="primary" (click)="mkWithdrwal()">Withdraw</button>
-      <button ion-button full class="btnclear">Clear</button>
+      <button ion-button class="button" full color="primary" (click)=" mkWithdrwal()">Withdraw</button>
+      <button ion-button full class="btnclear" (click)="emptyonsubmit()">Clear</button>
   </ion-footer>
 
 

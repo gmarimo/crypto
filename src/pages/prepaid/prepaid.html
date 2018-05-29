@@ -54,7 +54,7 @@
     
               <p>Current balance in your prepaid card</p>
               <ion-item no-lines>
-                <h1 class="bal" *ngFor ="let item of items">Curr Bal: ${{item}}</h1>
+                <h1 class="bal" *ngFor ="let item of items">Curr Bal: {{item | currency}}</h1>
               </ion-item>
              
            

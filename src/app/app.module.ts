@@ -64,6 +64,7 @@ import { MylitewalletPage } from '../pages/mylitewallet/mylitewallet';
 import { DatePipe } from '@angular/common';
 import { Clipboard } from '@ionic-native/clipboard';
 import {ScreenOrientation} from "@ionic-native/screen-orientation";
+import { BtcsellhistoryPage } from '../pages/btcsellhistory/btcsellhistory'
 //import { CallNumber } from '@ionic-native/call-number';
 
 
@@ -125,7 +126,8 @@ const firebase = {
     MylitewalletPage,
     EthbuysuccessPage,
     UsdwithdrawalPage,
-    MyaccPage
+    MyaccPage,
+    BtcsellhistoryPage
 
   ],
   imports: [
@@ -191,7 +193,8 @@ const firebase = {
     MylitewalletPage,
     EthbuysuccessPage,
     UsdwithdrawalPage,
-    MyaccPage
+    MyaccPage,
+    BtcsellhistoryPage
   ],
   providers: [
     StatusBar,

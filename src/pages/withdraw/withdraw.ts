@@ -38,7 +38,7 @@ export class WithdrawPage {
       let loader = this.loadingCtrl.create({
  
         spinner:"bubbles",
-        content:"Completing your transaction ..",
+        content:"Completing your withdrawal..",
         duration:5000 
       }); 
       loader.onDidDismiss(() => {
@@ -120,7 +120,41 @@ makeWithdrawal(){
   var str = this.crtUsr();
   var newstr = str.replace(re,"");
 
-  if(this.amnt.value < this.usdbal){
+  if (this.amnt.value == "") {
+    let toast = this.toastCtrl.create({
+      message:  'Please enter the amount that you want to withdraw.' ,
+      duration:5000,
+      cssClass: "toastclr"
+
+    });
+    toast.present();
+  }else if(this.num.value == ""){
+    let toast = this.toastCtrl.create({
+      message: 'Please enter ecocash number for withdrawal.' ,
+      duration:5000,
+      cssClass: "toastclr"
+
+    });
+    toast.present();
+  }else if(this.num.value.length < 10){
+    let toast = this.toastCtrl.create({
+      message: 'Mmmm, please check your ecocash number again.',
+      duration:6000,
+      cssClass: "toastclr"
+
+    });
+    toast.present();
+  }else if(this.amnt.value < 20){
+    let toast = this.toastCtrl.create({
+      message: 'You can not withdraw amount less than $20.' ,
+      duration:5000,
+      cssClass: "toastclr"
+
+    });
+    toast.present();
+  }
+  else if(this.amnt.value < this.usdbal){
+    this.loader()
     var newBal:number = this.usdbal - this.amnt.value;
     var ref = this.fdb.database.ref('UserID').child(newstr).child('USD Balance').child(''+date);
     ref.set({
@@ -136,8 +170,15 @@ makeWithdrawal(){
   })
   }
   else{
-    alert('you cannot make a deposit above your float');
+    let toast = this.toastCtrl.create({
+      message: 'You can not withdraw amount above your float balance.' ,
+      duration:5000,
+      cssClass: "toastclr"
+
+    });
+    toast.present();;
     this.num.value=null;
+    this.amnt.value=null;
   }
   }
   

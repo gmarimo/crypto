@@ -13,6 +13,7 @@ import { RemoteServiceProvider } from '../../providers/remote-service/remote-ser
 //import { WalletsPage } from '../wallets/wallets';
 import { HttpModule } from '@angular/http';
 import { json } from 'body-parser';
+import { BtcsellhistoryPage } from '../btcsellhistory/btcsellhistory';
 
 /**
  * Generated class for the SellbtcPage page.
@@ -50,7 +51,7 @@ export class SellbtcPage {
     
     this.getCoins();
     this.payamnt = 0;
-    this.commissionRate = 0.1;
+    this.commissionRate = 0.03;
     this.getBtc = 0;
     this.commission=0;
     this.usd;
@@ -75,7 +76,7 @@ ba(){
   
 var cd = (JSON.stringify(this.coins[0]["price_usd"]));
 var latprice = JSON.parse(cd);
-return latprice *1.5;
+return latprice *1.48;
 }
 
   numBtc(){
@@ -89,7 +90,7 @@ return latprice *1.5;
   }
   amntUsd(){
     var amnt:number = this.btcamnt.value *this.ba(); 
-    this.usd = parseFloat(amnt.toFixed(2));
+    this.usd = parseFloat(amnt.toFixed(5));
     this.commission = (this.calcCommission(amnt))/this.ba();
     this.payamnt = amnt;
     var commissionUsd = amnt*this.commissionRate;
@@ -98,18 +99,18 @@ return latprice *1.5;
   }
    calcCommission(btc:number){
     var com:number = btc*this.commissionRate;
-    return parseFloat(com.toFixed(4));
+    return parseFloat(com.toFixed(5));
   }
   calcGet(amnt:number,commission:number){
     var get = (amnt-commission)/this.ba();
-    return parseFloat(get.toFixed(4));
+    return parseFloat(get.toFixed(5));
   }
   
   makeTransaction(btcbal:number,usdBal:number){
     let loader = this.loadingCtrl.create({
       spinner: "bubbles",
       content: "Completing deposit process...",
-      duration: 3000
+      duration: 5000
     });
     loader.present();
 
@@ -121,11 +122,11 @@ return latprice *1.5;
     
     var ref = this.fdb.database.ref('UserID').child(newstr).child('Sell BTC').child(''+date);
     ref.set({
-          USD:this.usd,
-          BTC:this.btc,
-          COMMISSION:this.commission,
-          GET_BTC:this.getBtc,
-          TOTAL:this.payamnt,
+          USD_BEFORE_FEES:this.usd,
+          BTC_BEFORE_FEES:this.btc,
+          FEES:this.commission,
+          BTC_AFTER_FEES:this.getBtc,
+          USD_AFTER_FEES:this.payamnt,
     })
     if(this.btc < btcbal){
     var newBal:number = usdBal + this.payamnt;
@@ -286,18 +287,19 @@ return latprice *1.5;
               text: 'View History',
               handler: () => {
                 //console.log('Buy clicked');
-                this.navCtrl.push(BtcbuysuccessPage);
+                this.navCtrl.push(BtcsellhistoryPage);
               }
             }
-
-
-
           ] 
         });
         alert.present();       
      });  
      loader.present()
   }
+ }
+
+ sellhist() {
+   this.navCtrl.push(BtcsellhistoryPage);
  }
 
 }

@@ -79,7 +79,7 @@ export class BuybtcPage {
     
   var cd = (JSON.stringify(this.coins[0]["price_usd"]));
   var latprice = JSON.parse(cd);
-  return latprice *1.5;
+  return latprice *1.53;
   }
 
   numBtc(){
@@ -100,6 +100,7 @@ export class BuybtcPage {
     this.payamnt = amnt;
     var commissionUsd = amnt*this.commissionRate;
     this.getBtc = this.calcGet(amnt,commissionUsd);
+    return parseFloat(this.payamnt.toFixed(2));
   }
    calcCommission(btc:number){
     var com:number = btc * this.commissionRate;
@@ -107,7 +108,7 @@ export class BuybtcPage {
   }
   calcGet(amnt:number,commission:number){
     var get = (amnt-commission) / this.ba();
-    return parseFloat(get.toFixed(4));
+    return parseFloat(get.toFixed(5));
   }
 
   public loader(){
