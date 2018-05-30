@@ -39,7 +39,7 @@ export class PersonalInfoPage {
     private alertCtrl: AlertController,public loadingCtrl: LoadingController,private toastCtrl:ToastController,/*public formbuilder:FormBuilder,*/public navCtrl: NavController,public ngzone: NgZone) {
     this.email ='';
     this.name = '';
-    this.surname = '';
+    this.surname= '';
     this.idnum ='';
     this.phone='';
     this.dob='';

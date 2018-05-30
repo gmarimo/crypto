@@ -15,8 +15,8 @@
 
 <ion-content padding>
   <ion-grid>
-<ion-item>
-  <p class="ava"><ion-icon class="avatar" name="contact"></ion-icon></p>
+<ion-item class="ava">
+  <p ><ion-icon class="avatar" name="contact"></ion-icon></p>
 </ion-item>
     <ion-label class="em">{{email}}</ion-label>
     
@@ -29,7 +29,7 @@
 &nbsp;
 &nbsp;
 &nbsp;
-  <ion-item ><ion-icon name="lock"></ion-icon>  Change password</ion-item>
-  <ion-item ><ion-icon name="settings"></ion-icon>  Delete Account</ion-item>
+  <ion-item  (click)="change()" ><ion-icon name="lock"></ion-icon>  Change password</ion-item>
+  <ion-item (click)="logout()"><ion-icon name="exit"></ion-icon>  Logout</ion-item>
 </ion-grid>
 </ion-content>

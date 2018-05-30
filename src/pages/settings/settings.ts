@@ -5,6 +5,7 @@ import { PersonalInfoPage } from '../personal-info/personal-info';
 import { SecuritysettingsPage } from '../securitysettings/securitysettings';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { MyaccPage } from '../myacc/myacc';
+import { AppinfoPage } from '../appinfo/appinfo';
 
 /**
  * Generated class for the SettingsPage page.
@@ -39,6 +40,9 @@ export class SettingsPage {
 
 myacc(){
   this.navCtrl.push(MyaccPage);
+}
+info(){
+  this.navCtrl.push(AppinfoPage);
 }
 
 }
