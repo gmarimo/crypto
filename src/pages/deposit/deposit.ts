@@ -5,7 +5,7 @@ import { AlertController } from 'ionic-angular';
 import { WalletsPage } from '../wallets/wallets';
 import { Buydetails } from '../../models/buydetails';
 import { LoadingController } from 'ionic-angular';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers } from '@angular/http';
 import { ToastController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, snapshotChanges } from 'angularfire2/database';
@@ -33,6 +33,33 @@ export class DepositPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DepositPage');
+  
+  }
+
+  paynow () {
+
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    let body = {
+      id: "5396",
+      reference: "1",
+      amount: "20",
+      returnurl: "http://www.codel.co.zw/bashwallet/",
+      resulturl: "http://www.codel.co.zw/bashwallet/",
+      authemail: "gift@codel.co.zw",
+      status: "Message",
+      hash: ""
+    };
+      var url = 'https://www.paynow.co.zw/interface/initiatetransaction';
+      var request = this.http.post(url, JSON.stringify(body), {headers: headers})
+        .map(res => res.json())
+        .subscribe(data => {
+          console.log(data);
+          window.open('request')
+        });
+
+
   }
 
   depositsteps() {
