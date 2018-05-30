@@ -66,7 +66,7 @@ setBal(date){
   var url = '/UserID/'+newstr+'/Ethereum/'+date[i];
   this.fdb.list(url).valueChanges().subscribe(
     data => {
-      this.Catdata.push(data);
+      this.Catdata.push(Number(data).toFixed(5));
     }
   )
 }

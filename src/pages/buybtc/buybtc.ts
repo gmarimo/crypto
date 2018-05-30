@@ -79,7 +79,7 @@ export class BuybtcPage {
     
   var cd = (JSON.stringify(this.coins[0]["price_usd"]));
   var latprice = JSON.parse(cd);
-  return latprice *1.53;
+  return latprice *1.78;
   }
 
   numBtc(){
