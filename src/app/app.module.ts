@@ -35,6 +35,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { BtcbuysuccessPage } from '../pages/btcbuysuccess/btcbuysuccess';
 import { EthbuysuccessPage } from '../pages/ethbuysuccess/ethbuysuccess';
 import { MyaccPage } from '../pages/myacc/myacc';
+import { AppinfoPage } from '../pages/appinfo/appinfo';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -133,7 +134,8 @@ const firebase = {
     MyaccPage,
     BtcsellhistoryPage,
     BuyBtcHelpPage,
-    HelpPage
+    HelpPage,
+    AppinfoPage
 
   ],
   imports: [
@@ -203,7 +205,8 @@ const firebase = {
     BtcsellhistoryPage,
     PopPage,
     BuyBtcHelpPage,
-    HelpPage
+    HelpPage,
+    AppinfoPage
   ],
   providers: [
     StatusBar,

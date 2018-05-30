@@ -87,9 +87,9 @@
     <plugin name="cordova-plugin-x-socialsharing" spec="^5.4.0" />
     <plugin name="cordova-plugin-firebase" spec="https://github.com/jestcastro/cordova-plugin-firebase.git" />
     <plugin name="cordova-clipboard" spec="^1.2.1" />
-<<<<<<< HEAD
-=======
+
     <plugin name="cordova-plugin-screen-orientation" spec="^3.0.1" />
->>>>>>> acb5e9086a29aecbee7eb8e109ac2792a06c0baf
+
     <plugin name="mx.ferreyra.callnumber" spec="~0.0.2" />
+    <plugin name="cordova-plugin-screen-orientation" spec="^3.0.1" />
 </widget>

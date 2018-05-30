@@ -59,6 +59,7 @@ export class BtcbuysuccessPage {
   }
 
 setBal(date){
+  let farr =[];
   var re = ".";
   var str = this.crtUsr();
   var newstr = str.replace(re,"");
@@ -66,14 +67,12 @@ setBal(date){
   var url = '/UserID/'+newstr+'/Bit Coin/'+date[i];
   this.fdb.list(url).valueChanges().subscribe(
     data => {
-      this.Catdata.push(data);
+      this.Catdata.push(Number(data).toFixed(5));
     }
   )
 }
 this.btcs = this.Catdata;
-}
-hello(){
-  alert('Hello, world');
+//alert(this.Catdata)
 }
 DatesFormat(Dates:string[]){
   var re = ".";

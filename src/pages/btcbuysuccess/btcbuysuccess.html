@@ -12,7 +12,6 @@
 
 </ion-header>
 
-
 <ion-content padding>
 
   <ion-label class="cmplt">Transaction Completed Successfully</ion-label>
@@ -24,7 +23,6 @@
   <ion-label>History</ion-label>
   <ion-grid>
     <ion-row>
-
       <ion-col>
         <strong>Date Time</strong>
         <p class="para" *ngFor ="let date of dates">{{date}}</p>  
@@ -32,7 +30,7 @@
       
       <ion-col>
         <strong>Qty Bought</strong>
-        <p class="para" *ngFor ="let btc of btcs">{{btc}}</p> 
+        <p class="para" *ngFor ="let btc of btcs">{{btc}}<br></p> 
       </ion-col>
     </ion-row>
   </ion-grid>
