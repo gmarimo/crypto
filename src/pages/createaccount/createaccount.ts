@@ -15,6 +15,7 @@ import { EmailconfirmationPage } from '../emailconfirmation/emailconfirmation';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { MenuController } from 'ionic-angular/index';
+import { TermsPage } from '../terms/terms';
 
 @IonicPage()
 @Component({
@@ -207,5 +208,8 @@ console.log("Email verification failed, please try again", error)
 })
 console.log(this.email.value);
 
+}
+terms(){
+  this.navCtrl.push(TermsPage);
 }
 }

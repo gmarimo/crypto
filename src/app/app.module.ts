@@ -35,6 +35,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { BtcbuysuccessPage } from '../pages/btcbuysuccess/btcbuysuccess';
 import { EthbuysuccessPage } from '../pages/ethbuysuccess/ethbuysuccess';
 import { MyaccPage } from '../pages/myacc/myacc';
+import { AppinfoPage } from '../pages/appinfo/appinfo';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -65,6 +66,9 @@ import { DatePipe } from '@angular/common';
 import { Clipboard } from '@ionic-native/clipboard';
 import {ScreenOrientation} from "@ionic-native/screen-orientation";
 import { BtcsellhistoryPage } from '../pages/btcsellhistory/btcsellhistory'
+import { PopPage } from '../pages/pop/pop';
+import { BuyBtcHelpPage } from '../pages/buy-btc-help/buy-btc-help';
+import {HelpPage} from '../pages/help/help';
 //import { CallNumber } from '@ionic-native/call-number';
 
 
@@ -104,6 +108,7 @@ const firebase = {
     ExchangePage,
     PrepaidPage,
     SettingsPage,
+    PopPage,
     AlertsPage,
     SharePage,
     InvitePage,
@@ -127,7 +132,10 @@ const firebase = {
     EthbuysuccessPage,
     UsdwithdrawalPage,
     MyaccPage,
-    BtcsellhistoryPage
+    BtcsellhistoryPage,
+    BuyBtcHelpPage,
+    HelpPage,
+    AppinfoPage
 
   ],
   imports: [
@@ -194,7 +202,11 @@ const firebase = {
     EthbuysuccessPage,
     UsdwithdrawalPage,
     MyaccPage,
-    BtcsellhistoryPage
+    BtcsellhistoryPage,
+    PopPage,
+    BuyBtcHelpPage,
+    HelpPage,
+    AppinfoPage
   ],
   providers: [
     StatusBar,
@@ -206,6 +218,7 @@ const firebase = {
     DatePipe,
     Clipboard,
     ScreenOrientation,
+    //CallNumber
     
   ]
 })
