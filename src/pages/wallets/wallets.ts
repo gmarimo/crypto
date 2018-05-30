@@ -21,6 +21,9 @@ import { AngularFireDatabase, snapshotChanges } from 'angularfire2/database';
 import { SellitePage } from '../sellite/sellite';
 import { MylitewalletPage } from '../mylitewallet/mylitewallet';
 import { BuylitePage } from '../buylite/buylite';
+import { PopoverController } from 'ionic-angular';
+import { PopPage } from '../pop/pop';
+
 
 /**
  * Generated class for the WalletsPage page.
@@ -45,7 +48,7 @@ export class WalletsPage {
 
 
   
-  constructor(public afAuth: AngularFireAuth, public loadingCtrl: LoadingController, private toastCtrl:ToastController, public fdb: AngularFireDatabase,private remoteserviceprovider: RemoteServiceProvider, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public afAuth: AngularFireAuth, public loadingCtrl: LoadingController,public popoverCtrl: PopoverController,private toastCtrl:ToastController, public fdb: AngularFireDatabase,private remoteserviceprovider: RemoteServiceProvider, public navCtrl: NavController, public navParams: NavParams) {
       this.item = 30;
       this.accbal = 0;
       this.updatebal();
@@ -195,6 +198,11 @@ setBal(date:Date){
   litewallet(){
     this.navCtrl.push(MylitewalletPage)
   }
-
+  presentPopover(myEvent) {
+    let popover = this.popoverCtrl.create(PopPage);
+    popover.present({
+      ev: myEvent
+    });
+  }
 
 }
