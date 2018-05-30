@@ -1,0 +1,40 @@
+<!--
+  Generated template for the BtcsellhistoryPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>BTC Sell History</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <ion-label class="cmplt">Transaction Completed Successfully</ion-label>
+    <p><ion-icon name="checkmark-circle"></ion-icon></p>
+    <ion-item>
+      <ion-label>New BTC Balance: {{valuu}}</ion-label>
+    </ion-item>
+  
+    <ion-label>History</ion-label>
+    <ion-grid>
+      <ion-row>
+  
+        <ion-col>
+          <strong>Date Time</strong>
+          <p class="para" *ngFor ="let date of dates">{{date}}</p>  
+        </ion-col>
+        
+        <ion-col>
+          <strong>Amnt Rcvd</strong>
+          <p class="para" *ngFor ="let btc of btcs">{{btc}}</p> 
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+</ion-content>

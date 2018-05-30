@@ -4,6 +4,7 @@ import { EthdepositPage } from '../ethdeposit/ethdeposit';
 import { EthwithdrawPage } from '../ethwithdraw/ethwithdraw';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, snapshotChanges } from 'angularfire2/database';
+import { EthbuysuccessPage } from '../ethbuysuccess/ethbuysuccess';
 /**
  * Generated class for the MyethwalletPage page.
  *
@@ -76,6 +77,10 @@ setBal(date:Date){
     }
   )
   return bal;
+}
+
+btcethhist() {
+  this.navCtrl.push(EthbuysuccessPage);
 }
 }
 

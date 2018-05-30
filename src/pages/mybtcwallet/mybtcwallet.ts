@@ -21,7 +21,7 @@ import { BtcbuysuccessPage } from '../btcbuysuccess/btcbuysuccess';
 export class MybtcwalletPage {
   items;
   constructor( public fdb: AngularFireDatabase,public afAuth: AngularFireAuth,public navCtrl: NavController, public navParams: NavParams) {
-    this.updatebal()
+    this.updatebal();
   }
 
   ionViewDidLoad() {

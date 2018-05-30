@@ -51,7 +51,7 @@ export class BuyethPage {
     
     this.getEthereum();
     this.payamnt = 0;
-    this.commissionRate = 0.1;
+    this.commissionRate = 0;
     this.getEthm = 0;
     this.commission=0;
     this.usd;
@@ -77,7 +77,7 @@ ba(){
   
 var bd = (JSON.stringify(this.ethm[0]["price_usd"]));
 var lat = JSON.parse(bd);
-return lat *1.5;
+return lat *1.53;
 }
 
 
@@ -152,57 +152,46 @@ return lat *1.5;
  }
   
   makeTransaction(ethbal:number,usdBal:number){
-    //this.loader();
-    const date:Date = new Date();
-   // alert(''+date);
-    var re = ".";
-    var str = this.crtUsr();
-    var newstr = str.replace(re,"");
-    
-    var ref = this.fdb.database.ref('UserID').child(newstr).child('Buy ETH').child(''+date);
-    //alert(" >> " + this.usd);
-    ref.set({
-          USD:this.usd,
-          ETH:this.eth,
+      if(this.usdamnt.value==''||this.ethamnt.value==''){
+        let toast = this.toastCtrl.create({
+          message: 'Please enter Amount in USD OR in ETH',
+          duration: 5000
+        });
+        toast.present(); 
+      }else if(this.usdamnt.value < 20){
+        let toast = this.toastCtrl.create({
+          message: 'You can only buy a minimum of $20 worth of ETH.',
+          duration: 5000
+        });
+        toast.present(); 
+      }else{
+        if(this.usd < usdBal){
+          let loader = this.loadingCtrl.create({
+            spinner: "bubbles",
+            content: "Completing your transaction...",
+            duration: 5000
+          });
+          loader.present();
+        const date:Date = new Date();
+      // alert(''+date);
+        var re = ".";
+        var str = this.crtUsr();
+        var newstr = str.replace(re,"");
+        
+        var ref = this.fdb.database.ref('UserID').child(newstr).child('Buy ETH').child(''+date);
+        ref.set({
+          USD_BEFORE_FEES:this.usd,
+          ETH_BEFORE_FEES:this.eth,
           COMMISSION:this.commission,
-          GET_ETH:this.getEthm,
-          TOTAL:this.payamnt,
-    })
-if(this.usdamnt.value==''||this.ethamnt.value==''){
-  let toast = this.toastCtrl.create({
-    message: 'Enter Amount in USD OR in ETH',
-    duration: 3000
-  });
-  toast.present(); 
-}
-else{
-  let loader = this.loadingCtrl.create({
-    spinner: "bubbles",
-    content: "Completing deposit process...",
-    duration: 3000
-  });
-  loader.present();
-  if(this.usd < usdBal){
-  const date:Date = new Date();
- // alert(''+date);
-  var re = ".";
-  var str = this.crtUsr();
-  var newstr = str.replace(re,"");
-  
-  var ref = this.fdb.database.ref('UserID').child(newstr).child('Buy ETH').child(''+date);
-  ref.set({
-        USD:this.usd,
-        ETH:this.eth,
-        COMMISSION:this.commission,
-        GET_ETH:this.getEthm,
-        TOTAL:this.payamnt,
-  })
+          ETH_AFTER_FEES:this.getEthm,
+          USD_AFTER_FEES:this.payamnt,
+        })
 
 
     .catch(error => { 
 
       let toast = this.toastCtrl.create({
-        message: 'Email or password invalid, please verify your details and try again.' ,
+        message: 'Oops, ' + error ,
         duration:5000,
         cssClass: "toastclr"
   
@@ -225,7 +214,7 @@ else{
           .catch(error => { 
       
               let toast = this.toastCtrl.create({
-              message: 'There is a problem completing your transaction, please try again' ,
+              message: 'Oops'+ error ,
               duration:5000,
               cssClass: "toastclr" 
             });
@@ -236,7 +225,7 @@ else{
       }
       else{
         let toast = this.toastCtrl.create({
-          message: 'Insufficient credit in your account to buy Ethereum.' ,
+          message: 'There is insufficient funds in your account to buy ETH.' ,
           duration:5000,
           cssClass: "toastclr"
     
@@ -281,7 +270,8 @@ else{
         datearr[key] = new Date(temparr[key]);
         datt = datearr[key]; 
     }  
-    return this.getCurrentUsdBal(datt);
+    var maxDate=new Date(Math.max.apply(null,datearr));
+    return this.getCurrentUsdBal(maxDate);
   });
   }
 
@@ -318,7 +308,8 @@ else{
         datearr[key] = new Date(temparr[key]);
         datt = datearr[key]; 
     }  
-    return this.getCurrentETHBal(datt,usdBal);
+    var maxDate=new Date(Math.max.apply(null,datearr));
+    return this.getCurrentETHBal(maxDate,usdBal);
   });
   }
 

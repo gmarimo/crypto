@@ -15,7 +15,7 @@
 
 
 <ion-content padding>
-  <h1 class="usdbal" *ngFor ="let item of items">{{item}} BTC</h1>
+  <h1 class="usdbal" *ngFor ="let item of items">{{item | number:'1.2-5'}} BTC</h1>
   <ion-icon name="timer" (click)="btcbuyhist()"></ion-icon>
 
   <ion-footer>

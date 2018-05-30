@@ -4,11 +4,13 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Injectable()
 export class RemoteServiceProvider {
+  email;
 
-  constructor(private http: Http) { }
+  constructor(private http: Http,private firebaseauth:AngularFireAuth) { }
 
   getCoins() {
     return this.http.get('https://api.coinmarketcap.com/v1/ticker/?limit=1')
@@ -54,5 +56,7 @@ export class RemoteServiceProvider {
 	}
   private extractData(res: Response){
 		return res.json();
-	}
+  }
+  
+ 
 }

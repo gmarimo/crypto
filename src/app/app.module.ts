@@ -34,6 +34,7 @@ import { TermsPage } from '../pages/terms/terms';
 import { TabsPage } from '../pages/tabs/tabs';
 import { BtcbuysuccessPage } from '../pages/btcbuysuccess/btcbuysuccess';
 import { EthbuysuccessPage } from '../pages/ethbuysuccess/ethbuysuccess';
+import { MyaccPage } from '../pages/myacc/myacc';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -62,7 +63,9 @@ import { SellitePage } from '../pages/sellite/sellite';
 import { MylitewalletPage } from '../pages/mylitewallet/mylitewallet';
 import { DatePipe } from '@angular/common';
 import { Clipboard } from '@ionic-native/clipboard';
-import { CallNumber } from '@ionic-native/call-number';
+import {ScreenOrientation} from "@ionic-native/screen-orientation";
+import { BtcsellhistoryPage } from '../pages/btcsellhistory/btcsellhistory'
+//import { CallNumber } from '@ionic-native/call-number';
 
 
 
@@ -122,7 +125,9 @@ const firebase = {
     SellitePage,
     MylitewalletPage,
     EthbuysuccessPage,
-    UsdwithdrawalPage
+    UsdwithdrawalPage,
+    MyaccPage,
+    BtcsellhistoryPage
 
   ],
   imports: [
@@ -187,7 +192,9 @@ const firebase = {
     SellitePage,
     MylitewalletPage,
     EthbuysuccessPage,
-    UsdwithdrawalPage
+    UsdwithdrawalPage,
+    MyaccPage,
+    BtcsellhistoryPage
   ],
   providers: [
     StatusBar,
@@ -198,7 +205,9 @@ const firebase = {
     AngularFireAuth,
     DatePipe,
     Clipboard,
-    CallNumber
+    ScreenOrientation,
+    //CallNumber
+    
   ]
 })
 export class AppModule {}

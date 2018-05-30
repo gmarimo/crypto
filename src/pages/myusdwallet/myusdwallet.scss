@@ -1,8 +1,15 @@
 page-myusdwallet {
 
+  
     ion-content{
         text-align: center;
+        color:#fff;
     }
+
+    h1{
+        color: #fff;
+      }
+  
 
     .btncolor{
         background: #35B253;
@@ -14,9 +21,8 @@ page-myusdwallet {
         margin-top: 5px;
        
     }
-
-    h1{
-      color: #fff;
+    .btncolor{
+        background: grey;
     }
 
     ion-icon{

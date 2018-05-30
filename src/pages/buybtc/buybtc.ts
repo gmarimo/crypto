@@ -79,7 +79,7 @@ export class BuybtcPage {
     
   var cd = (JSON.stringify(this.coins[0]["price_usd"]));
   var latprice = JSON.parse(cd);
-  return latprice *1.5;
+  return latprice *1.53;
   }
 
   numBtc(){
@@ -100,6 +100,7 @@ export class BuybtcPage {
     this.payamnt = amnt;
     var commissionUsd = amnt*this.commissionRate;
     this.getBtc = this.calcGet(amnt,commissionUsd);
+    return parseFloat(this.payamnt.toFixed(2));
   }
    calcCommission(btc:number){
     var com:number = btc * this.commissionRate;
@@ -107,7 +108,7 @@ export class BuybtcPage {
   }
   calcGet(amnt:number,commission:number){
     var get = (amnt-commission) / this.ba();
-    return parseFloat(get.toFixed(4));
+    return parseFloat(get.toFixed(5));
   }
 
   public loader(){
@@ -232,7 +233,6 @@ if(this.usdamnt.value==''||this.btcamnt.value==''){
     this.payamnt=0;
     this.commission=0;
     this.getBtc=0;
-    
   }
   getBal(){
     var bal:Date;
@@ -254,7 +254,9 @@ if(this.usdamnt.value==''||this.btcamnt.value==''){
         datearr[key] = new Date(temparr[key]);
         datt = datearr[key]; 
     }  
-    return this.getCurrentUsdBal(datt);
+    var maxDate=new Date(Math.max.apply(null,datearr));
+    //alert(maxDate);
+    return this.getCurrentUsdBal(maxDate);
   });
   }
   getBtcBal(usdBal:number){
@@ -275,8 +277,8 @@ if(this.usdamnt.value==''||this.btcamnt.value==''){
         datearr[key] = new Date(temparr[key]);
         datt = datearr[key]; 
     }  
-    
-    return this.getCurrentBTCBal(datt,usdBal);
+    var maxDate=new Date(Math.max.apply(null,datearr));
+    return this.getCurrentBTCBal(maxDate,usdBal);
   });
   }
   getCurrentBTCBal(date:Date,usdBal){
@@ -305,6 +307,7 @@ if(this.usdamnt.value==''||this.btcamnt.value==''){
       data => {
       var strbal:string = data.toString();
       bal = +strbal
+      //alert(bal)
       this.getBtcBal(bal);
       }
     )

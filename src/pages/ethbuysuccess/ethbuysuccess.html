@@ -7,17 +7,17 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Success</ion-title>
+    <ion-title>Buy ETH History</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <ion-label class="cmplt">Transaction Completed Successfully</ion-label>
+  <ion-label class="cmplt">Transactions Completed</ion-label>
   <p><ion-icon name="checkmark-circle"></ion-icon></p>
   <ion-item>
-    <ion-label>New ETH Balance: {{ethtotalbal}}</ion-label>
+    <ion-label>New ETH Balance: {{ethtotalbal | number:'1.2-5'}}</ion-label>
   </ion-item>
 
   <ion-label>History</ion-label>
@@ -28,15 +28,8 @@
         <p class="para" *ngFor ="let date of dates">{{date}}</p>       
       </ion-col>
       <ion-col>
-        <strong>ETH qty</strong>
+        <strong>ETH Qty</strong>
         <p class="para" *ngFor ="let eth of eths">{{eth}}</p>    
-      </ion-col>
-      <ion-col>
-          <strong>Status</strong> 
-          <p class="sts"> <ion-icon name="checkmark"></ion-icon></p> 
-          <p class="sts"> <ion-icon name="checkmark"></ion-icon></p>
-          <p class="sts"> <ion-icon name="checkmark"></ion-icon></p> 
-          <p class="sts"> <ion-icon name="checkmark"></ion-icon></p>        
       </ion-col>
     </ion-row>
   </ion-grid>

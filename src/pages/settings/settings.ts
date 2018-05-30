@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ChangepasswordPage } from '../changepassword/changepassword';
 import { PersonalInfoPage } from '../personal-info/personal-info';
 import { SecuritysettingsPage } from '../securitysettings/securitysettings';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { MyaccPage } from '../myacc/myacc';
 
 /**
  * Generated class for the SettingsPage page.
@@ -17,8 +19,9 @@ import { SecuritysettingsPage } from '../securitysettings/securitysettings';
   templateUrl: 'settings.html',
 })
 export class SettingsPage {
+  email;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private firebaseauth:AngularFireAuth) {
   }
 
   ionViewDidLoad() {
@@ -32,6 +35,10 @@ export class SettingsPage {
  security()
 {
   this.navCtrl.push(SecuritysettingsPage);
+}
+
+myacc(){
+  this.navCtrl.push(MyaccPage);
 }
 
 }

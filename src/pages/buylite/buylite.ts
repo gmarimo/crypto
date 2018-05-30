@@ -47,7 +47,7 @@ export class BuylitePage {
   ltc;
   
   constructor(private toastCtrl:ToastController,private remoteserviceprovider: RemoteServiceProvider,public alertctrl:AlertController, private dbAuth: AngularFireAuth, public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams,private fdb:AngularFireDatabase) {
-    
+
     this.getLtc()
     this.payamnt = 0;
     this.commissionRate = 0.1;
