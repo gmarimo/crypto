@@ -30,7 +30,8 @@ export class DepositPage {
     alert('nyasha'+date);
   }
 
-  constructor(private http: Http,private afAuth: AngularFireAuth,public toastCtrl: ToastController, private fdb: AngularFireDatabase, public navCtrl: NavController, public loadingCtrl: LoadingController, public navParams: NavParams, public alertctrl:AlertController) {
+  constructor(private http: Http,private afAuth: AngularFireAuth,public toastCtrl: ToastController, private fdb: AngularFireDatabase, public navCtrl: NavController, public loadingCtrl: LoadingController,
+     public navParams: NavParams, public alertctrl:AlertController) {
   this.amnt=0;
   }
 

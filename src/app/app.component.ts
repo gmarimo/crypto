@@ -16,7 +16,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { SharePage } from '../pages/share/share';
 import { InvitePage } from '../pages/invite/invite';
 import { WalletsPage } from '../pages/wallets/wallets';
-import { LogoutPage } from '../pages/logout/logout';
+//import { LogoutPage } from '../pages/logout/logout';
 import { SecuritysettingsPage } from '../pages/securitysettings/securitysettings';
 import { Injectable } from '@angular/core';
 
@@ -51,7 +51,7 @@ export class MyApp {
       //{ title: 'Alerts', component: AlertsPage, icon: "alert" },
       { title: 'Share', component: SharePage, icon: "share" },
       //{ title: 'Invite friends', component: InvitePage, icon: "person-add" },
-      { title: 'Logout', component: LogoutPage, icon: "log-out" }
+      //{ title: 'Logout', component: HomePage, icon: "log-out" }
     ];
 
   }
