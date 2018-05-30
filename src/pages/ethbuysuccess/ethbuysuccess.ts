@@ -67,7 +67,7 @@ setBal(date){
   this.fdb.list(url).valueChanges().subscribe(
     data => {
       ///change decimal places and pass value to html
-      this.Catdata.push(Number(data).toFixed(5));
+      this.Catdata.push(Number(data).toFixed(4));
     }
   )
 }
