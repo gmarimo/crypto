@@ -218,6 +218,7 @@ const firebase = {
     DatePipe,
     Clipboard,
     ScreenOrientation,
+    
     //CallNumber
     
   ]

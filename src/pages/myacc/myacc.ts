@@ -6,6 +6,8 @@ import { HomePage } from '../home/home';
 import { LoadingController } from 'ionic-angular';
 import { ChangepasswordPage } from '../changepassword/changepassword';
 
+
+
 /**
  * Generated class for the MyaccPage page.
  *
@@ -30,6 +32,7 @@ export class MyaccPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad MyaccPage');
   }
+
 
   logout(){
 

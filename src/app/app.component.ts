@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, TapClick } from 'ionic-angular';
+import { Nav, Platform, TapClick, } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -18,25 +18,42 @@ import { InvitePage } from '../pages/invite/invite';
 import { WalletsPage } from '../pages/wallets/wallets';
 //import { LogoutPage } from '../pages/logout/logout';
 import { SecuritysettingsPage } from '../pages/securitysettings/securitysettings';
-import { Injectable } from '@angular/core';
+import { Injectable} from '@angular/core';
+import { Events } from 'ionic-angular';
+
+
 
 @Component({
   templateUrl: 'app.html'
+  
 })
+
+
 export class MyApp {
+
+  
   @ViewChild(Nav) nav: Nav;
 
-  email;
+  emaill;
+  usr;
+  public currentUser: any;
   rootPage: any = HomePage;
 
   pages: Array<{title: string, component: any, icon: String}>;
 
-  constructor(private firebaseauth:AngularFireAuth,public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(private firebaseauth:AngularFireAuth,public events: Events,public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
     platform.ready().then(() => {});
+
+    events.subscribe('user',(email) => {
+      this.emaill = email
+        this.loggedIn();
+      })
+    
+     
+    
    
-    
-    
+    //this.email = this.firebaseauth.auth.currentUser.email;
 
     // used for an example of ngFor and navigation
     this.pages = [
@@ -71,5 +88,8 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }
-
+  loggedIn() {
+    console.log("logged in");
+    }
+ 
 }
