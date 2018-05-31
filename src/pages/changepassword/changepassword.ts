@@ -32,7 +32,7 @@ export class ChangepasswordPage {
   password;
   emaill;
 
-  constructor(public navCtrl: NavController,public events: Events,private firebaseauth:AngularFireAuth,public alertCtrl:AlertController,
+  constructor(public navCtrl: NavController,private firebaseauth:AngularFireAuth,public alertCtrl:AlertController,
     private toastCtrl:ToastController,private fdb:AngularFireDatabase,private dbAuth: AngularFireAuth, 
     public navParams: NavParams,public afAuth: AngularFireAuth,public loadingCtrl: LoadingController) {
       
@@ -105,7 +105,7 @@ export class ChangepasswordPage {
     toast.present();
     console.log(error)
   });
-  this.empty();
+  //this.empty();
 })
 
 loader.present();

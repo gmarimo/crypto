@@ -5,7 +5,7 @@ import { AlertController } from 'ionic-angular';
 import { WalletsPage } from '../wallets/wallets';
 import { Buydetails } from '../../models/buydetails';
 import { LoadingController } from 'ionic-angular';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers } from '@angular/http';
 import { ToastController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, snapshotChanges } from 'angularfire2/database';
@@ -38,13 +38,20 @@ export class DepositPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DepositPage');
+  
+  }
+
+  paynow () {
+
+    window.open('https://www.paynow.co.zw/Payment/Link/?q=c2VhcmNoPW1naWZ0OTMxOSU0MGdtYWlsLmNvbSZhbW91bnQ9MC4wMCZyZWZlcmVuY2U9Jmw9MA%3d%3d');
+
   }
 
   depositsteps() {
 
     let alert = this.alertctrl.create({
       title: "Deposit Steps",
-      subTitle: "1. Send the amount you want to deposit via ecocash. <br/> 2. Enter the amount you deposited into the 'Deposit amount' field and press the button 'COMPLETE DEPOSIT PROCESS'. <br/> 3. Press 'View History' to see history of your transactions. <br/> 4. Send proof of payment (Ecocash Message) via Whatsapp, SMS or Call to 0778 1234123 for approval. <br/><br/> YOU ARE DONE!!",
+      subTitle: "1. Press the button below redirected to Paynow <br> 2. Enter your email and amount then 'Make Payment', 'Minimum $20' <br> 3. Select Ecocash / Telecash / VPayments then wait for passoword popup on your phone to complete payment. <br>4. Check your email and forward the payment reference you just get from Paynow to 'bashwallet@gmail.com' so that your bash wallet balance will be updated. <br><br>YOU ARE DONE!!",
       buttons: ['ok']
     });
     alert.present();

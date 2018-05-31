@@ -23,6 +23,8 @@ import { MylitewalletPage } from '../mylitewallet/mylitewallet';
 import { BuylitePage } from '../buylite/buylite';
 import { Events } from 'ionic-angular';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { PopoverController } from 'ionic-angular';
+import { PopPage } from '../pop/pop';
 
 
 /**
@@ -47,7 +49,7 @@ export class WalletsPage {
   userid;
   email
   
-  constructor(public afAuth: AngularFireAuth,private firebaseauth:AngularFireAuth,public events: Events, public loadingCtrl: LoadingController, private toastCtrl:ToastController, public fdb: AngularFireDatabase,private remoteserviceprovider: RemoteServiceProvider, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public afAuth: AngularFireAuth,public events: Events,private firebaseauth:AngularFireAuth, public loadingCtrl: LoadingController,public popoverCtrl: PopoverController,private toastCtrl:ToastController, public fdb: AngularFireDatabase,private remoteserviceprovider: RemoteServiceProvider, public navCtrl: NavController, public navParams: NavParams) {
       this.item = 30;
       this.accbal = 0;
       this.updatebal();
@@ -204,6 +206,11 @@ setBal(date:Date){
   litewallet(){
     this.navCtrl.push(MylitewalletPage)
   }
-
+  presentPopover(myEvent) {
+    let popover = this.popoverCtrl.create(PopPage);
+    popover.present({
+      ev: myEvent
+    });
+  }
 
 }

@@ -15,6 +15,7 @@ import { EmailconfirmationPage } from '../emailconfirmation/emailconfirmation';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { MenuController } from 'ionic-angular/index';
+import { TermsPage } from '../terms/terms';
 
 @IonicPage()
 @Component({
@@ -23,7 +24,7 @@ import { MenuController } from 'ionic-angular/index';
 })
 @Injectable()
 export class CreateaccountPage {
-  private user: firebase.User;
+  //private user: firebase.User;
   
   format:string = '\d{1}[a-zA-Z]{2}\d{6}';
 
@@ -207,5 +208,8 @@ console.log("Email verification failed, please try again", error)
 })
 console.log(this.email.value);
 
+}
+terms(){
+  this.navCtrl.push(TermsPage);
 }
 }

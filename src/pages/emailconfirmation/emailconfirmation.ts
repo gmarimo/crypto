@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams ,LoadingController, ToastController} from 'ionic-angular';
-import { AngularFireAuthModule } from 'angularfire2/auth';
-import { AngularFireModule } from 'angularfire2';
+//import { AngularFireAuthModule } from 'angularfire2/auth';
+//import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
 import {AlertController} from 'ionic-angular';
 
@@ -22,7 +22,7 @@ export class EmailconfirmationPage {
 //@ViewChild('password')password;
  password:string;
   constructor(public navCtrl: NavController, public navParams: NavParams,public angularFireAuth: AngularFireAuth, 
-    private alertCtrl: AlertController, public loadingCtrl: LoadingController,private toastCtrl:ToastController) {
+     public loadingCtrl: LoadingController,private toastCtrl:ToastController) {
       this.email = "tinashediego@gmail.com";
       this.password ="1231";
   }

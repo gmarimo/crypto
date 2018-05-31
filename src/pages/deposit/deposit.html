@@ -13,20 +13,18 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content paddind>
-  <ion-label class="lbl">Deposit with ecocash:</ion-label> 
-    <ion-item no-lines>
-      <p class="para">Ecocash number: <br/><strong>0772 123234: Gift Bash</strong></p>
-      <p class="para1">Minimum $20</p><br/>
-      <p class="para">Learn <a (click)="depositsteps()" href="#">deposit steps.</a></p>
-      <p class="para">Then complete the process below <ion-icon class="ionicon" name="arrow-down"></ion-icon></p>
-    </ion-item>
+<ion-content padding>
+  <ion-label class="lbl">Deposit in 3 steps using Paynow</ion-label> 
+   
+      <p class="para1"><strong>Minimum deposit amount is $20!</strong></p>
+      <p>Learn <a (click)="depositsteps()">Deposit Steps</a> and</p>
+      <p>Press <strong>Complete Deposit Process</strong> button below to proceed</p><br><br>
+    
   
-  
-    <ion-item class="amnt" no-lines>
+    <!--<ion-item class="amnt" no-lines>
       <ion-label floating>Deposit amount ($)</ion-label>
-      <ion-input [(ngModel)]="depositamount" type="number" #amnt required=true>{{depositamount}}</ion-input>
-    </ion-item>
+      <ion-input [(ngModel)]="depositamount" type="number" #amnt >{{depositamount}}</ion-input>
+    </ion-item>-->
    
 
     <ion-item>
@@ -50,5 +48,5 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-    <button ion-button full color="primary" (click)="depositBal()">Complete Deposit Process</button>
+    <button ion-button full color="primary" (click)="paynow()">Complete Deposit Process</button>
   </ion-footer>

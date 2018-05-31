@@ -67,7 +67,8 @@ setBal(date){
   var url = '/UserID/'+newstr+'/Bit Coin/'+date[i];
   this.fdb.list(url).valueChanges().subscribe(
     data => {
-      this.Catdata.push(Number(data).toFixed(5));
+            ///change decimal places and pass value to html
+      this.Catdata.push(Number(data).toFixed(4));
     }
   )
 }

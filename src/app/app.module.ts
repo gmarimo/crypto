@@ -66,18 +66,21 @@ import { DatePipe } from '@angular/common';
 import { Clipboard } from '@ionic-native/clipboard';
 import {ScreenOrientation} from "@ionic-native/screen-orientation";
 import { BtcsellhistoryPage } from '../pages/btcsellhistory/btcsellhistory'
+import { PopPage } from '../pages/pop/pop';
+import { BuyBtcHelpPage } from '../pages/buy-btc-help/buy-btc-help';
+import {HelpPage} from '../pages/help/help';
 //import { CallNumber } from '@ionic-native/call-number';
 
 
 
 
 const firebase = {
-  apiKey: "AIzaSyBj6shCVnamFe9IAptn0TGklVuFZCypmxQ",
-    authDomain: "crypto-ex.firebaseapp.com",
-    databaseURL: "https://crypto-ex.firebaseio.com",
-    projectId: "crypto-ex",
-    storageBucket: "crypto-ex.appspot.com",
-    messagingSenderId: "730339161700"
+  apiKey: "AIzaSyC86Y8wdE7FjiUOIXS7Hdw6Q3UUWqzjcoM",
+    authDomain: "server-afa0c.firebaseapp.com",
+    databaseURL: "https://server-afa0c.firebaseio.com",
+    projectId: "server-afa0c",
+    storageBucket: "server-afa0c.appspot.com",
+    messagingSenderId: "1019647265162"
 };
 
 
@@ -105,6 +108,7 @@ const firebase = {
     ExchangePage,
     PrepaidPage,
     SettingsPage,
+    PopPage,
     AlertsPage,
     SharePage,
     InvitePage,
@@ -129,6 +133,8 @@ const firebase = {
     UsdwithdrawalPage,
     MyaccPage,
     BtcsellhistoryPage,
+    BuyBtcHelpPage,
+    HelpPage,
     AppinfoPage
 
   ],
@@ -197,6 +203,9 @@ const firebase = {
     UsdwithdrawalPage,
     MyaccPage,
     BtcsellhistoryPage,
+    PopPage,
+    BuyBtcHelpPage,
+    HelpPage,
     AppinfoPage
   ],
   providers: [
