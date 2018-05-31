@@ -67,7 +67,7 @@ import { Clipboard } from '@ionic-native/clipboard';
 import {ScreenOrientation} from "@ionic-native/screen-orientation";
 import { BtcsellhistoryPage } from '../pages/btcsellhistory/btcsellhistory'
 import { PopPage } from '../pages/pop/pop';
-import { BuyBtcHelpPage } from '../pages/buy-btc-help/buy-btc-help';
+import { FaqPage } from '../pages/faq/faq';
 import {HelpPage} from '../pages/help/help';
 //import { CallNumber } from '@ionic-native/call-number';
 
@@ -133,7 +133,7 @@ const firebase = {
     UsdwithdrawalPage,
     MyaccPage,
     BtcsellhistoryPage,
-    BuyBtcHelpPage,
+    FaqPage,
     HelpPage,
     AppinfoPage
 
@@ -204,7 +204,7 @@ const firebase = {
     MyaccPage,
     BtcsellhistoryPage,
     PopPage,
-    BuyBtcHelpPage,
+    FaqPage,
     HelpPage,
     AppinfoPage
   ],

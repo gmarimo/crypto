@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ViewController} from 'ionic-angular';
 import {HelpPage} from '../help/help';
+import { FaqPage} from '../faq/faq';
 
 /**
  * Generated class for the PopPage page.
@@ -25,7 +26,7 @@ export class PopPage {
   }
 
   faq(){
-    this.navCtrl.push(HelpPage);
+    this.navCtrl.push(FaqPage);
   }
   help(){
     this.navCtrl.push(HelpPage);
