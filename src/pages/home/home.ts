@@ -22,6 +22,8 @@ import { Request, RequestMethod} from '@angular/http';
 import {ScreenOrientation} from "@ionic-native/screen-orientation";
 import { EmailverifyPage } from '../emailverify/emailverify';
 
+
+
 export interface PageInterface {
   title: string;
   pageName: string;
@@ -35,6 +37,8 @@ export interface PageInterface {
   selector: 'page-home',
   templateUrl: 'home.html'
 })
+
+
 export class HomePage {
 
   splash = true;
@@ -71,6 +75,8 @@ export class HomePage {
       this.password = this.formgroup.controls['password'];
 
       //this.lockPortrait();
+   
+    
     
   }
   ionViewDidEnter() {
@@ -88,6 +94,7 @@ export class HomePage {
     // If you have more than one side menu, use the id like below
     // this.menu.swipeEnable(true, 'menu1');
    }
+   
 
    //lockPortrait() {
     //alert('Orientation locked portrait.');
@@ -193,14 +200,14 @@ app.listen(process.env.PORT || 8080);
  
   login () {
    
-    this.loader();
+    this.loader(); 
       this.firebaseauth.auth.signInWithEmailAndPassword(this.email.value, this.password.value)
-    .then(data => {
+    .then(data => { 
       console.log("Login successful", this.firebaseauth.auth.currentUser)
       this.navCtrl.setRoot(WalletsPage);
     })
 
-   .catch(error => { 
+   .catch(error => {
 
     let toast = this.toastCtrl.create({
       message: 'Oops! ' + error ,

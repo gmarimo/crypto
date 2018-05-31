@@ -21,6 +21,9 @@ import { AngularFireDatabase, snapshotChanges } from 'angularfire2/database';
 import { SellitePage } from '../sellite/sellite';
 import { MylitewalletPage } from '../mylitewallet/mylitewallet';
 import { BuylitePage } from '../buylite/buylite';
+import { Events } from 'ionic-angular';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
 
 /**
  * Generated class for the WalletsPage page.
@@ -42,23 +45,29 @@ export class WalletsPage {
   eth = [];
   ltc = [];
   userid;
-
-
+  email
   
-  constructor(public afAuth: AngularFireAuth, public loadingCtrl: LoadingController, private toastCtrl:ToastController, public fdb: AngularFireDatabase,private remoteserviceprovider: RemoteServiceProvider, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public afAuth: AngularFireAuth,private firebaseauth:AngularFireAuth,public events: Events, public loadingCtrl: LoadingController, private toastCtrl:ToastController, public fdb: AngularFireDatabase,private remoteserviceprovider: RemoteServiceProvider, public navCtrl: NavController, public navParams: NavParams) {
       this.item = 30;
       this.accbal = 0;
       this.updatebal();
       this.remoteserviceprovider.getCoins().subscribe(data => { this.coins = data });
       this.remoteserviceprovider.getEth().subscribe(data => {this.eth = data});
       this.remoteserviceprovider.getLtc().subscribe(data => {this.ltc = data});
+
+      this.email = this.firebaseauth.auth.currentUser.email;
+      this.logIn();
     
   }
 
   ionViewDidLoad() {
     this.accbal=2000;
   }
-  
+  logIn() {
+    let email = this.firebaseauth.auth.currentUser.email;
+    this.events.publish('user',email);
+    //alert(email)
+    }
  
   buyingbtc(){
     this.navCtrl.push(BuybtcPage);
