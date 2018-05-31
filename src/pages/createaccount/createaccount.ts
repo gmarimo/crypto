@@ -24,7 +24,7 @@ import { TermsPage } from '../terms/terms';
 })
 @Injectable()
 export class CreateaccountPage {
-  private user: firebase.User;
+  //private user: firebase.User;
   
   format:string = '\d{1}[a-zA-Z]{2}\d{6}';
 

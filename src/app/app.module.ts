@@ -75,12 +75,12 @@ import {HelpPage} from '../pages/help/help';
 
 
 const firebase = {
-  apiKey: "AIzaSyBj6shCVnamFe9IAptn0TGklVuFZCypmxQ",
-    authDomain: "crypto-ex.firebaseapp.com",
-    databaseURL: "https://crypto-ex.firebaseio.com",
-    projectId: "crypto-ex",
-    storageBucket: "crypto-ex.appspot.com",
-    messagingSenderId: "730339161700"
+  apiKey: "AIzaSyC86Y8wdE7FjiUOIXS7Hdw6Q3UUWqzjcoM",
+    authDomain: "server-afa0c.firebaseapp.com",
+    databaseURL: "https://server-afa0c.firebaseio.com",
+    projectId: "server-afa0c",
+    storageBucket: "server-afa0c.appspot.com",
+    messagingSenderId: "1019647265162"
 };
 
 
