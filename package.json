@@ -40,6 +40,7 @@
     "angularfire2": "^5.0.0-rc.5-next",
     "axios": "^0.18.0",
     "call-number": "^1.0.1",
+    "cordova-android": "^7.0.0",
     "cordova-clipboard": "^1.2.1",
     "cordova-plugin-camera": "^4.0.3",
     "cordova-plugin-firebase": "git+https://github.com/jestcastro/cordova-plugin-firebase.git",
@@ -74,7 +75,8 @@
       "cordova-plugin-firebase": {},
       "cordova-clipboard": {},
       "cordova-plugin-screen-orientation": {},
-      "mx.ferreyra.callnumber": {}
+      "mx.ferreyra.callnumber": {},
+      "cordova-plugin-android-support-v4": {}
     }
   },
   "cordova-plugin-camera": {},
