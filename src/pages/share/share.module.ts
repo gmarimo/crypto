@@ -4,7 +4,7 @@ import { SharePage } from './share';
 
 @NgModule({
   declarations: [
-    SharePage,
+    //SharePage,
   ],
   imports: [
     IonicPageModule.forChild(SharePage),

@@ -4,7 +4,7 @@ import { BuybtcPage } from './buybtc';
 
 @NgModule({
   declarations: [
-    BuybtcPage,
+    //BuybtcPage,
   ],
   imports: [
     IonicPageModule.forChild(BuybtcPage),

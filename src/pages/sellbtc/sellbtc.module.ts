@@ -4,7 +4,7 @@ import { SellbtcPage } from './sellbtc';
 
 @NgModule({
   declarations: [
-    SellbtcPage,
+    //SellbtcPage,
   ],
   imports: [
     IonicPageModule.forChild(SellbtcPage),

@@ -4,7 +4,7 @@ import { MyaccPage } from './myacc';
 
 @NgModule({
   declarations: [
-    MyaccPage,
+    //MyaccPage,
   ],
   imports: [
     IonicPageModule.forChild(MyaccPage),

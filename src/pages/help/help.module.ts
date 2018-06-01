@@ -4,7 +4,7 @@ import { HelpPage } from './help';
 
 @NgModule({
   declarations: [
-    HelpPage,
+    //HelpPage,
   ],
   imports: [
     IonicPageModule.forChild(HelpPage),

@@ -25,7 +25,7 @@ import { EthwithdrawPage } from '../pages/ethwithdraw/ethwithdraw';
 import { ExchangePage } from '../pages/exchange/exchange';
 import { PrepaidPage } from '../pages/prepaid/prepaid';
 import { SettingsPage } from '../pages/settings/settings';
-import { AlertsPage } from '../pages/alerts/alerts';
+//import { AlertsPage } from '../pages/alerts/alerts';
 import { SharePage } from '../pages/share/share';
 import { InvitePage } from '../pages/invite/invite';
 import { CryptomarketPage } from '../pages/cryptomarket/cryptomarket';
@@ -109,7 +109,7 @@ const firebase = {
     PrepaidPage,
     SettingsPage,
     PopPage,
-    AlertsPage,
+   // AlertsPage,
     SharePage,
     InvitePage,
     CryptomarketPage,
@@ -179,7 +179,7 @@ const firebase = {
     ExchangePage,
     PrepaidPage,
     SettingsPage,
-    AlertsPage,
+   // AlertsPage,
     SharePage,
     InvitePage,
     CryptomarketPage,

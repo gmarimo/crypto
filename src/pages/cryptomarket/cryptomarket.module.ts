@@ -4,7 +4,7 @@ import { CryptomarketPage } from './cryptomarket';
 
 @NgModule({
   declarations: [
-    CryptomarketPage,
+    //CryptomarketPage,
   ],
   imports: [
     IonicPageModule.forChild(CryptomarketPage),

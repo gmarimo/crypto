@@ -4,7 +4,7 @@ import { PersonalInfoPage } from './personal-info';
 
 @NgModule({
   declarations: [
-    PersonalInfoPage,
+    //PersonalInfoPage,
   ],
   imports: [
     IonicPageModule.forChild(PersonalInfoPage),

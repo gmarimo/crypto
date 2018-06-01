@@ -4,7 +4,7 @@ import { BtcdepositPage } from './btcdeposit';
 
 @NgModule({
   declarations: [
-    BtcdepositPage,
+    //BtcdepositPage,
   ],
   imports: [
     IonicPageModule.forChild(BtcdepositPage),

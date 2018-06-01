@@ -4,10 +4,11 @@ import { AppinfoPage } from './appinfo';
 
 @NgModule({
   declarations: [
-    AppinfoPage,
+    //AppinfoPage,
   ],
   imports: [
     IonicPageModule.forChild(AppinfoPage),
   ],
+  
 })
 export class AppinfoPageModule {}

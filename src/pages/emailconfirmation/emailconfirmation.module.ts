@@ -4,7 +4,7 @@ import { EmailconfirmationPage } from './emailconfirmation';
 
 @NgModule({
   declarations: [
-    EmailconfirmationPage,
+    //EmailconfirmationPage,
   ],
   imports: [
     IonicPageModule.forChild(EmailconfirmationPage),

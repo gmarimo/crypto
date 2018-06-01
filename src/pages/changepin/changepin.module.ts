@@ -4,7 +4,7 @@ import { ChangepinPage } from './changepin';
 
 @NgModule({
   declarations: [
-    ChangepinPage,
+    //ChangepinPage,
   ],
   imports: [
     IonicPageModule.forChild(ChangepinPage),

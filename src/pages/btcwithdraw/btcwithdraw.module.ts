@@ -4,7 +4,7 @@ import { BtcwithdrawPage } from './btcwithdraw';
 
 @NgModule({
   declarations: [
-    BtcwithdrawPage,
+    //BtcwithdrawPage,
   ],
   imports: [
     IonicPageModule.forChild(BtcwithdrawPage),

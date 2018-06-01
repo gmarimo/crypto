@@ -4,7 +4,7 @@ import { InvitePage } from './invite';
 
 @NgModule({
   declarations: [
-    InvitePage,
+    //InvitePage,
   ],
   imports: [
     IonicPageModule.forChild(InvitePage),

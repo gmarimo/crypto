@@ -11,7 +11,7 @@ import { WithdrawPage } from '../pages/withdraw/withdraw';
 import { ExchangePage } from '../pages/exchange/exchange';
 import { PrepaidPage } from '../pages/prepaid/prepaid';
 import { SettingsPage } from '../pages/settings/settings';
-import { AlertsPage } from '../pages/alerts/alerts';
+//import { AlertsPage } from '../pages/alerts/alerts';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { SharePage } from '../pages/share/share';
 import { InvitePage } from '../pages/invite/invite';

@@ -6,7 +6,7 @@ import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 
 @NgModule({
   declarations: [
-    ResetpasswordPage,
+    //ResetpasswordPage,
   ],
   imports: [
     IonicPageModule.forChild(ResetpasswordPage),

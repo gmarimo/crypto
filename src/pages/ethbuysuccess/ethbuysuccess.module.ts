@@ -4,7 +4,7 @@ import { EthbuysuccessPage } from './ethbuysuccess';
 
 @NgModule({
   declarations: [
-    EthbuysuccessPage,
+    //EthbuysuccessPage,
   ],
   imports: [
     IonicPageModule.forChild(EthbuysuccessPage),

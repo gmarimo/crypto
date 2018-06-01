@@ -4,7 +4,7 @@ import { TradePage } from './trade';
 
 @NgModule({
   declarations: [
-    TradePage,
+    //TradePage,
   ],
   imports: [
     IonicPageModule.forChild(TradePage),

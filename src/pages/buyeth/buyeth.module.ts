@@ -4,7 +4,7 @@ import { BuyethPage } from './buyeth';
 
 @NgModule({
   declarations: [
-    BuyethPage,
+    //BuyethPage,
   ],
   imports: [
     IonicPageModule.forChild(BuyethPage),

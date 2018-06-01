@@ -4,7 +4,7 @@ import { BuylitePage } from './buylite';
 
 @NgModule({
   declarations: [
-    BuylitePage,
+    //BuylitePage,
   ],
   imports: [
     IonicPageModule.forChild(BuylitePage),

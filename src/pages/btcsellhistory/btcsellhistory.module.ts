@@ -4,7 +4,7 @@ import { BtcsellhistoryPage } from './btcsellhistory';
 
 @NgModule({
   declarations: [
-    BtcsellhistoryPage,
+    //BtcsellhistoryPage,
   ],
   imports: [
     IonicPageModule.forChild(BtcsellhistoryPage),
