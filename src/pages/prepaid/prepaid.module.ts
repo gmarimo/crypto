@@ -5,7 +5,7 @@ import { PrepaidPage } from './prepaid';
 
 @NgModule({
   declarations: [
-    PrepaidPage,
+    //PrepaidPage,
   ],
   imports: [
     IonicPageModule.forChild(PrepaidPage),

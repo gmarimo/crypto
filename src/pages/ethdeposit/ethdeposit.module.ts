@@ -4,7 +4,7 @@ import { EthdepositPage } from './ethdeposit';
 
 @NgModule({
   declarations: [
-    EthdepositPage,
+    //EthdepositPage,
   ],
   imports: [
     IonicPageModule.forChild(EthdepositPage),

@@ -4,7 +4,7 @@ import { SellitePage } from './sellite';
 
 @NgModule({
   declarations: [
-    SellitePage,
+    //SellitePage,
   ],
   imports: [
     IonicPageModule.forChild(SellitePage),

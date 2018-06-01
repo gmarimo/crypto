@@ -4,7 +4,7 @@ import { ExchangePage } from './exchange';
 
 @NgModule({
   declarations: [
-    ExchangePage,
+    //ExchangePage,
   ],
   imports: [
     IonicPageModule.forChild(ExchangePage),

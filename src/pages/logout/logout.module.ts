@@ -4,7 +4,7 @@ import { LogoutPage } from './logout';
 
 @NgModule({
   declarations: [
-    LogoutPage,
+    //LogoutPage,
   ],
   imports: [
     IonicPageModule.forChild(LogoutPage),

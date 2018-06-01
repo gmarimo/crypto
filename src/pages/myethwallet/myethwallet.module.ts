@@ -4,7 +4,7 @@ import { MyethwalletPage } from './myethwallet';
 
 @NgModule({
   declarations: [
-    MyethwalletPage,
+   // MyethwalletPage,
   ],
   imports: [
     IonicPageModule.forChild(MyethwalletPage),

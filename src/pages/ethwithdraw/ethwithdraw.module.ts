@@ -4,7 +4,7 @@ import { EthwithdrawPage } from './ethwithdraw';
 
 @NgModule({
   declarations: [
-    EthwithdrawPage,
+    //EthwithdrawPage,
   ],
   imports: [
     IonicPageModule.forChild(EthwithdrawPage),

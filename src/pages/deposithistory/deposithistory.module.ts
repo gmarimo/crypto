@@ -4,7 +4,7 @@ import { DeposithistoryPage } from './deposithistory';
 
 @NgModule({
   declarations: [
-    DeposithistoryPage,
+    //DeposithistoryPage,
   ],
   imports: [
     IonicPageModule.forChild(DeposithistoryPage),

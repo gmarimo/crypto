@@ -4,7 +4,7 @@ import { SecuritysettingsPage } from './securitysettings';
 
 @NgModule({
   declarations: [
-    SecuritysettingsPage,
+    //SecuritysettingsPage,
   ],
   imports: [
     IonicPageModule.forChild(SecuritysettingsPage),

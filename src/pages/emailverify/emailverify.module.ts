@@ -4,7 +4,7 @@ import { EmailverifyPage } from './emailverify';
 
 @NgModule({
   declarations: [
-    EmailverifyPage,
+    //EmailverifyPage,
   ],
   imports: [
     IonicPageModule.forChild(EmailverifyPage),
