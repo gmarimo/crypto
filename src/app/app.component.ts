@@ -83,6 +83,14 @@ export class MyApp {
     });
   }
 
+  hideSplashScreen() {
+    if (this.splashScreen) {
+    setTimeout(() => {
+    this.splashScreen.hide();
+    }, 100);
+    }
+    }
+
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario

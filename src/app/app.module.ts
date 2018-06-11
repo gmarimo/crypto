@@ -75,12 +75,12 @@ import {HelpPage} from '../pages/help/help';
 
 
 const firebase = {
-  apiKey: "AIzaSyC86Y8wdE7FjiUOIXS7Hdw6Q3UUWqzjcoM",
-    authDomain: "server-afa0c.firebaseapp.com",
-    databaseURL: "https://server-afa0c.firebaseio.com",
-    projectId: "server-afa0c",
-    storageBucket: "server-afa0c.appspot.com",
-    messagingSenderId: "1019647265162"
+  apiKey: "AIzaSyAmJ4Pbf0QEJeQp4lqjeY1R56rHN31uj7U",
+  authDomain: "proserver-da5d7.firebaseapp.com",
+  databaseURL: "https://proserver-da5d7.firebaseio.com",
+  projectId: "proserver-da5d7",
+  storageBucket: "proserver-da5d7.appspot.com",
+  messagingSenderId: "318732346081"
 };
 
 

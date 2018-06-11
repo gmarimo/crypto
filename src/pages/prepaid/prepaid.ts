@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, PopoverController } from 'ionic-angular';
 //import { Camera } from '@ionic-native/camera';
 import { LoadingController } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { PopPage } from '../pop/pop';
 
 /**
  * Generated class for the PrepaidPage page.
@@ -21,7 +22,7 @@ export class PrepaidPage {
 
   items;
 
-  constructor(private toastCtrl:ToastController,public fdb: AngularFireDatabase,public afAuth: AngularFireAuth,public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController) {
+  constructor(private toastCtrl:ToastController,public popoverCtrl: PopoverController,public fdb: AngularFireDatabase,public afAuth: AngularFireAuth,public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController) {
     this.updatebal();
   }
 
@@ -90,6 +91,13 @@ crtUsr(){
     });
   
     toast.present();
+  }
+
+  presentPopover(myEvent) {
+    let popover = this.popoverCtrl.create(PopPage);
+    popover.present({
+      ev: myEvent
+    });
   }
 }
 
